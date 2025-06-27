@@ -1,54 +1,67 @@
-<div>
-    <h1>Listar Bonos</h1>
-    <div>
+<div class="container">
+    <h1>📊 Gestión de Bonos Financieros</h1>
+    <div class="table-container">
         <table mat-table [dataSource]="dataSource" class="mat-elevation-z8">
 
-  <!-- Position Column -->
+  <!-- ID Column -->
   <ng-container matColumnDef="c1">
-    <th mat-header-cell *matHeaderCellDef> ID </th>
+    <th mat-header-cell *matHeaderCellDef> 🔢 ID </th>
     <td mat-cell *matCellDef="let element"> {{element.idBono}} </td>
   </ng-container>
 
   <!-- Name Column -->
   <ng-container matColumnDef="c2">
-    <th mat-header-cell *matHeaderCellDef> Nombre Bono </th>
+    <th mat-header-cell *matHeaderCellDef> 📝 Nombre del Bono </th>
     <td mat-cell *matCellDef="let element"> {{element.nombreBono}} </td>
   </ng-container>
 
-  <!-- Weight Column -->
+  <!-- Nominal Value Column -->
   <ng-container matColumnDef="c3">
-    <th mat-header-cell *matHeaderCellDef> V. Nominal </th>
+    <th mat-header-cell *matHeaderCellDef> 💵 Valor Nominal </th>
     <td mat-cell *matCellDef="let element"> {{element.valorNominal}} </td>
   </ng-container>
 
-  <!-- Symbol Column -->
+  <!-- Emission Date Column -->
   <ng-container matColumnDef="c4">
-    <th mat-header-cell *matHeaderCellDef> F. Emision </th>
+    <th mat-header-cell *matHeaderCellDef> 📅 Fecha de Emisión </th>
     <td mat-cell *matCellDef="let element"> {{element.fechaEmision}} </td>
   </ng-container>
 
+   <!-- Edit Column -->
    <ng-container matColumnDef="c5">
-    <th mat-header-cell *matHeaderCellDef> Editar </th>
-    <td mat-cell *matCellDef="let element"><button style="cursor: pointer; margin-left: 8px;" > <mat-icon 
-          [routerLink]="['ediciones', element.idBono]">
-          edit
-        </mat-icon></button>
- </td>
+    <th mat-header-cell *matHeaderCellDef> ✏️ Editar </th>
+    <td mat-cell *matCellDef="let element">
+      <div class="button-cell">
+        <button class="edit-button" [routerLink]="['ediciones', element.idBono]" title="Editar bono">
+          <mat-icon>edit</mat-icon>
+        </button>
+      </div>
+    </td>
   </ng-container>
 
+   <!-- Cash Flow Column -->
    <ng-container matColumnDef="c6">
-    <th mat-header-cell *matHeaderCellDef> F. de caja </th>
-    <td mat-cell *matCellDef="let element"> <button><mat-icon>attach_money</mat-icon></button> </td>
+    <th mat-header-cell *matHeaderCellDef> 💰 Flujo de Caja </th>
+    <td mat-cell *matCellDef="let element">
+      <div class="button-cell">
+        <button class="cash-flow-button" [routerLink]="['/flujocaja', element.idBono]" title="Ver flujo de caja">
+          <mat-icon>account_balance</mat-icon>
+        </button>
+      </div>
+    </td>
   </ng-container>
 
-<ng-container matColumnDef="c7">
-  <th mat-header-cell *matHeaderCellDef> R. financieros </th>
-  <td mat-cell *matCellDef="let element">
-    <button [routerLink]="['/resultados', element.idBono]" style="cursor: pointer; margin-left: 8px;" >
-      <mat-icon>bar_chart</mat-icon>
-    </button>
-  </td>
-</ng-container>
+  <!-- Financial Results Column -->
+  <ng-container matColumnDef="c7">
+    <th mat-header-cell *matHeaderCellDef> 📈 Resultados Financieros </th>
+    <td mat-cell *matCellDef="let element">
+      <div class="button-cell">
+        <button class="results-button" [routerLink]="['/resultados', element.idBono]" title="Ver resultados financieros">
+          <mat-icon>analytics</mat-icon>
+        </button>
+      </div>
+    </td>
+  </ng-container>
 
   <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
   <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>

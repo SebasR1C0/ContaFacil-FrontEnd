@@ -22,10 +22,14 @@ export class ListarbonoComponent implements OnInit {
   constructor(private bS: BonoService){}
   ngOnInit(): void {
     this.bS.list().subscribe((data) => {
-      this.dataSource = new MatTableDataSource(data)
+      // Ordenar por ID de menor a mayor
+      const sortedData = data.sort((a, b) => a.idBono - b.idBono);
+      this.dataSource = new MatTableDataSource(sortedData);
     });
     this.bS.getlist().subscribe((data) => {
-      this.dataSource = new MatTableDataSource(data);
+      // Ordenar por ID de menor a mayor
+      const sortedData = data.sort((a, b) => a.idBono - b.idBono);
+      this.dataSource = new MatTableDataSource(sortedData);
     });
   }
   

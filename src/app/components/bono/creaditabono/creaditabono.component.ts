@@ -13,7 +13,7 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatSelectModule } from '@angular/material/select';
 import { Bono } from '../../../models/bono';
 import { BonoService } from '../../../services/bono.service';
-import { ActivatedRoute, Params, Router } from '@angular/router';
+import { ActivatedRoute, Params, Router, RouterModule } from '@angular/router';
 import { CatalogoMoneda } from '../../../models/catalogomoneda';
 import { User } from '../../../models/users';
 import { MatDatepickerModule } from '@angular/material/datepicker';
@@ -32,7 +32,8 @@ import { MatSnackBar, MatSnackBarModule } from '@angular/material/snack-bar';
     MatButtonModule,
     ReactiveFormsModule,
     MatDatepickerModule,
-    MatSnackBarModule
+    MatSnackBarModule,
+    RouterModule
   ],
   templateUrl: './creaditabono.component.html',
   styleUrl: './creaditabono.component.css',
@@ -80,6 +81,19 @@ export class CreaditabonoComponent implements OnInit {
 
   listaMonedas: CatalogoMoneda[] = [];
   usuario: User[] = [];
+
+  // Propiedades para placeholders dinámicos
+  placeholderNombre: string = '';
+  placeholderValorNominal: string = '';
+  placeholderNumeroAnios: string = '';
+  placeholderTasaInteres: string = '';
+  placeholderTasaDescuento: string = '';
+  placeholderImpuesto: string = '';
+  placeholderInflacion: string = '';
+  placeholderPrima: string = '';
+  placeholderPeriodosGracia: string = '';
+  placeholderCostosBonista: string = '';
+  placeholderCostosOtros: string = '';
 
   constructor(
     private bS: BonoService,
