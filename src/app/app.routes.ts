@@ -4,9 +4,14 @@ import { BonoComponent } from './components/bono/bono.component';
 import { CreaditabonoComponent } from './components/bono/creaditabono/creaditabono.component';
 import { AppComponent } from './app.component';
 import { ListarComponent } from './components/resultados/listarResultados/listar.component';
+import { ManualuserComponent } from './components/home/manualuser/manualuser.component';
+import { InicioComponent } from './components/home/inicio/inicio.component';
+import { LoginComponent } from './components/login/login.component';
 
 export const routes: Routes = [
-  { path: '', component: AppComponent },
+  { path: '', redirectTo: '/login', pathMatch: 'full' },
+  { path: 'login', component: LoginComponent },
+  { path: 'inicio', component: InicioComponent },
   {
     path: 'bonos',
     component: BonoComponent,
@@ -19,5 +24,6 @@ export const routes: Routes = [
     ],
   },
   { path: 'resultados', component: ListarComponent },
-{ path: 'resultados/:idBono', component: ListarComponent }
+  { path: 'resultados/:idBono', component: ListarComponent },
+  { path: 'manual', component: ManualuserComponent }
 ];

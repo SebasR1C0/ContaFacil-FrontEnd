@@ -1,0 +1,26 @@
+<div class="home-container">
+  <div class="home-content">
+    <!-- Sección izquierda con texto -->
+    <div class="home-left">
+      <div class="welcome-section">
+        <h1 class="main-title">BIENVENIDO A</h1>
+        <h1 class="brand-title">CONTAFACIL</h1>
+        <button class="register-btn" (click)="goToRegisterBond()">
+          Registrar Bono
+        </button>
+      </div>
+    </div>
+    
+    <!-- Sección derecha con imagen -->
+    <div class="home-right">
+      <div class="image-container">
+        <img 
+          src="../../../../assets/images/Harold.jpg" 
+          alt="la mama de harold" 
+          class="home-image"
+          (error)="onImageError($event)"
+          (load)="onImageLoad($event)">
+      </div>
+    </div>
+  </div>
+</div>

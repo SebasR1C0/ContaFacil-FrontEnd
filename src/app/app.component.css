@@ -1,0 +1,259 @@
+/* Encabezado principal con temática azul */
+.main-header {
+  background: linear-gradient(135deg, #1e88e5 0%, #42a5f5 50%, #64b5f6 100%);
+  box-shadow: 0 2px 12px rgba(30, 136, 229, 0.2);
+  padding: 16px 24px;
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+  border-bottom: 3px solid #1565c0;
+}
+
+/* Contenedor de navegación */
+.nav-container {
+  display: flex;
+  align-items: center;
+  max-width: 1200px;
+  margin: 0 auto;
+  gap: 20px;
+}
+
+/* Botón de inicio (casa) */
+.home-button {
+  width: 48px !important;
+  height: 48px !important;
+  min-width: 48px !important;
+  border-radius: 50% !important;
+  background-color: #ffffff !important;
+  color: #1e88e5 !important;
+  border: 2px solid #ffffff !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  transition: all 0.3s ease !important;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.15) !important;
+  flex-shrink: 0;
+  padding: 0 !important;
+  margin: 0 !important;
+  position: relative !important;
+}
+
+.home-button:hover {
+  background-color: #f8f9fa !important;
+  color: #1565c0 !important;
+  transform: translateY(-2px) scale(1.05) !important;
+  box-shadow: 0 4px 16px rgba(30, 136, 229, 0.25) !important;
+}
+
+.home-button mat-icon {
+  font-size: 1.4rem !important;
+  width: 1.4rem !important;
+  height: 1.4rem !important;
+  color: inherit !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  margin: 0 !important;
+  line-height: 1 !important;
+}
+
+/* Contenedor principal de navegación */
+.main-nav {
+  flex: 1;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 16px;
+}
+
+/* Botones de navegación */
+.nav-button {
+  flex: 1;
+  height: 48px !important;
+  border-radius: 12px !important;
+  font-weight: 500 !important;
+  font-size: 0.95rem !important;
+  letter-spacing: 0.3px !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  gap: 8px !important;
+  transition: all 0.3s ease !important;
+  text-transform: none !important;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.1) !important;
+}
+
+/* Botón Crear Bono */
+.create-btn {
+  background-color: #ffffff !important;
+  color: #1e88e5 !important;
+  border: 2px solid #ffffff !important;
+}
+
+.create-btn:hover {
+  background-color: #f8f9fa !important;
+  color: #1565c0 !important;
+  transform: translateY(-2px) !important;
+  box-shadow: 0 4px 16px rgba(30, 136, 229, 0.2) !important;
+}
+
+/* Botón Ver Bonos */
+.list-btn {
+  background-color: rgba(255, 255, 255, 0.15) !important;
+  color: #ffffff !important;
+  border: 2px solid rgba(255, 255, 255, 0.3) !important;
+  backdrop-filter: blur(10px);
+}
+
+.list-btn:hover {
+  background-color: rgba(255, 255, 255, 0.25) !important;
+  border-color: rgba(255, 255, 255, 0.5) !important;
+  transform: translateY(-2px) !important;
+  box-shadow: 0 4px 16px rgba(255, 255, 255, 0.2) !important;
+}
+
+/* Botón Manual */
+.manual-btn {
+  background-color: #1565c0 !important;
+  color: #ffffff !important;
+  border: 2px solid #1565c0 !important;
+}
+
+.manual-btn:hover {
+  background-color: #0d47a1 !important;
+  border-color: #0d47a1 !important;
+  transform: translateY(-2px) !important;
+  box-shadow: 0 4px 16px rgba(13, 71, 161, 0.3) !important;
+}
+
+/* Iconos */
+.nav-button mat-icon {
+  font-size: 1.2rem !important;
+  width: 1.2rem !important;
+  height: 1.2rem !important;
+}
+
+/* Estados activos para rutas */
+.nav-button.active {
+  transform: translateY(-1px);
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .main-header {
+    padding: 12px 16px;
+  }
+  
+  .nav-container {
+    gap: 12px;
+  }
+  
+  .main-nav {
+    gap: 8px;
+  }
+  
+  .home-button {
+    width: 44px !important;
+    height: 44px !important;
+    min-width: 44px !important;
+  }
+  
+  .home-button mat-icon {
+    font-size: 1.2rem !important;
+    width: 1.2rem !important;
+    height: 1.2rem !important;
+    color: inherit !important;
+    margin: 0 !important;
+    line-height: 1 !important;
+  }
+  
+  .nav-button {
+    height: 44px !important;
+    font-size: 0.85rem !important;
+    flex-direction: column !important;
+    gap: 4px !important;
+    padding: 8px 12px !important;
+  }
+  
+  .nav-button span {
+    font-size: 0.75rem;
+    text-align: center;
+    line-height: 1.1;
+  }
+  
+  .nav-button mat-icon {
+    font-size: 1rem !important;
+    width: 1rem !important;
+    height: 1rem !important;
+  }
+}
+
+@media (max-width: 480px) {
+  .nav-container {
+    gap: 8px;
+  }
+  
+  .main-nav {
+    gap: 4px;
+  }
+  
+  .home-button {
+    width: 40px !important;
+    height: 40px !important;
+    min-width: 40px !important;
+  }
+  
+  .home-button mat-icon {
+    font-size: 1.1rem !important;
+    width: 1.1rem !important;
+    height: 1.1rem !important;
+    color: inherit !important;
+    margin: 0 !important;
+    line-height: 1 !important;
+  }
+  
+  .nav-button span {
+    display: none;
+  }
+  
+  .nav-button {
+    width: 48px !important;
+    height: 40px !important;
+    flex: none !important;
+    padding: 8px !important;
+    min-width: 48px !important;
+  }
+  
+  .main-nav {
+    justify-content: space-around;
+    flex: 1;
+  }
+}
+
+/* Animación de entrada */
+.main-header {
+  animation: slideDown 0.5s ease-out;
+}
+
+@keyframes slideDown {
+  from {
+    transform: translateY(-100%);
+    opacity: 0;
+  }
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+/* Efecto de glass morphism para el encabezado */
+.main-header::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: linear-gradient(135deg, rgba(255,255,255,0.1) 0%, rgba(255,255,255,0.05) 100%);
+  pointer-events: none;
+}

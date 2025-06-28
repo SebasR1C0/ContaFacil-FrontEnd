@@ -1,15 +1,28 @@
-<mat-toolbar>
-  <mat-icon>menu</mat-icon>
-  <div>
-    <button mat-button [matMenuTriggerFor]="menu1" style="color: black;">
-      Bono
+<header class="main-header">
+  <nav class="nav-container">
+    <!-- Botón de inicio en el lado izquierdo -->
+    <button mat-raised-button class="home-button" routerLink="/inicio" title="Inicio">
+      <mat-icon>home</mat-icon>
     </button>
-  </div>
-</mat-toolbar>
+    
+    <!-- Contenedor principal de navegación -->
+    <div class="main-nav">
+      <button mat-raised-button class="nav-button create-btn" routerLink="/bonos/nuevo">
+        <mat-icon>add_circle</mat-icon>
+        <span>Crear Bono</span>
+      </button>
+      
+      <button mat-raised-button class="nav-button list-btn" routerLink="/bonos">
+        <mat-icon>list</mat-icon>
+        <span>Ver Bonos</span>
+      </button>
+      
+      <button mat-raised-button class="nav-button manual-btn" routerLink="/manual">
+        <mat-icon>help_outline</mat-icon>
+        <span>Cómo usar ContaFácil</span>
+      </button>
+    </div>
+  </nav>
+</header>
 
-<mat-menu #menu1="matMenu">
-  <button mat-menu-item routerLink="/bonos">Listar Bono</button>
-  <button mat-menu-item routerLink="/bonos/nuevo">Crear Bono</button>
-
-</mat-menu>
 <router-outlet></router-outlet>
