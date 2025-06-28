@@ -104,6 +104,43 @@ export class CreaditabonoComponent implements OnInit {
     private route: ActivatedRoute,
     private snackBar: MatSnackBar
   ) {}
+
+  // Validadores personalizados como arrow functions para mantener el contexto
+  positiveNumberValidator = (control: any) => {
+    const value = parseFloat(control.value);
+    if (control.value !== null && control.value !== '' && (!isNaN(value) && value <= 0)) {
+      return { 'negativeNumber': true };
+    }
+    return null;
+  }
+
+  // Validador para números positivos (incluyendo cero)
+  nonNegativeNumberValidator = (control: any) => {
+    const value = parseFloat(control.value);
+    if (control.value !== null && control.value !== '' && (!isNaN(value) && value < 0)) {
+      return { 'negativeNumber': true };
+    }
+    return null;
+  }
+
+  // Validador para porcentajes (0-1 en formato decimal)
+  percentageValidator = (control: any) => {
+    const value = parseFloat(control.value);
+    if (control.value !== null && control.value !== '' && (!isNaN(value) && (value < 0 || value > 1))) {
+      return { 'invalidPercentage': true };
+    }
+    return null;
+  }
+
+  // Método para debug - verificar errores del formulario
+  checkFormErrors() {
+    Object.keys(this.form.controls).forEach(key => {
+      const control = this.form.get(key);
+      if (control && control.errors) {
+        console.log(`Campo ${key} tiene errores:`, control.errors);
+      }
+    });
+  }
   // ...existing code...
   ngOnInit(): void {
      this.route.params.subscribe((data:Params)=>{
@@ -114,22 +151,22 @@ export class CreaditabonoComponent implements OnInit {
     this.form = this.formBuilder.group({
       hcodigo: [''],
       hnombre: ['', Validators.required],
-      hvalorNominal: ['', Validators.required],
-      hnumeroAnios: ['', Validators.required],
+      hvalorNominal: ['', [Validators.required, this.positiveNumberValidator]],
+      hnumeroAnios: ['', [Validators.required, this.positiveNumberValidator]],
       hcupon: ['', Validators.required],
       hdiasPorAno: ['', Validators.required],
       htipoTasa: ['', Validators.required],
       hcapitalizacion: ['', Validators.required],
-      htasaInteres: ['', Validators.required],
-      htasaDescuento: ['', Validators.required],
-      himpuesto: ['', Validators.required],
+      htasaInteres: ['', [Validators.required, this.percentageValidator]],
+      htasaDescuento: ['', [Validators.required, this.percentageValidator]],
+      himpuesto: ['', [Validators.required, this.percentageValidator]],
       //hfechaEmision: ['', Validators.required],
-      hinflacion: ['', Validators.required],
+      hinflacion: ['', [Validators.required, this.percentageValidator]],
       htipoGracia: ['', Validators.required],
-      hperiodosGracia: ['', Validators.required],
-      hcostosBonista: ['', Validators.required],
-      hcostosOtros: ['', Validators.required],
-      hprima: ['', Validators.required],
+      hperiodosGracia: ['', [Validators.required, this.nonNegativeNumberValidator]],
+      hcostosBonista: ['', [Validators.required, this.percentageValidator]],
+      hcostosOtros: ['', [Validators.required, this.percentageValidator]],
+      hprima: ['', [Validators.required, this.percentageValidator]],
       hmoneda: ['', Validators.required],
       // huser: ['', Validators.required],
     });
@@ -204,22 +241,22 @@ export class CreaditabonoComponent implements OnInit {
         this.form = new FormGroup({
           hcodigo: new FormControl(data.idBono, Validators.required),
           hnombre: new FormControl(data.nombreBono, Validators.required),
-          hvalorNominal: new FormControl(data.valorNominal, Validators.required),
-          hnumeroAnios: new FormControl(data.numeroAños, Validators.required),
+          hvalorNominal: new FormControl(data.valorNominal, [Validators.required, this.positiveNumberValidator]),
+          hnumeroAnios: new FormControl(data.numeroAños, [Validators.required, this.positiveNumberValidator]),
           hcupon: new FormControl(data.frecuenciaCupon, Validators.required),
           hdiasPorAno: new FormControl(data.diasPorAno, Validators.required),
           htipoTasa: new FormControl(data.tipoTasa, Validators.required),
           hcapitalizacion: new FormControl(data.capitalizacion, Validators.required),
-          htasaInteres: new FormControl(data.tasaInteres, Validators.required),
-          htasaDescuento: new FormControl(data.tasaAnualDescuento, Validators.required),
-          himpuesto: new FormControl(data.impuesto, Validators.required),
+          htasaInteres: new FormControl(data.tasaInteres, [Validators.required, this.percentageValidator]),
+          htasaDescuento: new FormControl(data.tasaAnualDescuento, [Validators.required, this.percentageValidator]),
+          himpuesto: new FormControl(data.impuesto, [Validators.required, this.percentageValidator]),
           //hfechaEmision: new FormControl(data.fechaEmision, Validators.required),
-          hinflacion: new FormControl(data.inflacion, Validators.required),
+          hinflacion: new FormControl(data.inflacion, [Validators.required, this.nonNegativeNumberValidator]),
           htipoGracia: new FormControl(data.plazoTipo, Validators.required),
-          hperiodosGracia: new FormControl(data.plazoPeridos, Validators.required),
-          hcostosBonista: new FormControl(data.costesInicialesBonista, Validators.required),
-          hcostosOtros: new FormControl(data.costesInicialesOtros, Validators.required),
-          hprima: new FormControl(data.prima, Validators.required),
+          hperiodosGracia: new FormControl(data.plazoPeridos, [Validators.required, this.nonNegativeNumberValidator]),
+          hcostosBonista: new FormControl(data.costesInicialesBonista, [Validators.required, this.percentageValidator]),
+          hcostosOtros: new FormControl(data.costesInicialesOtros, [Validators.required, this.nonNegativeNumberValidator]),
+          hprima: new FormControl(data.prima, [Validators.required, this.percentageValidator]),
           hmoneda: new FormControl(data.idCatalogoMoneda.idCatalogoMoneda, Validators.required),
           // huser: new FormControl(data.idUsers.idUser, Validators.required),
         });
