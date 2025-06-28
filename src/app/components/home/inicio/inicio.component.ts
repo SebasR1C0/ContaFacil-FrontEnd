@@ -16,6 +16,10 @@ export class InicioComponent {
     this.router.navigate(['/bonos/nuevo']);
   }
 
+  goToManual() {
+    this.router.navigate(['/manual']);
+  }
+
   onImageError(event: any) {
     console.error('Error cargando imagen:', event);
     console.log('Ruta de imagen:', event.target.src);

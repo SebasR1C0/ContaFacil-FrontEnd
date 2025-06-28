@@ -83,6 +83,34 @@
   transform: translateY(-1px);
 }
 
+.manual-btn {
+  background: white;
+  color: #1e3c72;
+  border: none;
+  padding: 1rem 2.5rem;
+  border-radius: 50px;
+  font-size: 1.1rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  margin-top: 1rem;
+  display: inline-block;
+}
+
+.manual-btn:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.2);
+  background: #f8f9fa;
+  color: #1e3c72;
+}
+
+.manual-btn:active {
+  transform: translateY(-1px);
+}
+
 .home-right {
   flex: 1;
   display: flex;
@@ -143,7 +171,8 @@
     font-size: 2.5rem;
   }
   
-  .register-btn {
+  .register-btn,
+  .manual-btn {
     padding: 0.8rem 2rem;
     font-size: 1rem;
   }
@@ -163,7 +192,8 @@
     margin-bottom: 1.5rem;
   }
   
-  .register-btn {
+  .register-btn,
+  .manual-btn {
     padding: 0.7rem 1.5rem;
     font-size: 0.9rem;
   }
