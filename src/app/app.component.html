@@ -1,0 +1,15 @@
+<mat-toolbar>
+  <mat-icon>menu</mat-icon>
+  <div>
+    <button mat-button [matMenuTriggerFor]="menu1" style="color: black;">
+      Bono
+    </button>
+  </div>
+</mat-toolbar>
+
+<mat-menu #menu1="matMenu">
+  <button mat-menu-item routerLink="/bonos">Listar Bono</button>
+  <button mat-menu-item routerLink="/bonos/nuevo">Crear Bono</button>
+
+</mat-menu>
+<router-outlet></router-outlet>
