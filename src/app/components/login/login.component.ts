@@ -17,12 +17,16 @@ export class LoginComponent {
   constructor(private router: Router) {}
 
   onLogin() {
-    // Aquí puedes agregar validaciones si quieres
-    if (this.usuario && this.password) {
-      // Navegar a inicio después del login
+    // Validar credenciales específicas
+    if (this.usuario === 'usuario' && this.password === 'contraseña') {
+      // Credenciales correctas, navegar a inicio
       this.router.navigate(['/inicio']);
-    } else {
+    } else if (!this.usuario || !this.password) {
+      // Campos vacíos
       alert('Por favor completa todos los campos');
+    } else {
+      // Credenciales incorrectas
+      alert('Usuario o contraseña incorrectos');
     }
   }
 }

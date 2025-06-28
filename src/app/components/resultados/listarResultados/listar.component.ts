@@ -32,6 +32,4 @@ export class ListarComponent implements OnInit{
       this.dataSource = new MatTableDataSource(data);
     });
   }
-  } 
-
-
+} 
