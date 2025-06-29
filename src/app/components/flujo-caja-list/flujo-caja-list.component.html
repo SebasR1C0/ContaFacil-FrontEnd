@@ -1,0 +1,339 @@
+<div class="flujo-caja-container">
+  <!-- Header -->
+  <div class="header-section">
+    <h2 class="page-title">
+      <i class="fas fa-chart-line"></i>
+      <span *ngIf="!bonoId">Gestión de Flujo de Caja</span>
+      <span *ngIf="bonoId && flujos.length === 0">Flujo de Caja - Bono #{{ bonoId }}</span>
+      <span *ngIf="bonoId && flujos.length > 0">
+        Flujo de Caja - Bono #{{ bonoId }} 
+        <small class="text-muted">({{ flujos.length }} períodos)</small>
+      </span>
+    </h2>
+    <div class="header-actions">
+      <button 
+        *ngIf="bonoId"
+        class="btn btn-secondary me-2" 
+        (click)="goBackToBonos()">
+        <i class="fas fa-arrow-left"></i>
+        Volver a Bonos
+      </button>
+
+      <button 
+        class="btn btn-primary btn-refresh" 
+        (click)="refresh()" 
+        [disabled]="isLoading">
+        <i class="fas fa-sync-alt" [class.fa-spin]="isLoading"></i>
+        Actualizar
+      </button>
+    </div>
+  </div>
+
+  <!-- Loading State -->
+  <div class="loading-section text-center" *ngIf="isLoading">
+    <div class="spinner-border text-primary" role="status">
+      <span class="visually-hidden">Cargando...</span>
+    </div>
+    <p class="mt-3 text-muted">
+      <i class="fas fa-clock"></i>
+      Cargando flujos de caja...
+    </p>
+  </div>
+
+  <!-- Error State -->
+  <div class="error-section" *ngIf="hasError && !isLoading">
+    <div class="alert alert-danger" role="alert">
+      <h4 class="alert-heading">
+        <i class="fas fa-exclamation-triangle"></i>
+        Error al cargar los datos
+      </h4>
+      <p class="mb-0">{{ errorMessage }}</p>
+      <hr>
+      <div class="d-flex gap-2">
+        <button class="btn btn-outline-danger" (click)="refresh()">
+          <i class="fas fa-redo"></i>
+          Reintentar
+        </button>
+        <button 
+          *ngIf="bonoId" 
+          class="btn btn-outline-info" 
+          (click)="testEndpoints()">
+          <i class="fas fa-search"></i>
+          Probar Endpoints
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Tabla de Datos -->
+  <div class="table-section" *ngIf="!isLoading && !hasError && flujos.length > 0">
+    <div class="table-responsive">
+      <table class="table table-hover table-striped">
+        <thead class="table-dark">
+          <tr>
+            <th scope="col">
+              <i class="fas fa-calendar-alt"></i> Período
+            </th>
+            <th scope="col">
+              <i class="fas fa-clock"></i> Fecha Programada
+            </th>
+            <th scope="col">
+              <i class="fas fa-hourglass-half"></i> Plazo Gracia
+            </th>
+            <th scope="col">
+              <i class="fas fa-certificate"></i> Bono
+            </th>
+            <th scope="col">
+              <i class="fas fa-chart-area"></i> Bono Indexado
+            </th>
+            <th scope="col">
+              <i class="fas fa-percentage"></i> Cupón Interés
+            </th>
+            <th scope="col">
+              <i class="fas fa-money-bill-wave"></i> Cuota
+            </th>
+            <th scope="col">
+              <i class="fas fa-chart-line"></i> Amortización
+            </th>
+            <th scope="col">
+              <i class="fas fa-award"></i> Prima
+            </th>
+            <th scope="col">
+              <i class="fas fa-shield-alt"></i> Escudo
+            </th>
+            <th scope="col">
+              <i class="fas fa-building"></i> Flujo Emisor
+            </th>
+            <th scope="col">
+              <i class="fas fa-shield-alt"></i> Flujo Emisor Escudo
+            </th>
+            <th scope="col">
+              <i class="fas fa-coins"></i> Flujo Bonista
+            </th>
+            <th scope="col">
+              <i class="fas fa-chart-bar"></i> Flujo Actual
+            </th>
+            <th scope="col">
+              <i class="fas fa-calendar-check"></i> FA Plazo
+            </th>
+            <th scope="col">
+              <i class="fas fa-wave-square"></i> Convexidad
+            </th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let flujo of paginatedFlujos; let i = index">
+            <!-- Período -->
+            <td>
+              <span class="badge bg-primary">
+                <i class="fas fa-calendar"></i>
+                {{ flujo.periodo }}
+              </span>
+            </td>
+            
+            <!-- Fecha Programada -->
+            <td>
+              <i class="fas fa-calendar-day text-muted"></i>
+              {{ formatDate(flujo.fechaProgramada) }}
+            </td>
+            
+            <!-- Plazo Gracia -->
+            <td>
+              <span class="text-muted">{{ flujo.plazoGracia || 'N/A' }}</span>
+            </td>
+            
+            <!-- ID Bono -->
+            <td>
+              <span class="badge bg-info">
+                <i class="fas fa-certificate"></i>
+                {{ flujo.bono }}
+              </span>
+            </td>
+            
+            <!-- Bono Indexado -->
+            <td class="text-end">
+              <span class="text-primary fw-semibold">
+                {{ formatCurrency(flujo.bonoIndexado) }}
+              </span>
+            </td>
+            
+            <!-- Cupón Interés -->
+            <td class="text-center">
+              <span class="badge bg-warning text-dark">
+                <i class="fas fa-percentage"></i>
+                {{ formatNumber(flujo.cuponInteres * 100, 2) }}%
+              </span>
+            </td>
+            
+            <!-- Cuota -->
+            <td class="text-end">
+              <span class="text-success fw-semibold">
+                <i class="fas fa-dollar-sign"></i>
+                {{ formatCurrency(flujo.cuota) }}
+              </span>
+            </td>
+            
+            <!-- Amortización -->
+            <td class="text-end">
+              <span class="text-info fw-semibold">
+                <i class="fas fa-chart-line"></i>
+                {{ formatCurrency(flujo.amortizacion) }}
+              </span>
+            </td>
+            
+            <!-- Prima -->
+            <td class="text-end">
+              <span class="text-warning">
+                {{ formatCurrency(flujo.prima) }}
+              </span>
+            </td>
+            
+            <!-- Escudo -->
+            <td class="text-end">
+              <span class="text-secondary">
+                {{ formatCurrency(flujo.escudo) }}
+              </span>
+            </td>
+            
+            <!-- Flujo Emisor -->
+            <td class="text-end">
+              <span class="text-danger fw-semibold">
+                {{ formatCurrency(flujo.flujoEmisor) }}
+              </span>
+            </td>
+            
+            <!-- Flujo Emisor Escudo -->
+            <td class="text-end">
+              <span class="text-dark">
+                {{ formatCurrency(flujo.flujoEmisorEscudo) }}
+              </span>
+            </td>
+            
+            <!-- Flujo Bonista -->
+            <td class="text-end">
+              <span class="fw-bold text-success">
+                <i class="fas fa-coins"></i>
+                {{ formatCurrency(flujo.flujoBonista) }}
+              </span>
+            </td>
+            
+            <!-- Flujo Actual -->
+            <td class="text-end">
+              <span class="badge bg-success">
+                <i class="fas fa-chart-bar"></i>
+                {{ formatCurrency(flujo.flujoAct) }}
+              </span>
+            </td>
+            
+            <!-- FA Plazo -->
+            <td class="text-center">
+              <span class="badge bg-light text-dark">
+                {{ formatNumber(flujo.faPlazo, 4) }}
+              </span>
+            </td>
+            
+            <!-- Convexidad -->
+            <td class="text-center">
+              <span class="badge bg-secondary">
+                {{ formatNumber(flujo.convexidad, 4) }}
+              </span>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <!-- Paginador -->
+    <div class="pagination-section" *ngIf="totalPages > 1">
+      <!-- Información de paginación -->
+      <div class="pagination-info">
+        <span class="info-text">
+          <i class="fas fa-info-circle"></i>
+          {{ paginationInfo }}
+        </span>
+      </div>
+
+      <!-- Controles de paginación -->
+      <div class="pagination-controls">
+        <!-- Botón de bloque anterior -->
+        <button 
+          class="btn btn-pagination btn-outline-primary"
+          (click)="goToPreviousBlock()"
+          [disabled]="!hasPreviousBlock"
+          title="Bloque anterior">
+          <i class="fas fa-angle-double-left"></i>
+        </button>
+
+        <!-- Botón página anterior -->
+        <button 
+          class="btn btn-pagination btn-outline-primary"
+          (click)="goToPreviousPage()"
+          [disabled]="currentPage === 1"
+          title="Página anterior">
+          <i class="fas fa-angle-left"></i>
+        </button>
+
+        <!-- Páginas del bloque actual -->
+        <div class="page-numbers">
+          <button 
+            *ngFor="let page of pageRange"
+            class="btn btn-pagination"
+            [class.btn-primary]="page === currentPage"
+            [class.btn-outline-primary]="page !== currentPage"
+            (click)="goToPage(page)"
+            [title]="'Página ' + page">
+            {{ page }}
+          </button>
+        </div>
+
+        <!-- Botón página siguiente -->
+        <button 
+          class="btn btn-pagination btn-outline-primary"
+          (click)="goToNextPage()"
+          [disabled]="currentPage === totalPages"
+          title="Página siguiente">
+          <i class="fas fa-angle-right"></i>
+        </button>
+
+        <!-- Botón de bloque siguiente -->
+        <button 
+          class="btn btn-pagination btn-outline-primary"
+          (click)="goToNextBlock()"
+          [disabled]="!hasNextBlock"
+          title="Bloque siguiente">
+          <i class="fas fa-angle-double-right"></i>
+        </button>
+      </div>
+
+      <!-- Información adicional -->
+      <div class="pagination-summary">
+        <span class="summary-text">
+          Página {{ currentPage }} de {{ totalPages }}
+        </span>
+      </div>
+    </div>
+  </div>
+
+  <!-- Estado vacío -->
+  <div class="empty-state text-center" *ngIf="!isLoading && !hasError && flujos.length === 0">
+    <div class="empty-icon">
+      <i class="fas fa-inbox fa-4x text-muted"></i>
+    </div>
+    <h4 class="text-muted mt-3">
+      <i class="fas fa-search"></i>
+      No hay flujos de caja disponibles
+    </h4>
+    <p class="text-muted" *ngIf="bonoId">
+      <i class="fas fa-info-circle"></i>
+      No se encontraron flujos para el bono #{{ bonoId }}
+    </p>
+    <p class="text-muted" *ngIf="!bonoId">
+      <i class="fas fa-server"></i>
+      Verifica que el backend esté funcionando correctamente.
+    </p>
+    <button class="btn btn-primary" (click)="refresh()">
+      <i class="fas fa-sync-alt"></i>
+      Cargar Datos
+    </button>
+  </div>
+</div>
