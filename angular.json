@@ -68,7 +68,8 @@
               "buildTarget": "FrontConta:build:production"
             },
             "development": {
-              "buildTarget": "FrontConta:build:development"
+              "buildTarget": "FrontConta:build:development",
+              "proxyConfig": "proxy.conf.json"
             }
           },
           "defaultConfiguration": "development"

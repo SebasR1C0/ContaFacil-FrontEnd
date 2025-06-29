@@ -7,6 +7,7 @@ import { ListarComponent } from './components/resultados/listarResultados/listar
 import { ManualuserComponent } from './components/home/manualuser/manualuser.component';
 import { InicioComponent } from './components/home/inicio/inicio.component';
 import { LoginComponent } from './components/login/login.component';
+import { FlujocajaComponent } from './components/flujocaja/flujocaja.component';
 
 export const routes: Routes = [
   { path: '', redirectTo: '/login', pathMatch: 'full' },
@@ -25,5 +26,7 @@ export const routes: Routes = [
   },
   { path: 'resultados', component: ListarComponent },
   { path: 'resultados/:idBono', component: ListarComponent },
+  { path: 'flujo-caja', component: FlujocajaComponent },
+  { path: 'flujocaja/:idBono', component: FlujocajaComponent },
   { path: 'manual', component: ManualuserComponent }
 ];
