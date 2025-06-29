@@ -25,13 +25,10 @@ export const routes: Routes = [
       { path: 'ediciones/:id', component: CreaditabonoComponent }
     ],
   },
-  // Rutas de resultados (vista vertical por defecto)
   { path: 'resultados', component: ResultadosComponent },
   { path: 'resultados/:idBono', component: ResultadosComponent },
-  // Rutas de tabla de resultados (vista horizontal)
   { path: 'resultados-tabla', component: ListarComponent },
   { path: 'resultados-tabla/:idBono', component: ListarComponent },
-  // Rutas de flujo de caja
   { path: 'flujo-caja', component: FlujocajaComponent },
   { path: 'flujocaja/:idBono', component: FlujocajaComponent },
   { path: 'manual', component: ManualuserComponent }
