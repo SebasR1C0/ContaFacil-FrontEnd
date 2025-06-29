@@ -10,10 +10,6 @@ html, body {
   font-family: Roboto, "Helvetica Neue", sans-serif;
 }
 
-{
-box-sizing: border-box;
-}
-
 /* Ensure all main containers inherit the background */
 app-root {
   min-height: 100vh;

@@ -18,6 +18,7 @@
         <i class="fas fa-arrow-left"></i>
         Volver a Bonos
       </button>
+
       <button 
         class="btn btn-primary btn-refresh" 
         (click)="refresh()" 
@@ -127,7 +128,7 @@
           </tr>
         </thead>
         <tbody>
-          <tr *ngFor="let flujo of flujos; let i = index">
+          <tr *ngFor="let flujo of paginatedFlujos; let i = index">
             <!-- ID Flujo Caja -->
             <td>
               <span class="badge bg-secondary">{{ flujo.idFlujoCaja }}</span>
@@ -259,6 +260,76 @@
           </tr>
         </tbody>
       </table>
+    </div>
+
+    <!-- Paginador -->
+    <div class="pagination-section" *ngIf="totalPages > 1">
+      <!-- Información de paginación -->
+      <div class="pagination-info">
+        <span class="info-text">
+          <i class="fas fa-info-circle"></i>
+          {{ paginationInfo }}
+        </span>
+      </div>
+
+      <!-- Controles de paginación -->
+      <div class="pagination-controls">
+        <!-- Botón de bloque anterior -->
+        <button 
+          class="btn btn-pagination btn-outline-primary"
+          (click)="goToPreviousBlock()"
+          [disabled]="!hasPreviousBlock"
+          title="Bloque anterior">
+          <i class="fas fa-angle-double-left"></i>
+        </button>
+
+        <!-- Botón página anterior -->
+        <button 
+          class="btn btn-pagination btn-outline-primary"
+          (click)="goToPreviousPage()"
+          [disabled]="currentPage === 1"
+          title="Página anterior">
+          <i class="fas fa-angle-left"></i>
+        </button>
+
+        <!-- Páginas del bloque actual -->
+        <div class="page-numbers">
+          <button 
+            *ngFor="let page of pageRange"
+            class="btn btn-pagination"
+            [class.btn-primary]="page === currentPage"
+            [class.btn-outline-primary]="page !== currentPage"
+            (click)="goToPage(page)"
+            [title]="'Página ' + page">
+            {{ page }}
+          </button>
+        </div>
+
+        <!-- Botón página siguiente -->
+        <button 
+          class="btn btn-pagination btn-outline-primary"
+          (click)="goToNextPage()"
+          [disabled]="currentPage === totalPages"
+          title="Página siguiente">
+          <i class="fas fa-angle-right"></i>
+        </button>
+
+        <!-- Botón de bloque siguiente -->
+        <button 
+          class="btn btn-pagination btn-outline-primary"
+          (click)="goToNextBlock()"
+          [disabled]="!hasNextBlock"
+          title="Bloque siguiente">
+          <i class="fas fa-angle-double-right"></i>
+        </button>
+      </div>
+
+      <!-- Información adicional -->
+      <div class="pagination-summary">
+        <span class="summary-text">
+          Página {{ currentPage }} de {{ totalPages }}
+        </span>
+      </div>
     </div>
   </div>
 

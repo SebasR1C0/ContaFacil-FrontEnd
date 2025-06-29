@@ -24,6 +24,14 @@ export class FlujoCajaListComponent implements OnInit, OnDestroy, OnChanges {
   hasError = false;
   errorMessage = '';
   
+  // Propiedades del paginador
+  currentPage = 1;
+  itemsPerPage = 10; // Número de items por página
+  totalItems = 0;
+  totalPages = 0;
+  currentBlock = 1; // Bloque actual de páginas (cada bloque tiene 10 páginas)
+  pagesPerBlock = 10; // Número de páginas visibles por bloque
+  
   // Observable para manejar la destrucción del componente
   private destroy$ = new Subject<void>();
   
@@ -63,6 +71,7 @@ export class FlujoCajaListComponent implements OnInit, OnDestroy, OnChanges {
       .subscribe({
         next: (flujos) => {
           this.flujos = flujos;
+          this.updatePagination(); // Actualizar paginación con los nuevos datos
           this.isLoading = false;
           
           const mensaje = this.bonoId 
@@ -181,116 +190,127 @@ export class FlujoCajaListComponent implements OnInit, OnDestroy, OnChanges {
     }).format(value);
   }
   
+
+  
+  // ========== MÉTODOS DE PAGINACIÓN ==========
+  
   /**
-   * Cargar datos de demostración para mostrar el diseño
+   * Actualiza los cálculos de paginación basados en los datos actuales
    */
-  loadDemoData(): void {
-    // Datos de ejemplo para demostración
-    this.flujos = [
-      {
-        idFlujoCaja: 1,
-        periodo: 1,
-        fechaProgramada: '2024-01-15',
-        plazoGracia: 'N/A',
-        bono: 1,
-        bonoIndexado: 1250.50,
-        cuponInteres: 0.08,
-        cuota: 1250.50,
-        amortizacion: 850.30,
-        prima: 0,
-        escudo: 0,
-        flujoEmisor: 2100.80,
-        flujoEmisorEscudo: 2100.80,
-        flujoBonista: 2100.80,
-        flujoAct: 1950.75,
-        faPlazo: 1.08,
-        convexidad: 0.15,
-        bonos: null
-      },
-      {
-        idFlujoCaja: 2,
-        periodo: 2,
-        fechaProgramada: '2024-02-15',
-        plazoGracia: 'N/A',
-        bono: 1,
-        bonoIndexado: 1180.25,
-        cuponInteres: 0.08,
-        cuota: 1180.25,
-        amortizacion: 920.60,
-        prima: 0,
-        escudo: 0,
-        flujoEmisor: 2100.85,
-        flujoEmisorEscudo: 2100.85,
-        flujoBonista: 2100.85,
-        flujoAct: 1806.42,
-        faPlazo: 1.16,
-        convexidad: 0.18,
-        bonos: null
-      },
-      {
-        idFlujoCaja: 3,
-        periodo: 3,
-        fechaProgramada: '2024-03-15',
-        plazoGracia: 'N/A',
-        bono: 1,
-        bonoIndexado: 1105.40,
-        cuponInteres: 0.08,
-        cuota: 1105.40,
-        amortizacion: 995.45,
-        prima: 0,
-        escudo: 0,
-        flujoEmisor: 2100.85,
-        flujoEmisorEscudo: 2100.85,
-        flujoBonista: 2100.85,
-        flujoAct: 1671.91,
-        faPlazo: 1.26,
-        convexidad: 0.21,
-        bonos: null
-      },
-      {
-        idFlujoCaja: 4,
-        periodo: 4,
-        fechaProgramada: '2024-04-15',
-        plazoGracia: 'N/A',
-        bono: 1,
-        bonoIndexado: 1025.10,
-        cuponInteres: 0.08,
-        cuota: 1025.10,
-        amortizacion: 1075.75,
-        prima: 0,
-        escudo: 0,
-        flujoEmisor: 2100.85,
-        flujoEmisorEscudo: 2100.85,
-        flujoBonista: 2100.85,
-        flujoAct: 1547.73,
-        faPlazo: 1.36,
-        convexidad: 0.24,
-        bonos: null
-      },
-      {
-        idFlujoCaja: 5,
-        periodo: 5,
-        fechaProgramada: '2024-05-15',
-        plazoGracia: 'N/A',
-        bono: 1,
-        bonoIndexado: 939.20,
-        cuponInteres: 0.08,
-        cuota: 939.20,
-        amortizacion: 1161.65,
-        prima: 0,
-        escudo: 0,
-        flujoEmisor: 2100.85,
-        flujoEmisorEscudo: 2100.85,
-        flujoBonista: 2100.85,
-        flujoAct: 1432.45,
-        faPlazo: 1.47,
-        convexidad: 0.27,
-        bonos: null
-      }
-    ];
+  updatePagination(): void {
+    this.totalItems = this.flujos.length;
+    this.totalPages = Math.ceil(this.totalItems / this.itemsPerPage);
     
-    this.isLoading = false;
-    this.hasError = false;
-    console.log('✨ Datos de demostración cargados');
+    // Asegurar que la página actual esté dentro del rango válido
+    if (this.currentPage > this.totalPages && this.totalPages > 0) {
+      this.currentPage = this.totalPages;
+    }
+    if (this.currentPage < 1) {
+      this.currentPage = 1;
+    }
+    
+    // Actualizar el bloque actual basado en la página actual
+    this.currentBlock = Math.ceil(this.currentPage / this.pagesPerBlock);
+  }
+  
+  /**
+   * Obtiene los elementos a mostrar en la página currentPage
+   */
+  get paginatedFlujos(): FlujoCaja[] {
+    const startIndex = (this.currentPage - 1) * this.itemsPerPage;
+    const endIndex = startIndex + this.itemsPerPage;
+    return this.flujos.slice(startIndex, endIndex);
+  }
+  
+  /**
+   * Obtiene el rango de páginas a mostrar en el bloque actual
+   */
+  get pageRange(): number[] {
+    if (this.totalPages === 0) return [];
+    
+    const start = ((this.currentBlock - 1) * this.pagesPerBlock) + 1;
+    const end = Math.min(start + this.pagesPerBlock - 1, this.totalPages);
+    
+    const pages: number[] = [];
+    for (let i = start; i <= end; i++) {
+      pages.push(i);
+    }
+    return pages;
+  }
+  
+  /**
+   * Navega a una página específica
+   */
+  goToPage(page: number): void {
+    if (page >= 1 && page <= this.totalPages && page !== this.currentPage) {
+      this.currentPage = page;
+      this.currentBlock = Math.ceil(page / this.pagesPerBlock);
+    }
+  }
+  
+  /**
+   * Navega a la página anterior
+   */
+  goToPreviousPage(): void {
+    if (this.currentPage > 1) {
+      this.goToPage(this.currentPage - 1);
+    }
+  }
+  
+  /**
+   * Navega a la página siguiente
+   */
+  goToNextPage(): void {
+    if (this.currentPage < this.totalPages) {
+      this.goToPage(this.currentPage + 1);
+    }
+  }
+  
+  /**
+   * Navega al bloque anterior de páginas
+   */
+  goToPreviousBlock(): void {
+    if (this.currentBlock > 1) {
+      const newPage = ((this.currentBlock - 2) * this.pagesPerBlock) + 1;
+      this.goToPage(newPage);
+    }
+  }
+  
+  /**
+   * Navega al bloque siguiente de páginas
+   */
+  goToNextBlock(): void {
+    const maxBlock = Math.ceil(this.totalPages / this.pagesPerBlock);
+    if (this.currentBlock < maxBlock) {
+      const newPage = (this.currentBlock * this.pagesPerBlock) + 1;
+      this.goToPage(Math.min(newPage, this.totalPages));
+    }
+  }
+  
+  /**
+   * Verifica si hay un bloque anterior disponible
+   */
+  get hasPreviousBlock(): boolean {
+    return this.currentBlock > 1;
+  }
+  
+  /**
+   * Verifica si hay un bloque siguiente disponible
+   */
+  get hasNextBlock(): boolean {
+    const maxBlock = Math.ceil(this.totalPages / this.pagesPerBlock);
+    return this.currentBlock < maxBlock;
+  }
+  
+  /**
+   * Obtiene información de paginación para mostrar al usuario
+   */
+  get paginationInfo(): string {
+    if (this.totalItems === 0) return 'No hay elementos';
+    
+    const startItem = ((this.currentPage - 1) * this.itemsPerPage) + 1;
+    const endItem = Math.min(startItem + this.itemsPerPage - 1, this.totalItems);
+    
+    return `Mostrando ${startItem} - ${endItem} de ${this.totalItems} elementos`;
   }
 }
