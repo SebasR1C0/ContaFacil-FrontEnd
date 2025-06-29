@@ -72,9 +72,6 @@
         <thead class="table-dark">
           <tr>
             <th scope="col">
-              <i class="fas fa-hashtag"></i> ID Flujo
-            </th>
-            <th scope="col">
               <i class="fas fa-calendar-alt"></i> Período
             </th>
             <th scope="col">
@@ -122,18 +119,10 @@
             <th scope="col">
               <i class="fas fa-wave-square"></i> Convexidad
             </th>
-            <th scope="col">
-              <i class="fas fa-link"></i> Bono Relacionado
-            </th>
           </tr>
         </thead>
         <tbody>
           <tr *ngFor="let flujo of paginatedFlujos; let i = index">
-            <!-- ID Flujo Caja -->
-            <td>
-              <span class="badge bg-secondary">{{ flujo.idFlujoCaja }}</span>
-            </td>
-            
             <!-- Período -->
             <td>
               <span class="badge bg-primary">
@@ -247,14 +236,6 @@
             <td class="text-center">
               <span class="badge bg-secondary">
                 {{ formatNumber(flujo.convexidad, 4) }}
-              </span>
-            </td>
-            
-            <!-- Bono Relacionado -->
-            <td class="text-center">
-              <span class="text-muted">
-                <i class="fas fa-link"></i>
-                {{ flujo.bonos ? 'Sí' : 'No' }}
               </span>
             </td>
           </tr>
