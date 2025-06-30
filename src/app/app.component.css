@@ -16,6 +16,7 @@
   max-width: 1200px;
   margin: 0 auto;
   gap: 20px;
+  width: 100%;
 }
 
 /* Botón de inicio (casa) */
@@ -61,14 +62,14 @@
 .main-nav {
   flex: 1;
   display: flex;
-  justify-content: space-between;
+  justify-content: center;
   align-items: center;
-  gap: 16px;
+  gap: 24px;
+  margin: 0 24px;
 }
 
 /* Botones de navegación */
 .nav-button {
-  flex: 1;
   height: 48px !important;
   border-radius: 12px !important;
   font-weight: 500 !important;
@@ -81,6 +82,9 @@
   transition: all 0.3s ease !important;
   text-transform: none !important;
   box-shadow: 0 2px 8px rgba(0,0,0,0.1) !important;
+  min-width: 160px !important;
+  flex: 1 !important;
+  max-width: 200px !important;
 }
 
 /* Botón Crear Bono */
@@ -112,18 +116,72 @@
   box-shadow: 0 4px 16px rgba(255, 255, 255, 0.2) !important;
 }
 
-/* Botón Manual */
-.manual-btn {
-  background-color: #1565c0 !important;
-  color: #ffffff !important;
-  border: 2px solid #1565c0 !important;
+/* Sección de usuario */
+.user-section {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  background: rgba(255, 255, 255, 0.1);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  border-radius: 25px;
+  padding: 8px 16px;
+  backdrop-filter: blur(10px);
+  flex-shrink: 0;
 }
 
-.manual-btn:hover {
-  background-color: #0d47a1 !important;
-  border-color: #0d47a1 !important;
-  transform: translateY(-2px) !important;
-  box-shadow: 0 4px 16px rgba(13, 71, 161, 0.3) !important;
+.user-info {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  color: #ffffff;
+}
+
+.user-icon {
+  font-size: 1.5rem !important;
+  width: 1.5rem !important;
+  height: 1.5rem !important;
+  color: #ffffff !important;
+}
+
+.username {
+  font-weight: 500;
+  font-size: 0.95rem;
+  letter-spacing: 0.3px;
+  color: #ffffff;
+}
+
+/* Botón de logout */
+.logout-btn {
+  width: 40px !important;
+  height: 40px !important;
+  min-width: 40px !important;
+  border-radius: 50% !important;
+  background-color: rgba(255, 255, 255, 0.15) !important;
+  color: #ffffff !important;
+  border: 1px solid rgba(255, 255, 255, 0.2) !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  transition: all 0.3s ease !important;
+  padding: 0 !important;
+  margin: 0 !important;
+}
+
+.logout-btn:hover {
+  background-color: rgba(244, 67, 54, 0.8) !important;
+  border-color: rgba(244, 67, 54, 0.9) !important;
+  transform: scale(1.05) !important;
+  box-shadow: 0 4px 12px rgba(244, 67, 54, 0.3) !important;
+}
+
+.logout-btn mat-icon {
+  font-size: 1.1rem !important;
+  width: 1.1rem !important;
+  height: 1.1rem !important;
+  margin: 0 !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
 }
 
 /* Iconos */
@@ -149,7 +207,8 @@
   }
   
   .main-nav {
-    gap: 8px;
+    gap: 12px;
+    margin: 0 12px;
   }
   
   .home-button {
@@ -173,6 +232,9 @@
     flex-direction: column !important;
     gap: 4px !important;
     padding: 8px 12px !important;
+    min-width: 100px !important;
+    flex: 1 !important;
+    max-width: 150px !important;
   }
   
   .nav-button span {
@@ -186,6 +248,27 @@
     width: 1rem !important;
     height: 1rem !important;
   }
+
+  .user-section {
+    padding: 6px 12px;
+    gap: 8px;
+  }
+
+  .username {
+    font-size: 0.85rem;
+  }
+
+  .user-icon {
+    font-size: 1.3rem !important;
+    width: 1.3rem !important;
+    height: 1.3rem !important;
+  }
+
+  .logout-btn {
+    width: 36px !important;
+    height: 36px !important;
+    min-width: 36px !important;
+  }
 }
 
 @media (max-width: 480px) {
@@ -194,7 +277,10 @@
   }
   
   .main-nav {
-    gap: 4px;
+    gap: 8px;
+    justify-content: center;
+    flex: 1;
+    margin: 0 8px;
   }
   
   .home-button {
@@ -223,10 +309,32 @@
     padding: 8px !important;
     min-width: 48px !important;
   }
-  
-  .main-nav {
-    justify-content: space-around;
-    flex: 1;
+
+  .user-section {
+    padding: 4px 8px;
+    gap: 6px;
+  }
+
+  .username {
+    display: none;
+  }
+
+  .user-icon {
+    font-size: 1.2rem !important;
+    width: 1.2rem !important;
+    height: 1.2rem !important;
+  }
+
+  .logout-btn {
+    width: 32px !important;
+    height: 32px !important;
+    min-width: 32px !important;
+  }
+
+  .logout-btn mat-icon {
+    font-size: 1rem !important;
+    width: 1rem !important;
+    height: 1rem !important;
   }
 }
 

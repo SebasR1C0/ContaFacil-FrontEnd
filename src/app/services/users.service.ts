@@ -19,4 +19,10 @@ export class UsersService {
   listId(id:number){
     return this.http.get<User>(`${this.url}/${id}`)
   }
+  insert(User : User){
+      return this.http.post(this.url, User);
+    }
+  update(User : User){
+        return this.http.put(this.url, User);
+      }
 }

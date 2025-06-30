@@ -28,8 +28,12 @@
           required>
       </div>
       
-      <button type="submit" class="login-btn">
-        Ingresar
+      <button type="submit" class="login-btn" [disabled]="isLoading">
+        <span *ngIf="!isLoading">Ingresar</span>
+        <span *ngIf="isLoading">
+          <i class="fas fa-spinner fa-spin"></i>
+          Validando...
+        </span>
       </button>
     </form>
   </div>

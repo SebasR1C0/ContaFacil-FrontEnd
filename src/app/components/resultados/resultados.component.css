@@ -40,16 +40,29 @@
 /* Cada fila de resultado */
 .result-row {
   display: flex;
-  margin-bottom: 6px;
-  border-radius: 8px;
+  margin-bottom: 16px;
+  border-radius: 12px;
   overflow: hidden;
   transition: all 0.3s ease;
-  box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+  box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+  border: 2px solid #f5f5f5;
+}
+
+/* Patrón alternado para filas */
+.result-row:nth-child(even) {
+  background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
+  border-color: #e3f2fd;
+}
+
+.result-row:nth-child(odd) {
+  background: linear-gradient(135deg, #ffffff 0%, #f8f9fa 100%);
+  border-color: #e8eaf6;
 }
 
 .result-row:hover {
-  transform: translateY(-2px);
-  box-shadow: 0 4px 16px rgba(66, 165, 245, 0.15);
+  transform: translateY(-3px);
+  box-shadow: 0 8px 24px rgba(66, 165, 245, 0.2);
+  border-color: #42a5f5;
 }
 
 .result-row:last-child {
@@ -59,7 +72,7 @@
 /* Etiqueta (lo que antes era el header de la columna) */
 .result-row .label {
   flex: 1;
-  padding: 18px 24px;
+  padding: 20px 28px;
   background: linear-gradient(135deg, #42a5f5 0%, #1e88e5 100%);
   color: white;
   font-weight: 600;
@@ -68,13 +81,13 @@
   align-items: center;
   min-width: 350px;
   box-shadow: inset 0 1px 0 rgba(255,255,255,0.1);
+  border-right: 3px solid rgba(255,255,255,0.2);
 }
 
 /* Valor (lo que antes era el contenido de la celda) */
 .result-row .value {
   flex: 1;
-  padding: 18px 24px;
-  background: white;
+  padding: 20px 28px;
   color: #424242;
   font-size: 1.1rem;
   font-weight: 500;
@@ -83,6 +96,7 @@
   justify-content: flex-end;
   text-align: right;
   font-family: 'Roboto Mono', monospace;
+  background: inherit;
 }
 
 /* Estilos especiales para diferentes tipos de valores */
@@ -90,20 +104,30 @@
   color: #2e7d32;
   font-weight: 700;
   font-size: 1.3rem;
-  background: linear-gradient(135deg, #e8f5e8 0%, #f1f8e9 100%);
+  background: linear-gradient(135deg, #e8f5e8 0%, #f1f8e9 100%) !important;
+  border-radius: 0 8px 8px 0;
 }
 
 .result-row .value.profit {
   color: #e65100;
   font-weight: 700;
   font-size: 1.2rem;
-  background: linear-gradient(135deg, #fff3e0 0%, #ffe0b2 100%);
+  background: linear-gradient(135deg, #fff3e0 0%, #ffe0b2 100%) !important;
+  border-radius: 0 8px 8px 0;
 }
 
 .result-row .value.percentage {
   color: #6a1b9a;
   font-weight: 600;
-  background: linear-gradient(135deg, #f3e5f5 0%, #e1bee7 100%);
+  background: linear-gradient(135deg, #f3e5f5 0%, #e1bee7 100%) !important;
+  border-radius: 0 8px 8px 0;
+}
+
+.result-row .value.percentage {
+  color: #6a1b9a;
+  font-weight: 600;
+  background: linear-gradient(135deg, #f3e5f5 0%, #e1bee7 100%) !important;
+  border-radius: 0 8px 8px 0;
 }
 
 .result-row .value.percentage::after {
@@ -193,22 +217,25 @@
   
   .result-row {
     flex-direction: column;
-    margin-bottom: 12px;
+    margin-bottom: 20px;
+    border-radius: 12px;
   }
   
   .result-row .label {
     min-width: auto;
     text-align: center;
     justify-content: center;
-    border-radius: 8px 8px 0 0;
-    padding: 15px 20px;
+    border-radius: 12px 12px 0 0;
+    padding: 18px 20px;
+    border-right: none;
+    border-bottom: 3px solid rgba(255,255,255,0.2);
   }
   
   .result-row .value {
     justify-content: center;
     text-align: center;
-    border-radius: 0 0 8px 8px;
-    padding: 15px 20px;
+    border-radius: 0 0 12px 12px;
+    padding: 18px 20px;
     font-size: 1rem;
   }
   

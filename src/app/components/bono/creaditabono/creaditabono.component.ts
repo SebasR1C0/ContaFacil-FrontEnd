@@ -70,11 +70,14 @@ export class CreaditabonoComponent implements OnInit {
     { value: 'Cuatrimestral', viewValue: 'Cuatrimestral' },
     { value: 'Semestral', viewValue: 'Semestral' },
     { value: 'Anual', viewValue: 'Anual' },
+    { value: 'N/A', viewValue: 'N/A' },
   ];
+
+  // Opciones de capitalización filtradas que se mostrarán en el select
+  capitalizacionesFiltradas: { value: string; viewValue: string }[] = [];
 
   tiposGracia: { value: string; viewValue: string }[] = [
     { value: 'Sin gracia', viewValue: 'Sin gracia' },
-    { value: 'Corto', viewValue: 'Corto' },
     { value: 'Parcial', viewValue: 'Parcial' },
     { value: 'Total', viewValue: 'Total' },
   ];
@@ -141,6 +144,44 @@ export class CreaditabonoComponent implements OnInit {
       }
     });
   }
+
+  // Método para manejar el cambio del tipo de gracia
+  onTipoGraciaChange(tipoGracia: string) {
+    const periodosGraciaControl = this.form.get('hperiodosGracia');
+    
+    if (tipoGracia === 'Sin gracia') {
+      // Si es "Sin gracia", establecer valor en 0 y deshabilitar el campo
+      periodosGraciaControl?.setValue(0);
+      periodosGraciaControl?.disable();
+    } else {
+      // Si no es "Sin gracia", habilitar el campo y limpiar el valor
+      periodosGraciaControl?.enable();
+      if (periodosGraciaControl?.value === 0) {
+        periodosGraciaControl?.setValue('');
+      }
+    }
+  }
+
+  // Método para manejar el cambio del tipo de tasa de interés
+  onTipoTasaChange(tipoTasa: string) {
+    const capitalizacionControl = this.form.get('hcapitalizacion');
+    
+    if (tipoTasa === 'Efectiva') {
+      // Si es "Efectiva", establecer valor en "N/A" y deshabilitar el campo
+      capitalizacionControl?.setValue('N/A');
+      capitalizacionControl?.disable();
+      // Filtrar opciones para mostrar solo "N/A"
+      this.capitalizacionesFiltradas = this.capitalizaciones.filter(cap => cap.value === 'N/A');
+    } else {
+      // Si no es "Efectiva", habilitar el campo y mostrar todas las opciones excepto "N/A"
+      capitalizacionControl?.enable();
+      this.capitalizacionesFiltradas = this.capitalizaciones.filter(cap => cap.value !== 'N/A');
+      // Limpiar el valor si era "N/A"
+      if (capitalizacionControl?.value === 'N/A') {
+        capitalizacionControl?.setValue('');
+      }
+    }
+  }
   // ...existing code...
   ngOnInit(): void {
      this.route.params.subscribe((data:Params)=>{
@@ -170,6 +211,20 @@ export class CreaditabonoComponent implements OnInit {
       hmoneda: ['', Validators.required],
       // huser: ['', Validators.required],
     });
+
+    // Inicializar las opciones de capitalización (sin "N/A" por defecto)
+    this.capitalizacionesFiltradas = this.capitalizaciones.filter(cap => cap.value !== 'N/A');
+
+    // Suscribirse a los cambios del tipo de gracia
+    this.form.get('htipoGracia')?.valueChanges.subscribe(value => {
+      this.onTipoGraciaChange(value);
+    });
+
+    // Suscribirse a los cambios del tipo de tasa
+    this.form.get('htipoTasa')?.valueChanges.subscribe(value => {
+      this.onTipoTasaChange(value);
+    });
+
     this.cS.list().subscribe((data) => {
       this.listaMonedas = data;
     });
@@ -184,26 +239,30 @@ export class CreaditabonoComponent implements OnInit {
       const hoy = new Date();
       hoy.setHours(hoy.getHours() - (hoy.getTimezoneOffset() / 60) - 5);
       const fechaEmision = hoy.toISOString().split('T')[0];
+      
+      // Obtener valores del formulario, incluyendo campos deshabilitados
+      const formValues = this.form.getRawValue();
+      
       const bono: any = {
-        idBono: this.form.value.hcodigo,
-        nombreBono: this.form.value.hnombre,
-        valorNominal: +this.form.value.hvalorNominal,
-        numeroAños: +this.form.value.hnumeroAnios,
-        frecuenciaCupon: this.form.value.hcupon,
-        diasPorAno: +this.form.value.hdiasPorAno,
-        tipoTasa: this.form.value.htipoTasa,
-        capitalizacion: this.form.value.hcapitalizacion,
-        tasaInteres: +this.form.value.htasaInteres,
-        tasaAnualDescuento: +this.form.value.htasaDescuento,
-        impuesto: +this.form.value.himpuesto,
+        idBono: formValues.hcodigo,
+        nombreBono: formValues.hnombre,
+        valorNominal: +formValues.hvalorNominal,
+        numeroAños: +formValues.hnumeroAnios,
+        frecuenciaCupon: formValues.hcupon,
+        diasPorAno: +formValues.hdiasPorAno,
+        tipoTasa: formValues.htipoTasa,
+        capitalizacion: formValues.hcapitalizacion,
+        tasaInteres: +formValues.htasaInteres,
+        tasaAnualDescuento: +formValues.htasaDescuento,
+        impuesto: +formValues.himpuesto,
         fechaEmision: fechaEmision,
-        inflacion: +this.form.value.hinflacion,
-        plazoTipo: this.form.value.htipoGracia,
-        plazoPeridos: +this.form.value.hperiodosGracia,
-        prima: +this.form.value.hprima,
-        costesInicialesBonista: +this.form.value.hcostosBonista,
-        costesInicialesOtros: +this.form.value.hcostosOtros,
-        idCatalogoMoneda: { idCatalogoMoneda: +this.form.value.hmoneda },
+        inflacion: +formValues.hinflacion,
+        plazoTipo: formValues.htipoGracia,
+        plazoPeridos: +formValues.hperiodosGracia,
+        prima: +formValues.hprima,
+        costesInicialesBonista: +formValues.hcostosBonista,
+        costesInicialesOtros: +formValues.hcostosOtros,
+        idCatalogoMoneda: { idCatalogoMoneda: +formValues.hmoneda },
         idUsers: { idUser: userData.idUser } // <-- Asigna el usuario automáticamente
       };
 
@@ -260,6 +319,22 @@ export class CreaditabonoComponent implements OnInit {
           hmoneda: new FormControl(data.idCatalogoMoneda.idCatalogoMoneda, Validators.required),
           // huser: new FormControl(data.idUsers.idUser, Validators.required),
         });
+
+        // Suscribirse a los cambios del tipo de gracia después de la inicialización
+        this.form.get('htipoGracia')?.valueChanges.subscribe(value => {
+          this.onTipoGraciaChange(value);
+        });
+
+        // Suscribirse a los cambios del tipo de tasa después de la inicialización
+        this.form.get('htipoTasa')?.valueChanges.subscribe(value => {
+          this.onTipoTasaChange(value);
+        });
+
+        // Aplicar la lógica inicial del tipo de tasa
+        this.onTipoTasaChange(data.tipoTasa);
+        
+        // Aplicar la lógica inicial del tipo de gracia
+        this.onTipoGraciaChange(data.plazoTipo);
       });
     }
   }

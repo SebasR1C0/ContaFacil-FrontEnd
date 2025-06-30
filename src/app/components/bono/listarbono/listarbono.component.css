@@ -1,30 +1,36 @@
 /* Contenedor principal profesional */
 .container {
-  background: transparent;
+  background: linear-gradient(135deg, #e3f2fd 0%, #bbdefb 30%, #90caf9 100%);
   min-height: 100vh;
-  padding: 30px;
-  font-family: 'Roboto', 'Segoe UI', sans-serif;
+  padding: 40px;
+  font-family: 'Inter', 'Roboto', 'Segoe UI', sans-serif;
 }
 
 /* Título principal */
 h1 {
-  color: #1565c0;
+  color: #0d47a1;
   text-align: center;
-  font-size: 2.2rem;
-  margin-bottom: 40px;
-  font-weight: 400;
-  letter-spacing: 0.5px;
+  font-size: 2.8rem;
+  margin-bottom: 50px;
+  font-weight: 700;
+  letter-spacing: -0.5px;
+  text-shadow: 0 2px 4px rgba(13, 71, 161, 0.1);
+  background: linear-gradient(135deg, #0d47a1 0%, #1565c0 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
 }
 
 /* Contenedor de la tabla */
 .table-container {
   background: #ffffff;
-  border-radius: 8px;
-  padding: 20px;
-  box-shadow: 0 2px 12px rgba(0,0,0,0.05);
-  border: 1px solid #e3f2fd;
+  border-radius: 12px;
+  padding: 24px;
+  box-shadow: 0 2px 10px rgba(0,0,0,0.04);
+  border: 1px solid #e9ecef;
   max-width: 100%;
-  overflow-x: auto;
+  overflow: hidden;
+  position: relative;
 }
 
 /* Estilos de la tabla */
@@ -35,144 +41,187 @@ h1 {
   width: 100%;
   border-collapse: separate;
   border-spacing: 0;
+  font-family: 'Inter', 'Roboto', sans-serif;
+  border: 1px solid #e9ecef;
 }
 
 /* Header de la tabla */
 .mat-mdc-header-row {
-  background: #42a5f5 !important;
-  color: white !important;
-  height: 52px !important;
-  border-bottom: 3px solid #1e88e5 !important;
+  background: #f8f9fa !important;
+  color: #495057 !important;
+  height: 56px !important;
+  border-bottom: 2px solid #e9ecef !important;
+  position: relative;
 }
 
 .mat-mdc-header-cell {
-  color: white !important;
-  font-weight: 500 !important;
+  color: #495057 !important;
+  font-weight: 600 !important;
   font-size: 0.9rem !important;
-  padding: 12px 16px !important;
+  padding: 16px 20px !important;
   border-bottom: none !important;
+  border-right: 1px solid #dee2e6 !important;
   text-align: center !important;
-  letter-spacing: 0.3px;
+  letter-spacing: 0.3px !important;
   vertical-align: middle !important;
   justify-content: center !important;
   align-items: center !important;
-}
-
-.mat-mdc-header-cell:first-child {
-  border-top-left-radius: 4px;
+  text-transform: none !important;
+  text-shadow: none;
+  background: #c5daef !important;
 }
 
 .mat-mdc-header-cell:last-child {
-  border-top-right-radius: 4px;
+  border-right: none !important;
+}
+
+.mat-mdc-header-cell:first-child {
+  border-top-left-radius: 8px;
+}
+
+.mat-mdc-header-cell:last-child {
+  border-top-right-radius: 8px;
 }
 
 /* Filas de datos */
 .mat-mdc-row {
   background: #ffffff !important;
-  border-bottom: 2px solid #e3f2fd !important;
-  transition: all 0.2s ease;
-  height: 52px !important;
+  border-bottom: 1px solid #e9ecef !important;
+  transition: all 0.3s ease;
+  height: 56px !important;
+  position: relative;
 }
 
 .mat-mdc-row:hover {
-  background: #f8fbff !important;
-  box-shadow: 0 1px 4px rgba(66, 165, 245, 0.1);
+  background: #e3f2fd !important;
+  box-shadow: 0 2px 8px rgba(66, 165, 245, 0.15);
+  transform: translateY(-1px);
 }
 
 .mat-mdc-row:nth-child(even) {
-  background: #fafbfc !important;
+  background: #fdfdfd !important;
 }
 
 .mat-mdc-row:nth-child(even):hover {
-  background: #f0f6ff !important;
+  background: #e3f2fd !important;
+  box-shadow: 0 2px 8px rgba(66, 165, 245, 0.15);
+  transform: translateY(-1px);
 }
 
 .mat-mdc-row:last-child {
   border-bottom: none !important;
 }
 
+.mat-mdc-row:last-child .mat-mdc-cell:first-child {
+  border-bottom-left-radius: 8px;
+}
+
+.mat-mdc-row:last-child .mat-mdc-cell:last-child {
+  border-bottom-right-radius: 8px;
+}
+
 /* Celdas */
 .mat-mdc-cell {
-  padding: 12px 16px !important;
-  font-size: 0.875rem !important;
-  color: #616161 !important;
+  padding: 14px 20px !important;
+  font-size: 0.9rem !important;
+  color: #495057 !important;
   font-weight: 400 !important;
   text-align: center !important;
   border-bottom: none !important;
+  border-right: 1px solid #e9ecef !important;
   vertical-align: middle !important;
   line-height: 1.4;
   justify-content: center !important;
   align-items: center !important;
+  font-family: 'Inter', 'Roboto', sans-serif;
 }
 
-/* Header cells también centradas */
-.mat-mdc-header-cell {
-  color: white !important;
-  font-weight: 500 !important;
-  font-size: 0.9rem !important;
-  padding: 12px 16px !important;
-  border-bottom: none !important;
-  text-align: center !important;
-  letter-spacing: 0.3px;
-  vertical-align: middle !important;
+.mat-mdc-cell:last-child {
+  border-right: none !important;
 }
 
 /* Botones estilizados */
 button {
-  background: #42a5f5 !important;
   border: none !important;
-  border-radius: 4px !important;
-  padding: 6px 10px !important;
+  border-radius: 12px !important;
+  padding: 10px 14px !important;
   color: white !important;
-  font-weight: 400 !important;
-  transition: all 0.2s ease !important;
-  box-shadow: 0 1px 3px rgba(0,0,0,0.08) !important;
+  font-weight: 600 !important;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1) !important;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.15) !important;
   cursor: pointer !important;
-  min-width: 36px !important;
-  height: 32px !important;
+  min-width: 44px !important;
+  height: 44px !important;
   display: inline-flex !important;
   align-items: center !important;
   justify-content: center !important;
-  margin: 0 1px !important;
+  margin: 0 3px !important;
+  font-family: 'Inter', 'Roboto', sans-serif !important;
+  position: relative !important;
+  overflow: hidden !important;
+}
+
+button::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
+  transition: left 0.5s;
+}
+
+button:hover::before {
+  left: 100%;
 }
 
 button:hover {
-  background: #1e88e5 !important;
-  box-shadow: 0 2px 6px rgba(0,0,0,0.12) !important;
+  transform: translateY(-2px) !important;
+  box-shadow: 0 8px 25px rgba(0,0,0,0.2) !important;
 }
 
-/* Botón de editar - Verde suave */
+button:active {
+  transform: translateY(0) !important;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.15) !important;
+}
+
+/* Botón de editar - Verde esmeralda */
 .edit-button {
-  background: #66bb6a !important;
+  background: linear-gradient(135deg, #26a69a 0%, #00897b 100%) !important;
 }
 
 .edit-button:hover {
-  background: #4caf50 !important;
+  background: linear-gradient(135deg, #00897b 0%, #00695c 100%) !important;
+  box-shadow: 0 8px 25px rgba(38, 166, 154, 0.4) !important;
 }
 
-/* Botón de flujo de caja - Naranja suave */
+/* Botón de flujo de caja - Gradiente púrpura */
 .cash-flow-button {
-  background: #ffa726 !important;
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%) !important;
 }
 
 .cash-flow-button:hover {
-  background: #ff9800 !important;
+  background: linear-gradient(135deg, #764ba2 0%, #667eea 100%) !important;
+  box-shadow: 0 8px 25px rgba(102, 126, 234, 0.4) !important;
 }
 
 /* Botón moderno para flujo de caja */
 .modern-btn {
-  padding: 0.6rem 1.2rem;
-  border-radius: 10px;
+  padding: 0.8rem 1.5rem;
+  border-radius: 12px;
   border: none;
   cursor: pointer;
-  transition: all 0.3s ease;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
   display: flex;
   align-items: center;
-  gap: 0.5rem;
+  gap: 0.6rem;
   font-weight: 600;
   font-size: 0.9rem;
   text-decoration: none;
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+  position: relative;
+  overflow: hidden;
 }
 
 .cash-flow-button.modern-btn {
@@ -181,37 +230,41 @@ button:hover {
 }
 
 .cash-flow-button.modern-btn:hover {
-  transform: translateY(-2px);
-  box-shadow: 0 4px 15px rgba(102, 126, 234, 0.4);
+  transform: translateY(-3px);
+  box-shadow: 0 8px 30px rgba(102, 126, 234, 0.4);
 }
 
 .cash-flow-button.modern-btn i {
-  font-size: 1rem;
+  font-size: 1.1rem;
+  filter: drop-shadow(0 1px 2px rgba(0,0,0,0.1));
 }
 
 .cash-flow-button.modern-btn span {
-  font-weight: 600;
+  font-weight: 700;
+  letter-spacing: 0.3px;
 }
 
-/* Botón de resultados financieros - Morado suave */
+/* Botón de resultados financieros - Gradiente coral */
 .results-button {
-  background: #ab47bc !important;
+  background: linear-gradient(135deg, #ff6b6b 0%, #ee5a52 100%) !important;
 }
 
 .results-button:hover {
-  background: #9c27b0 !important;
+  background: linear-gradient(135deg, #ee5a52 0%, #c62828 100%) !important;
+  box-shadow: 0 8px 25px rgba(255, 107, 107, 0.4) !important;
 }
 
 /* Iconos */
 mat-icon {
   color: white !important;
-  font-size: 16px !important;
-  width: 16px !important;
-  height: 16px !important;
-  line-height: 16px !important;
+  font-size: 18px !important;
+  width: 18px !important;
+  height: 18px !important;
+  line-height: 18px !important;
   display: flex !important;
   align-items: center !important;
   justify-content: center !important;
+  filter: drop-shadow(0 1px 2px rgba(0,0,0,0.2));
 }
 
 /* Contenido de celdas con botones */
@@ -228,26 +281,66 @@ mat-icon {
 /* Responsive */
 @media (max-width: 1024px) {
   .container {
-    padding: 20px;
+    padding: 30px 20px;
   }
   
   .table-container {
     padding: 20px;
-    overflow-x: auto;
+    border-radius: 10px;
   }
   
   h1 {
-    font-size: 2rem;
+    font-size: 2.4rem;
   }
 }
 
 @media (max-width: 768px) {
   .container {
-    padding: 15px;
+    padding: 20px 15px;
   }
   
   .table-container {
-    padding: 15px;
+    padding: 16px;
+    border-radius: 8px;
+  }
+  
+  h1 {
+    font-size: 2rem;
+    margin-bottom: 35px;
+  }
+  
+  .mat-mdc-header-cell,
+  .mat-mdc-cell {
+    padding: 12px 8px !important;
+    font-size: 0.9rem !important;
+  }
+  
+  .mat-mdc-header-cell {
+    font-size: 0.85rem !important;
+  }
+  
+  button {
+    padding: 8px 10px !important;
+    min-width: 40px !important;
+    height: 40px !important;
+    margin: 0 2px !important;
+  }
+  
+  mat-icon {
+    font-size: 16px !important;
+    width: 16px !important;
+    height: 16px !important;
+  }
+  
+  .modern-btn {
+    padding: 0.6rem 1rem;
+    font-size: 0.8rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .container {
+    padding: 15px 10px;
   }
   
   h1 {
@@ -255,22 +348,26 @@ mat-icon {
     margin-bottom: 25px;
   }
   
+  .table-container {
+    padding: 12px;
+    margin: 0 2px;
+    border-radius: 6px;
+  }
+  
   .mat-mdc-header-cell,
   .mat-mdc-cell {
     padding: 8px 6px !important;
-    font-size: 0.85rem !important;
+    font-size: 0.8rem !important;
   }
   
   button {
     padding: 6px 8px !important;
     min-width: 36px !important;
-    height: 32px !important;
+    height: 36px !important;
   }
   
-  mat-icon {
-    font-size: 16px !important;
-    width: 16px !important;
-    height: 16px !important;
+  .modern-btn span {
+    display: none;
   }
 }
 
@@ -281,30 +378,46 @@ button:focus {
 }
 
 .mat-mdc-table {
-  border: 1px solid #f0f0f0;
+  border: 1px solid #e9ecef;
 }
 
 /* Animación suave para la carga */
 .table-container {
-  animation: fadeIn 0.5s ease-in;
+  animation: slideInUp 0.8s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
-@keyframes fadeIn {
-  from { opacity: 0; transform: translateY(20px); }
-  to { opacity: 1; transform: translateY(0); }
+@keyframes slideInUp {
+  from { 
+    opacity: 0; 
+    transform: translateY(60px) scale(0.95); 
+  }
+  to { 
+    opacity: 1; 
+    transform: translateY(0) scale(1); 
+  }
 }
 
-/* Mejoras adicionales para separadores y centrado */
-/* Separador más visible entre header y contenido */
-.mat-mdc-header-row {
-  border-bottom: 3px solid #1e88e5 !important;
+/* Animación de las filas */
+.mat-mdc-row {
+  animation: fadeInRow 0.6s ease-out;
+  animation-fill-mode: both;
 }
 
-/* Espaciado uniforme en la tabla */
-.mat-mdc-table tbody tr:first-child td {
-  padding-top: 16px;
+@keyframes fadeInRow {
+  from {
+    opacity: 0;
+    transform: translateX(-30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
 }
 
-.mat-mdc-table tbody tr:last-child td {
-  padding-bottom: 16px;
-}
+/* Efecto de carga progresiva para las filas */
+.mat-mdc-row:nth-child(1) { animation-delay: 0.1s; }
+.mat-mdc-row:nth-child(2) { animation-delay: 0.2s; }
+.mat-mdc-row:nth-child(3) { animation-delay: 0.3s; }
+.mat-mdc-row:nth-child(4) { animation-delay: 0.4s; }
+.mat-mdc-row:nth-child(5) { animation-delay: 0.5s; }
+.mat-mdc-row:nth-child(n+6) { animation-delay: 0.6s; }

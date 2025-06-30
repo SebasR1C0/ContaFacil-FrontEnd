@@ -3,12 +3,6 @@
     <div class="table-container">
         <table mat-table [dataSource]="dataSource" class="mat-elevation-z8">
 
-  <!-- ID Bono Column -->
-  <ng-container matColumnDef="c1">
-    <th mat-header-cell *matHeaderCellDef> 🔢 ID Bono </th>
-    <td mat-cell *matCellDef="let element"> {{element.idResultadosFinancieros}} </td>
-  </ng-container>
-
   <!-- Convexidad Column -->
   <ng-container matColumnDef="c2">
     <th mat-header-cell *matHeaderCellDef> 📊 Convexidad </th>

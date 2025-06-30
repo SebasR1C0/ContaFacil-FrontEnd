@@ -111,7 +111,7 @@
       <mat-form-field>
         <mat-label>🔄 Capitalización</mat-label>
         <mat-select formControlName="hcapitalizacion">
-          @for (cap of capitalizaciones; track cap) {
+          @for (cap of capitalizacionesFiltradas; track cap) {
           <mat-option [value]="cap.value">{{ cap.viewValue }}</mat-option>
           }
         </mat-select>
