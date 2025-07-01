@@ -11,6 +11,7 @@ import { ManualuserComponent } from './components/home/manualuser/manualuser.com
 import { InicioComponent } from './components/home/inicio/inicio.component';
 import { LoginComponent } from './components/login/login.component';
 import { FlujocajaComponent } from './components/flujocaja/flujocaja.component';
+import { ListacatalogoComponent } from './components/catalogo/listacatalogo/listacatalogo.component';
 
 export const routes: Routes = [
   { path: '', redirectTo: '/login', pathMatch: 'full' },

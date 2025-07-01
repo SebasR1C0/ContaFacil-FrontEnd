@@ -8,34 +8,36 @@ import { CatalogoMoneda } from '../models/catalogomoneda';
 const base_url = environment.baseUrl;
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class BonoService {
   private url = `${base_url}/bono`;
   private listacambio = new Subject<Bono[]>();
-  constructor(private http:HttpClient) { }
-  list(){
+  constructor(private http: HttpClient) {}
+  list() {
     return this.http.get<Bono[]>(this.url);
   }
-  insert(bono: Bono){
+  insert(bono: Bono) {
     return this.http.post(this.url, bono);
-
   }
-  setlist(listanueva: Bono[]){
+  setlist(listanueva: Bono[]) {
     this.listacambio.next(listanueva);
-}
-  getlist(){
+  }
+  getlist() {
     return this.listacambio.asObservable();
   }
 
-  delete(id: number){
+  delete(id: number) {
     return this.http.delete(`${this.url}/${id}`);
   }
 
-  update(bono: Bono){
+  update(bono: Bono) {
     return this.http.put(this.url, bono);
   }
-  listId(id:number){
-      return this.http.get<Bono>(`${this.url}/${id}`)
-    }
+  listId(id: number) {
+    return this.http.get<Bono>(`${this.url}/${id}`);
+  }
+  listarxbono(idUser: number) {
+    return this.http.get<Bono[]>(`${this.url}/usuario/${idUser}`);
+  }
 }

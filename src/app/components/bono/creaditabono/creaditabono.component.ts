@@ -270,12 +270,20 @@ export class CreaditabonoComponent implements OnInit {
     }
 
     this.uS.listId(usuarioId).subscribe(userData => {
-      const hoy = new Date();
-      hoy.setHours(hoy.getHours() - (hoy.getTimezoneOffset() / 60) - 5);
-      const fechaEmision = hoy.toISOString().split('T')[0];
-      
       // Obtener valores del formulario, incluyendo campos deshabilitados
       const formValues = this.form.getRawValue();
+      
+      // Solo calcular la fecha de emisión si es un bono nuevo (no edición)
+      let fechaEmision: string;
+      if (this.edicion) {
+        // Si es edición, mantener la fecha original del bono
+        fechaEmision = this.bono.fechaEmision;
+      } else {
+        // Si es creación, usar la fecha actual
+        const hoy = new Date();
+        hoy.setHours(hoy.getHours() - (hoy.getTimezoneOffset() / 60) - 5);
+        fechaEmision = hoy.toISOString().split('T')[0];
+      }
       
       const bono: any = {
         idBono: formValues.hcodigo,
@@ -331,6 +339,9 @@ export class CreaditabonoComponent implements OnInit {
   init(){
     if (this.edicion) {
       this.bS.listId(this.id).subscribe((data) => {
+        // Guardar los datos del bono para uso posterior (especialmente la fecha)
+        this.bono = data;
+        
         this.form = new FormGroup({
           hcodigo: new FormControl(data.idBono, Validators.required),
           hnombre: new FormControl(data.nombreBono, Validators.required),
