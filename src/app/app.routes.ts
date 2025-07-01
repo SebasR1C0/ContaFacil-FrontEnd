@@ -34,5 +34,6 @@ export const routes: Routes = [
   { path: 'listarbonodetalle/:idBono', component: ListarbonodetalleComponent },
   { path: 'flujo-caja', component: FlujocajaComponent },
   { path: 'flujocaja/:idBono', component: FlujocajaComponent },
-  { path: 'manual', component: ManualuserComponent }
+  { path: 'manual', component: ManualuserComponent },
+  { path: 'catalogo-monedas', component: ListacatalogoComponent }
 ];
