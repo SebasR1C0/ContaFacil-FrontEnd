@@ -254,6 +254,16 @@ button:active {
   box-shadow: 0 8px 25px rgba(255, 107, 107, 0.4) !important;
 }
 
+/* Botón de ver detalles - Gradiente azul */
+.view-button {
+  background: linear-gradient(135deg, #42a5f5 0%, #1e88e5 100%) !important;
+}
+
+.view-button:hover {
+  background: linear-gradient(135deg, #1e88e5 0%, #1565c0 100%) !important;
+  box-shadow: 0 8px 25px rgba(66, 165, 245, 0.4) !important;
+}
+
 /* Iconos */
 mat-icon {
   color: white !important;
