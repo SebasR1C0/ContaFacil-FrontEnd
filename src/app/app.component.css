@@ -116,6 +116,20 @@
   box-shadow: 0 4px 16px rgba(255, 255, 255, 0.2) !important;
 }
 
+/* Botón Catálogo de Monedas */
+.catalog-btn {
+  background-color: #4caf50 !important;
+  color: #ffffff !important;
+  border: 2px solid #4caf50 !important;
+}
+
+.catalog-btn:hover {
+  background-color: #45a049 !important;
+  border-color: #45a049 !important;
+  transform: translateY(-2px) !important;
+  box-shadow: 0 4px 16px rgba(76, 175, 80, 0.3) !important;
+}
+
 /* Sección de usuario */
 .user-section {
   display: flex;

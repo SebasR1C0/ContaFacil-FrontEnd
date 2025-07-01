@@ -9,6 +9,7 @@ import { ManualuserComponent } from './components/home/manualuser/manualuser.com
 import { InicioComponent } from './components/home/inicio/inicio.component';
 import { LoginComponent } from './components/login/login.component';
 import { FlujocajaComponent } from './components/flujocaja/flujocaja.component';
+import { ListacatalogoComponent } from './components/catalogo/listacatalogo/listacatalogo.component';
 
 export const routes: Routes = [
   { path: '', redirectTo: '/login', pathMatch: 'full' },
@@ -31,5 +32,6 @@ export const routes: Routes = [
   { path: 'resultados-tabla/:idBono', component: ListarComponent },
   { path: 'flujo-caja', component: FlujocajaComponent },
   { path: 'flujocaja/:idBono', component: FlujocajaComponent },
-  { path: 'manual', component: ManualuserComponent }
+  { path: 'manual', component: ManualuserComponent },
+  { path: 'catalogo-monedas', component: ListacatalogoComponent }
 ];

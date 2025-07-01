@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Inject, PLATFORM_ID } from '@angular/core';
 import { MatInputModule } from '@angular/material/input';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import {
@@ -21,6 +21,7 @@ import { provideNativeDateAdapter } from '@angular/material/core';
 import { CatalogomonedaService } from '../../../services/catalogomoneda.service';
 import { UsersService } from '../../../services/users.service';
 import { MatSnackBar, MatSnackBarModule } from '@angular/material/snack-bar';
+import { isPlatformBrowser } from '@angular/common';
 
 @Component({
   selector: 'app-creaditabono',
@@ -105,7 +106,8 @@ export class CreaditabonoComponent implements OnInit {
     private formBuilder: FormBuilder,
     private router: Router,
     private route: ActivatedRoute,
-    private snackBar: MatSnackBar
+    private snackBar: MatSnackBar,
+    @Inject(PLATFORM_ID) private platformId: Object
   ) {}
 
   // Validadores personalizados como arrow functions para mantener el contexto
@@ -234,7 +236,39 @@ export class CreaditabonoComponent implements OnInit {
   }
   aceptar(): void {
   if (this.form.valid) {
-    const usuarioId = 1; // <-- Cambia este valor según el usuario que desees asignar
+    // Obtener el usuario logueado desde localStorage
+    let usuarioId: number | null = null;
+    
+    if (isPlatformBrowser(this.platformId)) {
+      const userStr = localStorage.getItem('currentUser'); // Cambiar 'user' por 'currentUser'
+      console.log('User string from localStorage:', userStr);
+      
+      if (userStr) {
+        try {
+          const userObj = JSON.parse(userStr);
+          console.log('Parsed user object:', userObj);
+          
+          // El ID se guarda como 'id' en el login
+          usuarioId = userObj.id || userObj.idUser || userObj.idUsuario || null;
+          console.log('Usuario ID encontrado:', usuarioId);
+        } catch (e) {
+          console.error('Error al parsear usuario desde localStorage:', e);
+          usuarioId = null;
+        }
+      } else {
+        console.log('No se encontró información de usuario en localStorage');
+      }
+    }
+    
+    if (!usuarioId) {
+      this.snackBar.open('No se pudo identificar el usuario logueado. Por favor, inicie sesión nuevamente.', 'Cerrar', {
+        duration: 5000,
+        horizontalPosition: 'center',
+        verticalPosition: 'bottom'
+      });
+      return;
+    }
+
     this.uS.listId(usuarioId).subscribe(userData => {
       const hoy = new Date();
       hoy.setHours(hoy.getHours() - (hoy.getTimezoneOffset() / 60) - 5);
