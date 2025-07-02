@@ -299,6 +299,83 @@ mat-icon {
   height: 100%;
 }
 
+/* Contenido de celdas con botones de acciones */
+.actions-cell {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 8px;
+  flex-wrap: nowrap;
+  width: 100%;
+  height: 100%;
+  padding: 4px;
+}
+
+/* Ajustar tamaño de botones en la columna de acciones */
+.actions-cell button {
+  min-width: 40px !important;
+  height: 40px !important;
+  margin: 0 2px !important;
+  padding: 8px !important;
+  border-radius: 10px !important;
+}
+
+/* Estilos para botón de ver */
+.view-button {
+  background: linear-gradient(135deg, #2196F3, #1976D2) !important;
+  color: white !important;
+}
+
+.view-button:hover {
+  background: linear-gradient(135deg, #1976D2, #0D47A1) !important;
+  transform: translateY(-1px);
+}
+
+/* Estilos para botón de eliminar */
+.delete-button {
+  background: linear-gradient(135deg, #f44336, #d32f2f) !important;
+  color: white !important;
+}
+
+.delete-button:hover {
+  background: linear-gradient(135deg, #d32f2f, #b71c1c) !important;
+  transform: translateY(-1px);
+}
+
+/* Responsive para acciones */
+@media (max-width: 768px) {
+  .actions-cell {
+    gap: 6px;
+  }
+  
+  .actions-cell button {
+    min-width: 36px !important;
+    height: 36px !important;
+    margin: 0 1px !important;
+    padding: 6px !important;
+  }
+}
+
+@media (max-width: 480px) {
+  .actions-cell {
+    gap: 4px;
+    flex-wrap: wrap;
+  }
+  
+  .actions-cell button {
+    min-width: 32px !important;
+    height: 32px !important;
+    margin: 1px !important;
+    padding: 4px !important;
+  }
+  
+  .actions-cell mat-icon {
+    font-size: 14px !important;
+    width: 14px !important;
+    height: 14px !important;
+  }
+}
+
 /* Responsive */
 @media (max-width: 1024px) {
   .container {
