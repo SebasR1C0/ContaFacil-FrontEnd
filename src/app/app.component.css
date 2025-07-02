@@ -130,6 +130,20 @@
   box-shadow: 0 4px 16px rgba(76, 175, 80, 0.3) !important;
 }
 
+/* Botón Manual */
+.manual-btn {
+  background-color: #ff9800 !important;
+  color: #ffffff !important;
+  border: 2px solid #ff9800 !important;
+}
+
+.manual-btn:hover {
+  background-color: #f57c00 !important;
+  border-color: #f57c00 !important;
+  transform: translateY(-2px) !important;
+  box-shadow: 0 4px 16px rgba(255, 152, 0, 0.3) !important;
+}
+
 /* Sección de usuario */
 .user-section {
   display: flex;
