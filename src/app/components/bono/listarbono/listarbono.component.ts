@@ -17,7 +17,7 @@ import { isPlatformBrowser } from '@angular/common';
 })
 export class ListarbonoComponent implements OnInit {
   dataSource: MatTableDataSource<Bono> = new MatTableDataSource();
-  displayedColumns: string[] = ['c1', 'c2', 'c3', 'c4', 'c5', 'c6','c7', 'c8'];
+  displayedColumns: string[] = ['c1', 'c2', 'c3', 'c4', 'c5', 'c6','c7', 'c8', 'c9'];
 
 
   constructor(
@@ -75,6 +75,24 @@ export class ListarbonoComponent implements OnInit {
       }
     }
     return [];
+  }
+
+  eliminarBono(idBono: number): void {
+    const confirmacion = window.confirm('¿Estás seguro de que deseas eliminar este bono?');
+    
+    if (confirmacion) {
+      this.bS.delete(idBono).subscribe({
+        next: (response) => {
+          console.log('Bono eliminado correctamente:', response);
+          // Recargar la lista de bonos después de eliminar
+          this.loadUserBonos();
+        },
+        error: (error) => {
+          console.error('Error al eliminar el bono:', error);
+          alert('Error al eliminar el bono. Por favor, inténtalo de nuevo.');
+        }
+      });
+    }
   }
   
 }

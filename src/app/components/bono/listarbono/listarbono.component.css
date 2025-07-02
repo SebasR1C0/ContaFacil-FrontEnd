@@ -264,6 +264,17 @@ button:active {
   box-shadow: 0 8px 25px rgba(66, 165, 245, 0.4) !important;
 }
 
+/* Botón de eliminar - Gradiente rojo */
+.delete-button {
+  background: linear-gradient(135deg, #f44336 0%, #d32f2f 100%) !important;
+}
+
+.delete-button:hover {
+  background: linear-gradient(135deg, #d32f2f 0%, #c62828 100%) !important;
+  box-shadow: 0 8px 25px rgba(244, 67, 54, 0.4) !important;
+  transform: translateY(-2px) !important;
+}
+
 /* Iconos */
 mat-icon {
   color: white !important;
