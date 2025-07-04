@@ -1,0 +1,200 @@
+.home-container {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  background: linear-gradient(135deg, #1e3c72 0%, #2a5298 100%);
+  padding: 2rem;
+}
+
+.home-content {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  max-width: 1200px;
+  width: 100%;
+  gap: 4rem;
+}
+
+.home-left {
+  flex: 1;
+  display: flex;
+  align-items: center;
+}
+
+.welcome-section {
+  color: white;
+  animation: slideInLeft 1s ease-out;
+}
+
+@keyframes slideInLeft {
+  from {
+    opacity: 0;
+    transform: translateX(-50px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+.main-title {
+  font-size: 3rem;
+  font-weight: 300;
+  margin: 0;
+  letter-spacing: 2px;
+  line-height: 1.2;
+}
+
+.brand-title {
+  font-size: 3.5rem;
+  font-weight: 900;
+  margin: 0 0 2rem 0;
+  letter-spacing: 3px;
+  background: linear-gradient(45deg, #ffffff, #f0f8ff);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.register-btn {
+  background: white;
+  color: #1e3c72;
+  border: none;
+  padding: 1rem 2.5rem;
+  border-radius: 50px;
+  font-size: 1.1rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+.register-btn:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.2);
+  background: #f8f9fa;
+}
+
+.register-btn:active {
+  transform: translateY(-1px);
+}
+
+.manual-btn {
+  background: white;
+  color: #1e3c72;
+  border: none;
+  padding: 1rem 2.5rem;
+  border-radius: 50px;
+  font-size: 1.1rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  margin-top: 1rem;
+  display: inline-block;
+}
+
+.manual-btn:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.2);
+  background: #f8f9fa;
+  color: #1e3c72;
+}
+
+.manual-btn:active {
+  transform: translateY(-1px);
+}
+
+.home-right {
+  flex: 1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 400px;
+}
+
+.image-container {
+  width: 100%;
+  max-width: 500px;
+  height: auto;
+  animation: slideInRight 1s ease-out;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+@keyframes slideInRight {
+  from {
+    opacity: 0;
+    transform: translateX(50px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+.home-image {
+  width: 100%;
+  height: auto;
+  max-height: 500px;
+  object-fit: cover;
+  border-radius: 20px;
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+  transition: transform 0.3s ease;
+  display: block;
+}
+
+.home-image:hover {
+  transform: scale(1.02);
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .home-content {
+    flex-direction: column;
+    text-align: center;
+    gap: 2rem;
+  }
+  
+  .main-title {
+    font-size: 2rem;
+  }
+  
+  .brand-title {
+    font-size: 2.5rem;
+  }
+  
+  .register-btn,
+  .manual-btn {
+    padding: 0.8rem 2rem;
+    font-size: 1rem;
+  }
+  
+  .home-container {
+    padding: 1rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .main-title {
+    font-size: 1.5rem;
+  }
+  
+  .brand-title {
+    font-size: 2rem;
+    margin-bottom: 1.5rem;
+  }
+  
+  .register-btn,
+  .manual-btn {
+    padding: 0.7rem 1.5rem;
+    font-size: 0.9rem;
+  }
+}

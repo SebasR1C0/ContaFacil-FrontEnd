@@ -1,0 +1,45 @@
+<header class="main-header" *ngIf="showHeader">
+  <nav class="nav-container">
+    <!-- Botón de inicio en el lado izquierdo -->
+    <button mat-raised-button class="home-button" routerLink="/inicio" title="Inicio">
+      <mat-icon>home</mat-icon>
+    </button>
+    
+    <!-- Contenedor principal de navegación -->
+    <div class="main-nav">
+      <button mat-raised-button class="nav-button create-btn" routerLink="/bonos/nuevo">
+        <mat-icon>add_circle</mat-icon>
+        <span>Crear Bono</span>
+      </button>
+      
+      <button mat-raised-button class="nav-button list-btn" routerLink="/bonos">
+        <mat-icon>list</mat-icon>
+        <span>Ver Bonos</span>
+      </button>
+      
+      <button mat-raised-button class="nav-button catalog-btn" routerLink="/catalogo-monedas">
+        <mat-icon>monetization_on</mat-icon>
+        <span>Monedas</span>
+      </button>
+
+      <button mat-raised-button class="nav-button faq-btn" routerLink="/faq" title="Preguntas Frecuentes">
+        <span class="faq-emoji">❓</span>
+        <span>FAQ</span>
+      </button>
+
+    </div>
+
+    <!-- Sección de usuario -->
+    <div class="user-section" *ngIf="currentUser">
+      <div class="user-info">
+        <mat-icon class="user-icon">account_circle</mat-icon>
+        <span class="username">{{ currentUser.username }}</span>
+      </div>
+      <button mat-raised-button class="logout-btn" (click)="logout()" title="Cerrar sesión">
+        <mat-icon>logout</mat-icon>
+      </button>
+    </div>
+  </nav>
+</header>
+
+<router-outlet></router-outlet>

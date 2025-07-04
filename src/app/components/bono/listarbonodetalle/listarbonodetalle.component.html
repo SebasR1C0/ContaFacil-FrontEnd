@@ -1,0 +1,124 @@
+<div class="container">
+  <div class="header">
+    <h1>📋 Detalles del Bono</h1>
+    <button mat-raised-button color="primary" class="back-button" (click)="volver()">
+      <mat-icon>arrow_back</mat-icon>
+      Volver
+    </button>
+  </div>
+
+  <div class="content" *ngIf="bono; else noBono">
+    <mat-card class="detail-card">
+      <mat-card-header class="card-header">
+        <mat-card-title>{{ bono.nombreBono }}</mat-card-title>
+        <mat-card-subtitle>ID: {{ bono.idBono }}</mat-card-subtitle>
+      </mat-card-header>
+      
+      <mat-card-content class="card-content">
+        <div class="detail-grid">
+          <div class="detail-item">
+            <div class="detail-label">🔢 ID del Bono</div>
+            <div class="detail-value">{{ bono.idBono }}</div>
+          </div>
+          
+          <div class="detail-item">
+            <div class="detail-label">📝 Nombre del Bono</div>
+            <div class="detail-value">{{ bono.nombreBono }}</div>
+          </div>
+          
+          <div class="detail-item">
+            <div class="detail-label">💵 Valor Nominal</div>
+            <div class="detail-value">{{ bono.valorNominal | currency:'USD':'symbol':'1.2-2' }}</div>
+          </div>
+          
+          <div class="detail-item">
+            <div class="detail-label">📅 Fecha de Emisión</div>
+            <div class="detail-value">{{ bono.fechaEmision }}</div>
+          </div>
+          
+          <div class="detail-item">
+            <div class="detail-label">📊 Número de Años</div>  
+            <div class="detail-value">{{ bono['numeroAños'] }} años</div>
+          </div>
+          
+          <div class="detail-item">
+            <div class="detail-label">� Frecuencia de Cupón</div>
+            <div class="detail-value">{{ bono.frecuenciaCupon }}</div>
+          </div>
+          
+          <div class="detail-item">
+            <div class="detail-label">📆 Días por Año</div>
+            <div class="detail-value">{{ bono.diasPorAno }}</div>
+          </div>
+          
+          <div class="detail-item">
+            <div class="detail-label">📈 Tipo de Tasa</div>
+            <div class="detail-value">{{ bono.tipoTasa }}</div>
+          </div>
+          
+          <div class="detail-item">
+            <div class="detail-label">🔄 Capitalización</div>
+            <div class="detail-value">{{ bono.capitalizacion }}</div>
+          </div>
+          
+          <div class="detail-item">
+            <div class="detail-label">💹 Tasa de Interés (%)</div>
+            <div class="detail-value">{{ bono.tasaInteres }}%</div>
+          </div>
+          
+          <div class="detail-item">
+            <div class="detail-label">� Tasa Anual de Descuento (%)</div>
+            <div class="detail-value">{{ bono.tasaAnualDescuento }}%</div>
+          </div>
+          
+          <div class="detail-item">
+            <div class="detail-label">🏛️ Impuesto (%)</div>
+            <div class="detail-value">{{ bono.impuesto }}%</div>
+          </div>
+          
+          <div class="detail-item">
+            <div class="detail-label">� Inflación (%)</div>
+            <div class="detail-value">{{ bono.inflacion }}%</div>
+          </div>
+          
+          <div class="detail-item">
+            <div class="detail-label">⏱️ Tipo de Plazo</div>
+            <div class="detail-value">{{ bono.plazoTipo }}</div>
+          </div>
+          
+          <div class="detail-item">
+            <div class="detail-label">📅 Períodos de Plazo</div>
+            <div class="detail-value">{{ bono.plazoPeridos }}</div>
+          </div>
+          
+          <div class="detail-item">
+            <div class="detail-label">💰 Prima</div>
+            <div class="detail-value">{{ bono.prima | currency:'USD':'symbol':'1.2-2' }}</div>
+          </div>
+          
+          <div class="detail-item">
+            <div class="detail-label">� Costes Iniciales Bonista</div>
+            <div class="detail-value">{{ bono.costesInicialesBonista | currency:'USD':'symbol':'1.2-2' }}</div>
+          </div>
+          
+          <div class="detail-item">
+            <div class="detail-label">💸 Costes Iniciales Otros</div>
+            <div class="detail-value">{{ bono.costesInicialesOtros | currency:'USD':'symbol':'1.2-2' }}</div>
+          </div>
+        </div>
+      </mat-card-content>
+    </mat-card>
+  </div>
+
+  <ng-template #noBono>
+    <div class="no-data">
+      <mat-icon class="no-data-icon">error_outline</mat-icon>
+      <h2>Bono no encontrado</h2>
+      <p>No se pudo encontrar el bono con ID {{ idBono }}</p>
+      <button mat-raised-button color="primary" (click)="volver()">
+        <mat-icon>arrow_back</mat-icon>
+        Volver a la lista
+      </button>
+    </div>
+  </ng-template>
+</div>

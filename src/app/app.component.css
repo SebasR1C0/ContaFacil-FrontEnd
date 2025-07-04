@@ -1,0 +1,429 @@
+/* Encabezado principal con temática azul */
+.main-header {
+  background: linear-gradient(135deg, #1e88e5 0%, #42a5f5 50%, #64b5f6 100%);
+  box-shadow: 0 2px 12px rgba(30, 136, 229, 0.2);
+  padding: 16px 24px;
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+  border-bottom: 3px solid #1565c0;
+}
+
+/* Contenedor de navegación */
+.nav-container {
+  display: flex;
+  align-items: center;
+  max-width: 1200px;
+  margin: 0 auto;
+  gap: 20px;
+  width: 100%;
+}
+
+/* Botón de inicio (casa) */
+.home-button {
+  width: 48px !important;
+  height: 48px !important;
+  min-width: 48px !important;
+  border-radius: 50% !important;
+  background-color: #ffffff !important;
+  color: #1e88e5 !important;
+  border: 2px solid #ffffff !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  transition: all 0.3s ease !important;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.15) !important;
+  flex-shrink: 0;
+  padding: 0 !important;
+  margin: 0 !important;
+  position: relative !important;
+}
+
+.home-button:hover {
+  background-color: #f8f9fa !important;
+  color: #1565c0 !important;
+  transform: translateY(-2px) scale(1.05) !important;
+  box-shadow: 0 4px 16px rgba(30, 136, 229, 0.25) !important;
+}
+
+.home-button mat-icon {
+  font-size: 1.4rem !important;
+  width: 1.4rem !important;
+  height: 1.4rem !important;
+  color: inherit !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  margin: 0 !important;
+  line-height: 1 !important;
+}
+
+/* Contenedor principal de navegación */
+.main-nav {
+  flex: 1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 24px;
+  margin: 0 24px;
+}
+
+/* Botones de navegación */
+.nav-button {
+  height: 48px !important;
+  border-radius: 12px !important;
+  font-weight: 500 !important;
+  font-size: 0.95rem !important;
+  letter-spacing: 0.3px !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  gap: 8px !important;
+  transition: all 0.3s ease !important;
+  text-transform: none !important;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.1) !important;
+  min-width: 160px !important;
+  flex: 1 !important;
+  max-width: 200px !important;
+}
+
+/* Botón Crear Bono */
+.create-btn {
+  background-color: #ffffff !important;
+  color: #1e88e5 !important;
+  border: 2px solid #ffffff !important;
+}
+
+.create-btn:hover {
+  background-color: #f8f9fa !important;
+  color: #1565c0 !important;
+  transform: translateY(-2px) !important;
+  box-shadow: 0 4px 16px rgba(30, 136, 229, 0.2) !important;
+}
+
+/* Botón Ver Bonos */
+.list-btn {
+  background-color: rgba(255, 255, 255, 0.15) !important;
+  color: #ffffff !important;
+  border: 2px solid rgba(255, 255, 255, 0.3) !important;
+  backdrop-filter: blur(10px);
+}
+
+.list-btn:hover {
+  background-color: rgba(255, 255, 255, 0.25) !important;
+  border-color: rgba(255, 255, 255, 0.5) !important;
+  transform: translateY(-2px) !important;
+  box-shadow: 0 4px 16px rgba(255, 255, 255, 0.2) !important;
+}
+
+/* Botón Catálogo de Monedas */
+.catalog-btn {
+  background-color: #4caf50 !important;
+  color: #ffffff !important;
+  border: 2px solid #4caf50 !important;
+}
+
+.catalog-btn:hover {
+  background-color: #45a049 !important;
+  border-color: #45a049 !important;
+  transform: translateY(-2px) !important;
+  box-shadow: 0 4px 16px rgba(76, 175, 80, 0.3) !important;
+}
+
+/* Botón FAQ */
+.faq-btn {
+  background-color: #1e88e5 !important;
+  color: #ffffff !important;
+  border: 2px solid #1e88e5 !important;
+  position: relative !important;
+}
+
+.faq-btn:hover {
+  background-color: #1976d2 !important;
+  border-color: #1976d2 !important;
+  transform: translateY(-2px) !important;
+  box-shadow: 0 4px 16px rgba(30, 136, 229, 0.3) !important;
+}
+
+.faq-emoji {
+  font-size: 1.2rem !important;
+  margin-right: 4px !important;
+  display: inline-block !important;
+  animation: bounce 2s infinite !important;
+}
+
+@keyframes bounce {
+  0%, 20%, 50%, 80%, 100% {
+    transform: translateY(0);
+  }
+  40% {
+    transform: translateY(-3px);
+  }
+  60% {
+    transform: translateY(-2px);
+  }
+}
+
+/* Botón Manual */
+.manual-btn {
+  background-color: #ff9800 !important;
+  color: #ffffff !important;
+  border: 2px solid #ff9800 !important;
+}
+
+.manual-btn:hover {
+  background-color: #f57c00 !important;
+  border-color: #f57c00 !important;
+  transform: translateY(-2px) !important;
+  box-shadow: 0 4px 16px rgba(255, 152, 0, 0.3) !important;
+}
+
+/* Sección de usuario */
+.user-section {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  background: rgba(255, 255, 255, 0.1);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  border-radius: 25px;
+  padding: 8px 16px;
+  backdrop-filter: blur(10px);
+  flex-shrink: 0;
+}
+
+.user-info {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  color: #ffffff;
+}
+
+.user-icon {
+  font-size: 1.5rem !important;
+  width: 1.5rem !important;
+  height: 1.5rem !important;
+  color: #ffffff !important;
+}
+
+.username {
+  font-weight: 500;
+  font-size: 0.95rem;
+  letter-spacing: 0.3px;
+  color: #ffffff;
+}
+
+/* Botón de logout */
+.logout-btn {
+  width: 40px !important;
+  height: 40px !important;
+  min-width: 40px !important;
+  border-radius: 50% !important;
+  background-color: rgba(255, 255, 255, 0.15) !important;
+  color: #ffffff !important;
+  border: 1px solid rgba(255, 255, 255, 0.2) !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  transition: all 0.3s ease !important;
+  padding: 0 !important;
+  margin: 0 !important;
+}
+
+.logout-btn:hover {
+  background-color: rgba(244, 67, 54, 0.8) !important;
+  border-color: rgba(244, 67, 54, 0.9) !important;
+  transform: scale(1.05) !important;
+  box-shadow: 0 4px 12px rgba(244, 67, 54, 0.3) !important;
+}
+
+.logout-btn mat-icon {
+  font-size: 1.1rem !important;
+  width: 1.1rem !important;
+  height: 1.1rem !important;
+  margin: 0 !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+}
+
+/* Iconos */
+.nav-button mat-icon {
+  font-size: 1.2rem !important;
+  width: 1.2rem !important;
+  height: 1.2rem !important;
+}
+
+/* Estados activos para rutas */
+.nav-button.active {
+  transform: translateY(-1px);
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .main-header {
+    padding: 12px 16px;
+  }
+  
+  .nav-container {
+    gap: 12px;
+  }
+  
+  .main-nav {
+    gap: 12px;
+    margin: 0 12px;
+  }
+  
+  .home-button {
+    width: 44px !important;
+    height: 44px !important;
+    min-width: 44px !important;
+  }
+  
+  .home-button mat-icon {
+    font-size: 1.2rem !important;
+    width: 1.2rem !important;
+    height: 1.2rem !important;
+    color: inherit !important;
+    margin: 0 !important;
+    line-height: 1 !important;
+  }
+  
+  .nav-button {
+    height: 44px !important;
+    font-size: 0.85rem !important;
+    flex-direction: column !important;
+    gap: 4px !important;
+    padding: 8px 12px !important;
+    min-width: 100px !important;
+    flex: 1 !important;
+    max-width: 150px !important;
+  }
+  
+  .nav-button span {
+    font-size: 0.75rem;
+    text-align: center;
+    line-height: 1.1;
+  }
+  
+  .nav-button mat-icon {
+    font-size: 1rem !important;
+    width: 1rem !important;
+    height: 1rem !important;
+  }
+
+  .user-section {
+    padding: 6px 12px;
+    gap: 8px;
+  }
+
+  .username {
+    font-size: 0.85rem;
+  }
+
+  .user-icon {
+    font-size: 1.3rem !important;
+    width: 1.3rem !important;
+    height: 1.3rem !important;
+  }
+
+  .logout-btn {
+    width: 36px !important;
+    height: 36px !important;
+    min-width: 36px !important;
+  }
+}
+
+@media (max-width: 480px) {
+  .nav-container {
+    gap: 8px;
+  }
+  
+  .main-nav {
+    gap: 8px;
+    justify-content: center;
+    flex: 1;
+    margin: 0 8px;
+  }
+  
+  .home-button {
+    width: 40px !important;
+    height: 40px !important;
+    min-width: 40px !important;
+  }
+  
+  .home-button mat-icon {
+    font-size: 1.1rem !important;
+    width: 1.1rem !important;
+    height: 1.1rem !important;
+    color: inherit !important;
+    margin: 0 !important;
+    line-height: 1 !important;
+  }
+  
+  .nav-button span {
+    display: none;
+  }
+  
+  .nav-button {
+    width: 48px !important;
+    height: 40px !important;
+    flex: none !important;
+    padding: 8px !important;
+    min-width: 48px !important;
+  }
+
+  .user-section {
+    padding: 4px 8px;
+    gap: 6px;
+  }
+
+  .username {
+    display: none;
+  }
+
+  .user-icon {
+    font-size: 1.2rem !important;
+    width: 1.2rem !important;
+    height: 1.2rem !important;
+  }
+
+  .logout-btn {
+    width: 32px !important;
+    height: 32px !important;
+    min-width: 32px !important;
+  }
+
+  .logout-btn mat-icon {
+    font-size: 1rem !important;
+    width: 1rem !important;
+    height: 1rem !important;
+  }
+}
+
+/* Animación de entrada */
+.main-header {
+  animation: slideDown 0.5s ease-out;
+}
+
+@keyframes slideDown {
+  from {
+    transform: translateY(-100%);
+    opacity: 0;
+  }
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+/* Efecto de glass morphism para el encabezado */
+.main-header::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: linear-gradient(135deg, rgba(255,255,255,0.1) 0%, rgba(255,255,255,0.05) 100%);
+  pointer-events: none;
+}

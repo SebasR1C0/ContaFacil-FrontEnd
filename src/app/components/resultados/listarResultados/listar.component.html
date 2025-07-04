@@ -1,0 +1,71 @@
+<div class="container">
+    <h1>📈 Resultados Financieros</h1>
+    <div class="table-container">
+        <table mat-table [dataSource]="dataSource" class="mat-elevation-z8">
+
+  <!-- Convexidad Column -->
+  <ng-container matColumnDef="c2">
+    <th mat-header-cell *matHeaderCellDef> 📊 Convexidad </th>
+    <td mat-cell *matCellDef="let element"> {{element.convexidad}} </td>
+  </ng-container>
+
+  <!-- Duracion Column -->
+  <ng-container matColumnDef="c3">
+    <th mat-header-cell *matHeaderCellDef> ⏱️ Duración </th>
+    <td mat-cell *matCellDef="let element"> {{element.duracion}} </td>
+  </ng-container>
+
+  <!-- Duracion Modificada Column -->
+  <ng-container matColumnDef="c4">
+    <th mat-header-cell *matHeaderCellDef> ⚡ Duración Modificada </th>
+    <td mat-cell *matCellDef="let element"> {{element.duracionModificada}} </td>
+  </ng-container>
+
+  <!-- Precio Actual Column -->
+  <ng-container matColumnDef="c5">
+    <th mat-header-cell *matHeaderCellDef> 💰 Precio Actual </th>
+    <td mat-cell *matCellDef="let element"> {{element.precioActual}} </td>
+  </ng-container>
+
+  <!-- Precio Maximo Mercado Column -->
+  <ng-container matColumnDef="c6">
+    <th mat-header-cell *matHeaderCellDef> 📈 Precio Máx. Mercado </th>
+    <td mat-cell *matCellDef="let element"> {{element.precioMaxMercado}} </td>
+  </ng-container>
+
+  <!-- TCEA Emisor Column -->
+  <ng-container matColumnDef="c7">
+    <th mat-header-cell *matHeaderCellDef> 🏦 TCEA - Emisor </th>
+    <td mat-cell *matCellDef="let element"> {{element.tceaEmisor}} </td>
+  </ng-container>
+
+  <!-- TCEA Emisor Escudo Column -->
+  <ng-container matColumnDef="c8">
+    <th mat-header-cell *matHeaderCellDef> 🛡️ TCEA Emisor Escudo </th>
+    <td mat-cell *matCellDef="let element"> {{element.tceaEmisorEscudo}} </td>
+  </ng-container>
+
+  <!-- Total Column -->
+  <ng-container matColumnDef="c9">
+    <th mat-header-cell *matHeaderCellDef> 💎 Total </th>
+    <td mat-cell *matCellDef="let element"> {{element.total}} </td>
+  </ng-container>
+
+  <!-- TREA Bonista Column -->
+  <ng-container matColumnDef="c10">
+    <th mat-header-cell *matHeaderCellDef> 👤 TREA Bonista </th>
+    <td mat-cell *matCellDef="let element"> {{element.treaBonista}} </td>
+  </ng-container>
+
+  <!-- Utilidad Column -->
+  <ng-container matColumnDef="c11">
+    <th mat-header-cell *matHeaderCellDef> ⭐ Utilidad </th>
+    <td mat-cell *matCellDef="let element"> {{element.utilidad}} </td>
+  </ng-container>
+
+  <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+  <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+</table>
+
+    </div>
+</div>

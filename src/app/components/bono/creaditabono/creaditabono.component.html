@@ -1,0 +1,306 @@
+<div class="container">
+  <h1>📝 {{ edicion ? 'Editar Bono' : 'Registro de Bonos' }}</h1>
+  <div class="form-container">
+    <form [formGroup]="form" (submit)="aceptar()">
+      <!-- Código (solo en edición) -->
+      <mat-form-field class="full-width" *ngIf="edicion">
+        <mat-label>🔢 Código</mat-label>
+        <input matInput formControlName="hcodigo" readonly>
+        <mat-error *ngIf="form.controls['hcodigo'].hasError('required') && form.controls['hcodigo'].touched">
+          El código es requerido.
+        </mat-error>
+      </mat-form-field>
+
+      <!-- Información básica -->
+      <mat-form-field>
+        <mat-label>📝 Nombre del bono</mat-label>
+        <input matInput 
+               formControlName="hnombre" 
+               [placeholder]="placeholderNombre"
+               (focus)="placeholderNombre = 'Ej. BonoCorp2025'"
+               (blur)="placeholderNombre = ''" />
+        <mat-error *ngIf="form.controls['hnombre'].hasError('required') && form.controls['hnombre'].touched">
+          El nombre es requerido.
+        </mat-error>
+      </mat-form-field>
+
+      <mat-form-field>
+        <mat-label>💵 Valor Nominal</mat-label>
+        <input matInput 
+               type="number" 
+               min="1"
+               formControlName="hvalorNominal" 
+               [placeholder]="placeholderValorNominal"
+               (focus)="placeholderValorNominal = 'Ej. 10000'"
+               (blur)="placeholderValorNominal = ''" />
+        <mat-error *ngIf="form.controls['hvalorNominal'].hasError('required') && form.controls['hvalorNominal'].touched">
+          El valor nominal es requerido.
+        </mat-error>
+        <mat-error *ngIf="form.controls['hvalorNominal'].hasError('negativeNumber') && form.controls['hvalorNominal'].touched">
+          El valor nominal debe ser un número positivo.
+        </mat-error>
+      </mat-form-field>
+
+      <mat-form-field>
+        <mat-label>📅 Número de años</mat-label>
+        <input matInput 
+               type="number" 
+               min="1"
+               formControlName="hnumeroAnios" 
+               [placeholder]="placeholderNumeroAnios"
+               (focus)="placeholderNumeroAnios = 'Ej. 2'"
+               (blur)="placeholderNumeroAnios = ''" />
+        <mat-error *ngIf="form.controls['hnumeroAnios'].hasError('required') && form.controls['hnumeroAnios'].touched">
+          El número de años es requerido.
+        </mat-error>
+        <mat-error *ngIf="form.controls['hnumeroAnios'].hasError('negativeNumber') && form.controls['hnumeroAnios'].touched">
+          El número de años debe ser un número positivo.
+        </mat-error>
+      </mat-form-field>
+
+      <mat-form-field>
+        <mat-label>💰 Tipo de moneda</mat-label>
+        <mat-select formControlName="hmoneda">
+          @for (moneda of listaMonedas; track moneda) {
+          <mat-option [value]="moneda.idCatalogoMoneda">{{ moneda.moneda }}</mat-option>
+          }
+        </mat-select>
+        <mat-error *ngIf="form.controls['hmoneda'].hasError('required') && form.controls['hmoneda'].touched">
+          La moneda es requerida.
+        </mat-error>
+      </mat-form-field>
+
+      <!-- Configuración de cupones -->
+      <mat-form-field>
+        <mat-label>🎫 Frecuencia del cupón</mat-label>
+        <mat-select formControlName="hcupon">
+          @for (cupon of cupones; track cupon) {
+          <mat-option [value]="cupon.value">{{ cupon.viewValue }}</mat-option>
+          }
+        </mat-select>
+        <mat-error *ngIf="form.controls['hcupon'].hasError('required') && form.controls['hcupon'].touched">
+          La frecuencia del cupón es requerida.
+        </mat-error>
+      </mat-form-field>
+
+      <mat-form-field>
+        <mat-label>📆 Días por año</mat-label>
+        <mat-select formControlName="hdiasPorAno">
+          @for (dias of diasPorAno; track dias) {
+          <mat-option [value]="dias.value">{{ dias.viewValue }}</mat-option>
+          }
+        </mat-select>
+        <mat-error *ngIf="form.controls['hdiasPorAno'].hasError('required') && form.controls['hdiasPorAno'].touched">
+          Los días por año son requeridos.
+        </mat-error>
+      </mat-form-field>
+
+      <!-- Configuración de tasas -->
+      <mat-form-field>
+        <mat-label>📊 Tipo de Tasa de Interés</mat-label>
+        <mat-select formControlName="htipoTasa">
+          @for (tipo of tiposTasa; track tipo) {
+          <mat-option [value]="tipo.value">{{ tipo.viewValue }}</mat-option>
+          }
+        </mat-select>
+        <mat-error *ngIf="form.controls['htipoTasa'].hasError('required') && form.controls['htipoTasa'].touched">
+          El tipo de tasa es requerido.
+        </mat-error>
+      </mat-form-field>
+
+      <mat-form-field>
+        <mat-label>🔄 Capitalización</mat-label>
+        <mat-select formControlName="hcapitalizacion">
+          @for (cap of capitalizacionesFiltradas; track cap) {
+          <mat-option [value]="cap.value">{{ cap.viewValue }}</mat-option>
+          }
+        </mat-select>
+        <mat-error *ngIf="form.controls['hcapitalizacion'].hasError('required') && form.controls['hcapitalizacion'].touched">
+          La capitalización es requerida.
+        </mat-error>
+      </mat-form-field>
+
+      <mat-form-field>
+        <mat-label>📈 Tasa de Interés</mat-label>
+        <input matInput 
+               type="number" 
+               step="0.001" 
+               min="0"
+               max="1"
+               formControlName="htasaInteres" 
+               [placeholder]="placeholderTasaInteres"
+               (focus)="placeholderTasaInteres = '0,075'"
+               (blur)="placeholderTasaInteres = ''" />
+        <mat-hint>Formato decimal: 0,075 para 7,5%</mat-hint>
+        <mat-error *ngIf="form.controls['htasaInteres'].hasError('required') && form.controls['htasaInteres'].touched">
+          La tasa de interés es requerida.
+        </mat-error>
+        <mat-error *ngIf="form.controls['htasaInteres'].hasError('invalidPercentage') && form.controls['htasaInteres'].touched">
+          La tasa debe ser un valor entre 0 y 1 (ej: 0.075 para 7.5%).
+        </mat-error>
+      </mat-form-field>
+
+      <mat-form-field>
+        <mat-label>📉 Tasa de descuento</mat-label>
+        <input matInput 
+               type="number" 
+               step="0.001" 
+               min="0"
+               max="1"
+               formControlName="htasaDescuento" 
+               [placeholder]="placeholderTasaDescuento"
+               (focus)="placeholderTasaDescuento = '0,045'"
+               (blur)="placeholderTasaDescuento = ''" />
+        <mat-hint>Formato decimal: 0,045 para 4,5%</mat-hint>
+        <mat-error *ngIf="form.controls['htasaDescuento'].hasError('required') && form.controls['htasaDescuento'].touched">
+          La tasa de descuento es requerida.
+        </mat-error>
+        <mat-error *ngIf="form.controls['htasaDescuento'].hasError('invalidPercentage') && form.controls['htasaDescuento'].touched">
+          La tasa debe ser un valor entre 0 y 1 (ej: 0.045 para 4.5%).
+        </mat-error>
+      </mat-form-field>
+
+      <!-- Configuración fiscal -->
+      <mat-form-field>
+        <mat-label>🏛️ Impuesto a la renta</mat-label>
+        <input matInput 
+               type="number" 
+               step="0.01" 
+               min="0"
+               max="1"
+               formControlName="himpuesto" 
+               [placeholder]="placeholderImpuesto"
+               (focus)="placeholderImpuesto = '0,30'"
+               (blur)="placeholderImpuesto = ''" />
+        <mat-hint>Formato decimal: 0,30 para 30%</mat-hint>
+        <mat-error *ngIf="form.controls['himpuesto'].hasError('required') && form.controls['himpuesto'].touched">
+          El impuesto es requerido.
+        </mat-error>
+        <mat-error *ngIf="form.controls['himpuesto'].hasError('invalidPercentage') && form.controls['himpuesto'].touched">
+          El impuesto debe ser un valor entre 0 y 1 (ej: 0.30 para 30%).
+        </mat-error>
+      </mat-form-field>
+
+      <mat-form-field>
+        <mat-label>📊 Inflación anual</mat-label>
+        <input matInput 
+               type="number" 
+               step="0.001" 
+               min="0"
+               max="1"
+               formControlName="hinflacion" 
+               [placeholder]="placeholderInflacion"
+               (focus)="placeholderInflacion = '0,035'"
+               (blur)="placeholderInflacion = ''" />
+        <mat-hint>Formato decimal: 0,035 para 3,5%</mat-hint>
+        <mat-error *ngIf="form.controls['hinflacion'].hasError('required') && form.controls['hinflacion'].touched">
+          La inflación es requerida.
+        </mat-error>
+        <mat-error *ngIf="form.controls['hinflacion'].hasError('invalidPercentage') && form.controls['hinflacion'].touched">
+          La inflación debe ser un valor entre 0 y 1 (ej: 0.035 para 3.5%).
+        </mat-error>
+      </mat-form-field>
+
+      <!-- Configuración de gracia -->
+      <mat-form-field>
+        <mat-label>⏸️ Tipos de Gracia</mat-label>
+        <mat-select formControlName="htipoGracia">
+          @for (gracia of tiposGracia; track gracia) {
+          <mat-option [value]="gracia.value">{{ gracia.viewValue }}</mat-option>
+          }
+        </mat-select>
+        <mat-error *ngIf="form.controls['htipoGracia'].hasError('required') && form.controls['htipoGracia'].touched">
+          El tipo de gracia es requerido.
+        </mat-error>
+      </mat-form-field>
+
+      <mat-form-field>
+        <mat-label>⏳ Períodos de gracia</mat-label>
+        <input matInput 
+               type="number" 
+               min="0"
+               formControlName="hperiodosGracia" 
+               [placeholder]="placeholderPeriodosGracia"
+               (focus)="placeholderPeriodosGracia = 'Ej. 2'"
+               (blur)="placeholderPeriodosGracia = ''" />
+        <mat-error *ngIf="form.controls['hperiodosGracia'].hasError('required') && form.controls['hperiodosGracia'].touched">
+          Los períodos de gracia son requeridos.
+        </mat-error>
+        <mat-error *ngIf="form.controls['hperiodosGracia'].hasError('negativeNumber') && form.controls['hperiodosGracia'].touched">
+          Los períodos de gracia no pueden ser negativos.
+        </mat-error>
+      </mat-form-field>
+
+      <!-- Costos -->
+      <mat-form-field>
+        <mat-label>🏦 Costos Iniciales del Bonista</mat-label>
+        <input matInput 
+               type="number" 
+               step="0.001" 
+               min="0"
+               max="1"
+               formControlName="hcostosBonista" 
+               [placeholder]="placeholderCostosBonista"
+               (focus)="placeholderCostosBonista = '0,025'"
+               (blur)="placeholderCostosBonista = ''" />
+        <mat-hint>Formato decimal: 0,025 para 2,5%</mat-hint>
+        <mat-error *ngIf="form.controls['hcostosBonista'].hasError('required') && form.controls['hcostosBonista'].touched">
+          Los costos del bonista son requeridos.
+        </mat-error>
+        <mat-error *ngIf="form.controls['hcostosBonista'].hasError('invalidPercentage') && form.controls['hcostosBonista'].touched">
+          Los costos deben ser un valor entre 0 y 1 (ej: 0.025 para 2.5%).
+        </mat-error>
+      </mat-form-field>
+
+      <mat-form-field>
+        <mat-label>💎 Prima</mat-label>
+        <input matInput 
+               type="number" 
+               step="0.01" 
+               min="0"
+               max="1"
+               formControlName="hprima" 
+               [placeholder]="placeholderPrima"
+               (focus)="placeholderPrima = '0,02'"
+               (blur)="placeholderPrima = ''" />
+        <mat-hint>Formato decimal: 0,02 para 2%</mat-hint>
+        <mat-error *ngIf="form.controls['hprima'].hasError('required') && form.controls['hprima'].touched">
+          La prima es requerida.
+        </mat-error>
+        <mat-error *ngIf="form.controls['hprima'].hasError('invalidPercentage') && form.controls['hprima'].touched">
+          La prima debe ser un valor entre 0 y 1 (ej: 0.02 para 2%).
+        </mat-error>
+      </mat-form-field>
+
+      <mat-form-field class="full-width">
+        <mat-label>💼 Otros costos iniciales</mat-label>
+        <input matInput 
+               type="number" 
+               step="0.001" 
+               min="0"
+               max="1"
+               formControlName="hcostosOtros" 
+               [placeholder]="placeholderCostosOtros"
+               (focus)="placeholderCostosOtros = '0,030'"
+               (blur)="placeholderCostosOtros = ''" />
+        <mat-hint>Formato decimal: 0,030 para 3,0%</mat-hint>
+        <mat-error *ngIf="form.controls['hcostosOtros'].hasError('required') && form.controls['hcostosOtros'].touched">
+          Los otros costos son requeridos.
+        </mat-error>
+        <mat-error *ngIf="form.controls['hcostosOtros'].hasError('invalidPercentage') && form.controls['hcostosOtros'].touched">
+          Los otros costos deben ser un valor entre 0 y 1 (ej: 0.030 para 3%).
+        </mat-error>
+      </mat-form-field>
+
+      <!-- Botones -->
+      <div class="button-container">
+        <button mat-raised-button color="primary" type="submit" [disabled]="!form.valid">
+          {{ edicion ? '✏️ Actualizar Bono' : '💾 Registrar Bono' }}
+        </button>
+        <button mat-raised-button class="cancel-button" type="button" routerLink="/bonos">
+          ❌ Cancelar
+        </button>
+      </div>
+    </form>
+  </div>
+</div>

@@ -1,0 +1,68 @@
+<div class="resultados-container">
+  <div class="resultados-header">
+    <h1>📊 Resultados Financieros</h1>
+    <p>Vista detallada de los resultados</p>
+  </div>
+
+  <div class="resultados-table" *ngIf="resultado">
+    <div class="result-row">
+      <div class="label">📊 Convexidad:</div>
+      <div class="value">{{ resultado.convexidad }}</div>
+    </div>
+
+    <div class="result-row">
+      <div class="label">⏱️ Duración:</div>
+      <div class="value">{{ resultado.duracion }}</div>
+    </div>
+
+    <div class="result-row">
+      <div class="label">⚡ Duración Modificada:</div>
+      <div class="value">{{ resultado.duracionModificada }}</div>
+    </div>
+
+    <div class="result-row">
+      <div class="label">💰 Precio Actual:</div>
+      <div class="value highlight">{{ resultado.precioActual }}</div>
+    </div>
+
+    <div class="result-row">
+      <div class="label">📈 Precio Máximo Mercado:</div>
+      <div class="value">{{ resultado.precioMaxMercado }}</div>
+    </div>
+
+    <div class="result-row">
+      <div class="label">🏦 TCEA - Emisor:</div>
+      <div class="value percentage">{{ resultado.tceaEmisor }}</div>
+    </div>
+
+    <div class="result-row">
+      <div class="label">🛡️ TCEA Emisor Escudo:</div>
+      <div class="value percentage">{{ resultado.tceaEmisorEscudo }}</div>
+    </div>
+
+    <div class="result-row">
+      <div class="label">💎 Total:</div>
+      <div class="value highlight">{{ resultado.total }}</div>
+    </div>
+
+    <div class="result-row">
+      <div class="label">👤 TREA Bonista:</div>
+      <div class="value percentage">{{ resultado.treaBonista }}</div>
+    </div>
+
+    <div class="result-row">
+      <div class="label">⭐ Utilidad:</div>
+      <div class="value profit">{{ resultado.utilidad }}</div>
+    </div>
+  </div>
+
+  <div class="no-data" *ngIf="!resultado">
+    <p>No se encontraron resultados para este bono.</p>
+  </div>
+
+  <div class="actions">
+    <button class="btn-back" (click)="goBack()">
+      ← Volver a Bonos
+    </button>
+  </div>
+</div>
