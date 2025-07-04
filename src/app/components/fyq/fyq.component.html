@@ -1,0 +1,111 @@
+<div class="faq-container">
+  <!-- Encabezado de la sección FAQ -->
+  <div class="faq-header">
+    <div class="header-content">
+      <div class="icon-container">
+        <span class="main-icon">❓</span>
+      </div>
+      <div class="header-text">
+        <h1>Preguntas Frecuentes</h1>
+        <p>Encuentra respuestas a las dudas más comunes sobre ContaFácil</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- Lista de preguntas y respuestas -->
+  <div class="faq-content">
+    <mat-card class="faq-card" *ngFor="let faq of faqs; let i = index">
+      <div class="faq-item" (click)="toggleFAQ(i)">
+        <!-- Pregunta -->
+        <div class="question-section">
+          <div class="question-icon">
+            <span class="q-letter">Q</span>
+          </div>
+          <div class="question-text">
+            <h3>{{ faq.question }}</h3>
+          </div>
+          <div class="expand-icon">
+            <mat-icon [class.rotated]="faq.expanded">
+              {{ faq.expanded ? 'expand_less' : 'expand_more' }}
+            </mat-icon>
+          </div>
+        </div>
+
+        <!-- Respuesta (expandible) -->
+        <div class="answer-section" [class.expanded]="faq.expanded">
+          <div class="answer-content">
+            <div class="answer-icon">
+              <span class="a-letter">A</span>
+            </div>
+            <div class="answer-text">
+              <p>{{ faq.answer }}</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </mat-card>
+  </div>
+
+  <!-- Botón Ver Manual -->
+  <div class="manual-button-section">
+    <button mat-raised-button class="manual-button" routerLink="/manual">
+      <mat-icon>menu_book</mat-icon>
+      <span>Ver Manual de Usuario</span>
+    </button>
+    <p class="manual-description">Consulta nuestra guía completa para aprender a usar todas las funciones de ContaFácil</p>
+  </div>
+
+  <!-- Pie de sección -->
+  <div class="faq-footer">
+    <div class="footer-header">
+      <mat-icon>support_agent</mat-icon>
+      <h2>¿Necesitas Ayuda Adicional?</h2>
+      <p>Si necesitas ayuda personalizada o si no encuentras lo que buscas en las preguntas frecuentes o el manual, nuestro equipo de soporte está disponible para ayudarte.</p>
+    </div>
+    
+    <div class="contact-options">
+      <!-- Opción de Email -->
+      <div class="contact-card email-card">
+        <div class="contact-icon">
+          <mat-icon>email</mat-icon>
+        </div>
+        <div class="contact-info">
+          <h3>Correo Electrónico</h3>
+          <p>Envía tu consulta y te responderemos dentro de 24 horas</p>
+          <a href="mailto:soporte@contafacil.com" class="contact-link">
+            <strong>soporte&#64;contafacil.com</strong>
+          </a>
+        </div>
+      </div>
+
+      <!-- Opción de Teléfono -->
+      <div class="contact-card phone-card">
+        <div class="contact-icon">
+          <mat-icon>phone</mat-icon>
+        </div>
+        <div class="contact-info">
+          <h3>Soporte Telefónico</h3>
+          <p>Habla directamente con un representante</p>
+          <a href="tel:+51962014951" class="contact-link">
+            <strong>(+51) 962014951</strong>
+          </a>
+        </div>
+      </div>
+    </div>
+
+    <!-- Horario de atención -->
+    <div class="schedule-info">
+      <div class="schedule-header">
+        <mat-icon>schedule</mat-icon>
+        <h3>Horario de Atención</h3>
+      </div>
+      <div class="schedule-details">
+        <div class="schedule-item">
+          <span class="days">Lunes a Viernes</span>
+          <span class="hours">9:00 a.m. - 6:00 p.m.</span>
+          <span class="timezone">(hora local)</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
