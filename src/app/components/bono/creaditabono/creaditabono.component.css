@@ -3,16 +3,17 @@
   background: transparent;
   min-height: 100vh;
   padding: 30px;
-  font-family: 'Roboto', 'Segoe UI', sans-serif;
+  font-family: 'Segoe UI', 'Arial Black', sans-serif;
+  font-weight: 600;
 }
 
 /* Título principal */
 h1 {
-  color: #1565c0;
+  color: #1e88e5;
   text-align: center;
   font-size: 2.2rem;
   margin-bottom: 40px;
-  font-weight: 400;
+  font-weight: 800;
   letter-spacing: 0.5px;
 }
 
@@ -53,6 +54,7 @@ form {
   width: 100% !important;
   font-size: 0.85rem !important;
   margin-bottom: 8px;
+  font-weight: 600 !important;
 }
 
 .mdc-text-field {
@@ -65,6 +67,7 @@ form {
   border-radius: 8px !important;
   border: 1px solid #e8eaed !important;
   transition: all 0.2s ease !important;
+  font-weight: 600 !important;
 }
 
 .mat-mdc-text-field-wrapper:hover {
@@ -75,22 +78,24 @@ form {
   background-color: rgba(66, 165, 245, 0.02) !important;
 }
 
-/* Labels más sutiles */
+/* Labels más visibles */
 .mat-mdc-form-field-label {
   color: #5f6368 !important;
-  font-weight: 400 !important;
-  font-size: 0.85rem !important;
+  font-weight: 700 !important;
+  font-size: 0.9rem !important;
 }
 
 .mat-mdc-form-field-label.mdc-floating-label--float-above {
   color: #42a5f5 !important;
-  font-size: 0.75rem !important;
+  font-size: 0.8rem !important;
+  font-weight: 700 !important;
 }
 
 /* Input text más compacto */
 .mat-mdc-input-element {
   color: #3c4043 !important;
-  font-size: 0.85rem !important;
+  font-size: 0.9rem !important;
+  font-weight: 600 !important;
   padding: 12px 14px !important;
 }
 
@@ -99,6 +104,7 @@ form {
   color: #9aa0a6 !important;
   opacity: 0.8 !important;
   font-style: italic;
+  font-weight: 500 !important;
 }
 
 /* Hints para mayor claridad */
@@ -107,6 +113,7 @@ form {
   font-size: 0.75rem !important;
   margin-top: 4px !important;
   font-style: italic;
+  font-weight: 500 !important;
 }
 
 /* Select styling más compacto */
@@ -114,6 +121,7 @@ form {
   color: #3c4043 !important;
   font-size: 0.85rem !important;
   padding: 12px 14px !important;
+  font-weight: 600 !important;
 }
 
 .mat-mdc-select-arrow {
@@ -148,9 +156,10 @@ form {
   color: #ea4335 !important;
   font-size: 0.75rem !important;
   margin-top: 4px !important;
+  font-weight: 600 !important;
 }
 
-/* Button styling más minimalista */
+/* Button styling más visible */
 .button-container {
   grid-column: 1 / -1;
   display: flex;
@@ -162,7 +171,7 @@ form {
 .mat-mdc-raised-button {
   background-color: #42a5f5 !important;
   color: white !important;
-  font-weight: 500 !important;
+  font-weight: 700 !important;
   padding: 10px 24px !important;
   border-radius: 8px !important;
   font-size: 0.9rem !important;
@@ -189,6 +198,7 @@ form {
   background-color: #f8f9fa !important;
   color: #5f6368 !important;
   border: 1px solid #dadce0 !important;
+  font-weight: 600 !important;
 }
 
 .cancel-button:hover {
@@ -273,6 +283,7 @@ form {
 .mat-mdc-option {
   color: #3c4043 !important;
   font-size: 0.85rem !important;
+  font-weight: 600 !important;
   min-height: 40px !important;
   padding: 8px 16px !important;
 }

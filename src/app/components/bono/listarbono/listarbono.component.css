@@ -1,521 +1,325 @@
-/* Contenedor principal profesional */
+/* Contenedor principal con tipografía de creaditabono */
 .container {
-  background: linear-gradient(135deg, #e3f2fd 0%, #bbdefb 30%, #90caf9 100%);
+  background: transparent;
   min-height: 100vh;
-  padding: 40px;
-  font-family: 'Inter', 'Roboto', 'Segoe UI', sans-serif;
+  padding: 30px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+  overflow-y: auto;
+  box-sizing: border-box;
+  font-family: 'Segoe UI', 'Arial Black', sans-serif;
+  font-weight: 600;
 }
 
-/* Título principal */
+/* Título con estilo de creaditabono */
 h1 {
-  color: #0d47a1;
+  color: #1e88e5 !important;
   text-align: center;
-  font-size: 2.8rem;
-  margin-bottom: 50px;
-  font-weight: 700;
-  letter-spacing: -0.5px;
-  text-shadow: 0 2px 4px rgba(13, 71, 161, 0.1);
-  background: linear-gradient(135deg, #0d47a1 0%, #1565c0 100%);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  background-clip: text;
+  font-size: 2.2rem;
+  margin: 20px 0 40px 0;
+  font-weight: 800;
+  letter-spacing: 0.5px;
 }
 
-/* Contenedor de la tabla */
+/* Contenedor de tabla - más minimalista */
 .table-container {
-  background: #ffffff;
-  border-radius: 12px;
-  padding: 24px;
-  box-shadow: 0 2px 10px rgba(0,0,0,0.04);
-  border: 1px solid #e9ecef;
-  max-width: 100%;
-  overflow: hidden;
-  position: relative;
-}
-
-/* Estilos de la tabla */
-.mat-mdc-table {
-  background: transparent !important;
+  background: rgba(255, 255, 255, 0.95);
   border-radius: 8px;
   overflow: hidden;
+  box-shadow: 0 2px 12px rgba(0, 0, 0, 0.08);
+  width: 100%;
+  max-width: 1200px;
+  margin: 0 auto;
+  border: 1px solid rgba(230, 234, 238, 0.5);
+  backdrop-filter: blur(10px);
+  animation: slideUp 0.6s ease-out;
+}
+
+/* Tabla principal */
+.mat-mdc-table {
+  background: transparent !important;
   width: 100%;
   border-collapse: separate;
   border-spacing: 0;
-  font-family: 'Inter', 'Roboto', sans-serif;
-  border: 1px solid #e9ecef;
 }
 
 /* Header de la tabla */
 .mat-mdc-header-row {
-  background: #f8f9fa !important;
-  color: #495057 !important;
+  background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%) !important;
   height: 56px !important;
-  border-bottom: 2px solid #e9ecef !important;
-  position: relative;
+  border-bottom: 2px solid #dee2e6 !important;
 }
 
 .mat-mdc-header-cell {
   color: #495057 !important;
-  font-weight: 600 !important;
+  font-weight: 700 !important;
   font-size: 0.9rem !important;
-  padding: 16px 20px !important;
-  border-bottom: none !important;
-  border-right: 1px solid #dee2e6 !important;
+  padding: 16px 12px !important;
   text-align: center !important;
-  letter-spacing: 0.3px !important;
+  border-right: 1px solid #dee2e6 !important;
   vertical-align: middle !important;
-  justify-content: center !important;
-  align-items: center !important;
-  text-transform: none !important;
-  text-shadow: none;
-  background: #c5daef !important;
+  white-space: nowrap;
+  font-family: 'Segoe UI', 'Arial Black', sans-serif !important;
 }
 
 .mat-mdc-header-cell:last-child {
   border-right: none !important;
 }
 
-.mat-mdc-header-cell:first-child {
-  border-top-left-radius: 8px;
-}
-
-.mat-mdc-header-cell:last-child {
-  border-top-right-radius: 8px;
-}
-
 /* Filas de datos */
 .mat-mdc-row {
-  background: #ffffff !important;
-  border-bottom: 1px solid #e9ecef !important;
-  transition: all 0.3s ease;
-  height: 56px !important;
-  position: relative;
+  background: #fff !important;
+  height: 60px !important;
+  border-bottom: 1px solid #f1f3f4 !important;
+  transition: all 0.2s ease;
 }
 
 .mat-mdc-row:hover {
-  background: #e3f2fd !important;
-  box-shadow: 0 2px 8px rgba(66, 165, 245, 0.15);
+  background: #f8f9fa !important;
   transform: translateY(-1px);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
 }
 
 .mat-mdc-row:nth-child(even) {
-  background: #fdfdfd !important;
+  background: #fafbfc !important;
 }
 
 .mat-mdc-row:nth-child(even):hover {
-  background: #e3f2fd !important;
-  box-shadow: 0 2px 8px rgba(66, 165, 245, 0.15);
-  transform: translateY(-1px);
+  background: #f1f3f4 !important;
 }
 
-.mat-mdc-row:last-child {
-  border-bottom: none !important;
-}
-
-.mat-mdc-row:last-child .mat-mdc-cell:first-child {
-  border-bottom-left-radius: 8px;
-}
-
-.mat-mdc-row:last-child .mat-mdc-cell:last-child {
-  border-bottom-right-radius: 8px;
-}
-
-/* Celdas */
+/* Celdas de datos con tipografía de creaditabono */
 .mat-mdc-cell {
-  padding: 14px 20px !important;
-  font-size: 0.9rem !important;
-  color: #495057 !important;
-  font-weight: 400 !important;
+  color: #212529 !important;
+  font-size: 0.875rem !important;
+  padding: 16px 12px !important;
   text-align: center !important;
-  border-bottom: none !important;
-  border-right: 1px solid #e9ecef !important;
+  border-right: 1px solid #f1f3f4 !important;
   vertical-align: middle !important;
   line-height: 1.4;
-  justify-content: center !important;
-  align-items: center !important;
-  font-family: 'Inter', 'Roboto', sans-serif;
+  font-family: 'Segoe UI', 'Arial Black', sans-serif !important;
+  font-weight: 600 !important;
 }
 
 .mat-mdc-cell:last-child {
   border-right: none !important;
 }
 
-/* Botones estilizados */
+/* Contenedores de botones */
+.actions-cell,
+.button-cell {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  padding: 8px !important;
+}
+
+/* Botones base - estilo minimalista */
 button {
-  border: none !important;
-  border-radius: 12px !important;
-  padding: 10px 14px !important;
-  color: white !important;
-  font-weight: 600 !important;
-  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1) !important;
-  box-shadow: 0 4px 12px rgba(0,0,0,0.15) !important;
-  cursor: pointer !important;
-  min-width: 44px !important;
-  height: 44px !important;
-  display: inline-flex !important;
-  align-items: center !important;
-  justify-content: center !important;
-  margin: 0 3px !important;
-  font-family: 'Inter', 'Roboto', sans-serif !important;
-  position: relative !important;
-  overflow: hidden !important;
-}
-
-button::before {
-  content: '';
-  position: absolute;
-  top: 0;
-  left: -100%;
-  width: 100%;
-  height: 100%;
-  background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
-  transition: left 0.5s;
-}
-
-button:hover::before {
-  left: 100%;
+  background: #ffffff;
+  border: 1px solid #e0e0e0;
+  border-radius: 4px;
+  padding: 6px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 32px;
+  height: 32px;
+  box-shadow: none;
+  font-family: 'Segoe UI', 'Arial Black', sans-serif !important;
+  font-weight: 500 !important;
 }
 
 button:hover {
-  transform: translateY(-2px) !important;
-  box-shadow: 0 8px 25px rgba(0,0,0,0.2) !important;
+  transform: none;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
 }
 
-button:active {
-  transform: translateY(0) !important;
-  box-shadow: 0 4px 12px rgba(0,0,0,0.15) !important;
+/* Botones específicos - colores más sutiles */
+.view-button {
+  color: #2196F3;
+  border-color: #e3f2fd;
 }
 
-/* Botón de editar - Verde esmeralda */
+.view-button:hover {
+  background: #f3f9ff;
+  border-color: #2196F3;
+}
+
 .edit-button {
-  background: linear-gradient(135deg, #26a69a 0%, #00897b 100%) !important;
+  color: #4CAF50;
+  border-color: #e8f5e8;
 }
 
 .edit-button:hover {
-  background: linear-gradient(135deg, #00897b 0%, #00695c 100%) !important;
-  box-shadow: 0 8px 25px rgba(38, 166, 154, 0.4) !important;
+  background: #f1f8e9;
+  border-color: #4CAF50;
 }
 
-/* Botón de flujo de caja - Gradiente púrpura */
-.cash-flow-button {
-  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%) !important;
+.delete-button {
+  color: #f44336;
+  border-color: #ffebee;
 }
 
-.cash-flow-button:hover {
-  background: linear-gradient(135deg, #764ba2 0%, #667eea 100%) !important;
-  box-shadow: 0 8px 25px rgba(102, 126, 234, 0.4) !important;
+.delete-button:hover {
+  background: #fef7f7;
+  border-color: #f44336;
 }
 
-/* Botón moderno para flujo de caja */
-.modern-btn {
-  padding: 0.8rem 1.5rem;
-  border-radius: 12px;
-  border: none;
-  cursor: pointer;
-  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-  display: flex;
-  align-items: center;
-  gap: 0.6rem;
-  font-weight: 600;
-  font-size: 0.9rem;
-  text-decoration: none;
-  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
-  position: relative;
-  overflow: hidden;
-}
-
-.cash-flow-button.modern-btn {
-  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-  color: white;
-}
-
-.cash-flow-button.modern-btn:hover {
-  transform: translateY(-3px);
-  box-shadow: 0 8px 30px rgba(102, 126, 234, 0.4);
-}
-
-.cash-flow-button.modern-btn i {
-  font-size: 1.1rem;
-  filter: drop-shadow(0 1px 2px rgba(0,0,0,0.1));
-}
-
-.cash-flow-button.modern-btn span {
-  font-weight: 700;
-  letter-spacing: 0.3px;
-}
-
-/* Botón de resultados financieros - Gradiente coral */
+.cash-flow-button,
 .results-button {
-  background: linear-gradient(135deg, #ff6b6b 0%, #ee5a52 100%) !important;
+  color: #FF9800;
+  border-color: #fff3e0;
 }
 
+.cash-flow-button:hover,
 .results-button:hover {
-  background: linear-gradient(135deg, #ee5a52 0%, #c62828 100%) !important;
-  box-shadow: 0 8px 25px rgba(255, 107, 107, 0.4) !important;
+  background: #fffaf0;
+  border-color: #FF9800;
 }
 
-/* Botón de ver detalles - Gradiente azul */
-.view-button {
-  background: linear-gradient(135deg, #42a5f5 0%, #1e88e5 100%) !important;
-}
-
-.view-button:hover {
-  background: linear-gradient(135deg, #1e88e5 0%, #1565c0 100%) !important;
-  box-shadow: 0 8px 25px rgba(66, 165, 245, 0.4) !important;
-}
-
-/* Botón de eliminar - Gradiente rojo */
-.delete-button {
-  background: linear-gradient(135deg, #f44336 0%, #d32f2f 100%) !important;
-}
-
-.delete-button:hover {
-  background: linear-gradient(135deg, #d32f2f 0%, #c62828 100%) !important;
-  box-shadow: 0 8px 25px rgba(244, 67, 54, 0.4) !important;
-  transform: translateY(-2px) !important;
-}
-
-/* Iconos */
+/* Iconos - más simples */
 mat-icon {
-  color: white !important;
-  font-size: 18px !important;
-  width: 18px !important;
-  height: 18px !important;
-  line-height: 18px !important;
-  display: flex !important;
-  align-items: center !important;
-  justify-content: center !important;
-  filter: drop-shadow(0 1px 2px rgba(0,0,0,0.2));
+  color: inherit !important;
+  font-size: 16px !important;
+  width: 16px !important;
+  height: 16px !important;
 }
 
-/* Contenido de celdas con botones */
-.button-cell {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  gap: 4px;
-  flex-wrap: wrap;
-  width: 100%;
-  height: 100%;
+button:hover mat-icon {
+  transform: scale(1.1);
 }
 
-/* Contenido de celdas con botones de acciones */
-.actions-cell {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  gap: 8px;
-  flex-wrap: nowrap;
-  width: 100%;
-  height: 100%;
-  padding: 4px;
+/* Responsive: Tablets */
+@media (max-width: 1024px) {
+  .table-container {
+    max-width: 95%;
+  }
+
+  .mat-mdc-header-cell,
+  .mat-mdc-cell {
+    padding: 12px 8px !important;
+    font-size: 0.85rem !important;
+  }
 }
 
-/* Ajustar tamaño de botones en la columna de acciones */
-.actions-cell button {
-  min-width: 40px !important;
-  height: 40px !important;
-  margin: 0 2px !important;
-  padding: 8px !important;
-  border-radius: 10px !important;
-}
-
-/* Estilos para botón de ver */
-.view-button {
-  background: linear-gradient(135deg, #2196F3, #1976D2) !important;
-  color: white !important;
-}
-
-.view-button:hover {
-  background: linear-gradient(135deg, #1976D2, #0D47A1) !important;
-  transform: translateY(-1px);
-}
-
-/* Estilos para botón de eliminar */
-.delete-button {
-  background: linear-gradient(135deg, #f44336, #d32f2f) !important;
-  color: white !important;
-}
-
-.delete-button:hover {
-  background: linear-gradient(135deg, #d32f2f, #b71c1c) !important;
-  transform: translateY(-1px);
-}
-
-/* Responsive para acciones */
+/* Responsive: Tablets y móviles medianos */
 @media (max-width: 768px) {
-  .actions-cell {
+  .container {
+    padding: 20px 12px;
+    font-family: 'Segoe UI', 'Arial Black', sans-serif;
+    font-weight: 600;
+  }
+
+  h1 {
+    font-size: 1.8rem;
+    margin: 12px 0 24px 0;
+    font-weight: 800;
+  }
+
+  .table-container {
+    overflow-x: auto;
+    max-width: 100%;
+    border-radius: 12px;
+    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.15);
+  }
+
+  .mat-mdc-table {
+    min-width: 700px;
+  }
+
+  .mat-mdc-header-row {
+    height: 48px !important;
+  }
+
+  .mat-mdc-row {
+    height: 52px !important;
+  }
+
+  .mat-mdc-header-cell,
+  .mat-mdc-cell {
+    padding: 8px 6px !important;
+    font-size: 0.8rem !important;
+  }
+
+  button {
+    min-width: 32px;
+    height: 32px;
+    padding: 6px;
+  }
+
+  mat-icon {
+    font-size: 16px !important;
+    width: 16px !important;
+    height: 16px !important;
+  }
+
+  .actions-cell,
+  .button-cell {
     gap: 6px;
   }
-  
-  .actions-cell button {
-    min-width: 36px !important;
-    height: 36px !important;
-    margin: 0 1px !important;
-    padding: 6px !important;
-  }
 }
 
+/* Responsive: Móviles pequeños */
 @media (max-width: 480px) {
-  .actions-cell {
-    gap: 4px;
-    flex-wrap: wrap;
+  .container {
+    padding: 16px 8px;
+    font-family: 'Segoe UI', 'Arial Black', sans-serif;
+    font-weight: 600;
   }
-  
-  .actions-cell button {
-    min-width: 32px !important;
-    height: 32px !important;
-    margin: 1px !important;
-    padding: 4px !important;
+
+  h1 {
+    font-size: 1.5rem;
+    margin: 8px 0 16px 0;
+    font-weight: 800;
   }
-  
-  .actions-cell mat-icon {
+
+  .table-container {
+    border-radius: 8px;
+  }
+
+  .mat-mdc-header-cell,
+  .mat-mdc-cell {
+    padding: 6px 4px !important;
+    font-size: 0.75rem !important;
+  }
+
+  button {
+    min-width: 28px;
+    height: 28px;
+    padding: 4px;
+  }
+
+  mat-icon {
     font-size: 14px !important;
     width: 14px !important;
     height: 14px !important;
   }
 }
 
-/* Responsive */
-@media (max-width: 1024px) {
-  .container {
-    padding: 30px 20px;
-  }
-  
-  .table-container {
-    padding: 20px;
-    border-radius: 10px;
-  }
-  
-  h1 {
-    font-size: 2.4rem;
-  }
-}
-
-@media (max-width: 768px) {
-  .container {
-    padding: 20px 15px;
-  }
-  
-  .table-container {
-    padding: 16px;
-    border-radius: 8px;
-  }
-  
-  h1 {
-    font-size: 2rem;
-    margin-bottom: 35px;
-  }
-  
-  .mat-mdc-header-cell,
-  .mat-mdc-cell {
-    padding: 12px 8px !important;
-    font-size: 0.9rem !important;
-  }
-  
-  .mat-mdc-header-cell {
-    font-size: 0.85rem !important;
-  }
-  
-  button {
-    padding: 8px 10px !important;
-    min-width: 40px !important;
-    height: 40px !important;
-    margin: 0 2px !important;
-  }
-  
-  mat-icon {
-    font-size: 16px !important;
-    width: 16px !important;
-    height: 16px !important;
-  }
-  
-  .modern-btn {
-    padding: 0.6rem 1rem;
-    font-size: 0.8rem;
-  }
-}
-
-@media (max-width: 480px) {
-  .container {
-    padding: 15px 10px;
-  }
-  
-  h1 {
-    font-size: 1.8rem;
-    margin-bottom: 25px;
-  }
-  
-  .table-container {
-    padding: 12px;
-    margin: 0 2px;
-    border-radius: 6px;
-  }
-  
-  .mat-mdc-header-cell,
-  .mat-mdc-cell {
-    padding: 8px 6px !important;
-    font-size: 0.8rem !important;
-  }
-  
-  button {
-    padding: 6px 8px !important;
-    min-width: 36px !important;
-    height: 36px !important;
-  }
-  
-  .modern-btn span {
-    display: none;
-  }
-}
-
-/* Mejoras de accesibilidad */
-button:focus {
-  outline: 2px solid #64b5f6;
-  outline-offset: 2px;
-}
-
-.mat-mdc-table {
-  border: 1px solid #e9ecef;
-}
-
-/* Animación suave para la carga */
-.table-container {
-  animation: slideInUp 0.8s cubic-bezier(0.4, 0, 0.2, 1);
-}
-
-@keyframes slideInUp {
-  from { 
-    opacity: 0; 
-    transform: translateY(60px) scale(0.95); 
-  }
-  to { 
-    opacity: 1; 
-    transform: translateY(0) scale(1); 
-  }
-}
-
-/* Animación de las filas */
-.mat-mdc-row {
-  animation: fadeInRow 0.6s ease-out;
-  animation-fill-mode: both;
-}
-
-@keyframes fadeInRow {
+/* Animación de entrada */
+@keyframes slideUp {
   from {
     opacity: 0;
-    transform: translateX(-30px);
+    transform: translateY(30px);
   }
   to {
     opacity: 1;
-    transform: translateX(0);
+    transform: translateY(0);
   }
 }
 
-/* Efecto de carga progresiva para las filas */
-.mat-mdc-row:nth-child(1) { animation-delay: 0.1s; }
-.mat-mdc-row:nth-child(2) { animation-delay: 0.2s; }
-.mat-mdc-row:nth-child(3) { animation-delay: 0.3s; }
-.mat-mdc-row:nth-child(4) { animation-delay: 0.4s; }
-.mat-mdc-row:nth-child(5) { animation-delay: 0.5s; }
-.mat-mdc-row:nth-child(n+6) { animation-delay: 0.6s; }
+/* Loading */
+.loading {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 200px;
+  color: #fff;
+  font-size: 1.1rem;
+}
