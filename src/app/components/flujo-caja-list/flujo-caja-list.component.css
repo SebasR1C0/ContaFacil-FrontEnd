@@ -1,3 +1,72 @@
+/* Reglas específicas para el tema oscuro */
+:host-context(.dark-theme) .flujo-caja-container {
+  background: var(--app-bg-gradient) !important;
+  color: var(--app-text-color) !important;
+}
+
+:host-context(.dark-theme) .header-section {
+  background: var(--app-surface-color) !important;
+  color: var(--app-text-color) !important;
+  border-color: var(--app-border-color) !important;
+}
+
+:host-context(.dark-theme) .page-title {
+  color: var(--app-button-bg) !important;
+}
+
+:host-context(.dark-theme) .page-title .text-muted {
+  color: var(--app-text-color) !important;
+  opacity: 0.7;
+}
+
+:host-context(.dark-theme) .table-section {
+  background: var(--app-surface-color) !important;
+  border-color: var(--app-border-color) !important;
+}
+
+:host-context(.dark-theme) .table {
+  background: var(--app-surface-color) !important;
+  color: var(--app-text-color) !important;
+}
+
+:host-context(.dark-theme) .table thead th {
+  background: var(--app-table-header-bg) !important;
+  color: var(--app-text-color) !important;
+}
+
+:host-context(.dark-theme) .table tbody tr {
+  background: var(--app-table-row-bg) !important;
+  color: var(--app-text-color) !important;
+}
+
+:host-context(.dark-theme) .table tbody tr:hover {
+  background: var(--app-table-row-hover) !important;
+}
+
+:host-context(.dark-theme) .table tbody td {
+  background: var(--app-table-row-bg) !important;
+  color: var(--app-text-color) !important;
+  border-color: var(--app-border-color) !important;
+}
+
+:host-context(.dark-theme) .btn-secondary,
+:host-context(.dark-theme) .btn-outline-primary,
+:host-context(.dark-theme) .btn-outline-danger {
+  background: var(--app-surface-color) !important;
+  color: var(--app-text-color) !important;
+  border-color: var(--app-border-color) !important;
+}
+
+:host-context(.dark-theme) .btn-outline-danger {
+  color: #ff6b6b !important;
+  border-color: rgba(255, 107, 107, 0.3) !important;
+}
+
+:host-context(.dark-theme) .btn-primary {
+  background: var(--app-button-bg) !important;
+  color: var(--app-button-text) !important;
+}
+
 /* ========== CONTENEDOR PRINCIPAL ========== */
 .flujo-caja-container {
   padding: 30px;
@@ -5,6 +74,9 @@
   max-width: 1200px;
   font-family: 'Segoe UI', 'Arial Black', sans-serif;
   font-weight: 600;
+  background: var(--app-bg-gradient);
+  color: var(--app-text-color);
+  min-height: 100vh;
 }
 
 /* ========== HEADER SECTION ========== */
@@ -14,16 +86,17 @@
   align-items: center;
   margin-bottom: 30px;
   padding: 20px;
-  background: white;
+  background: var(--app-surface-color);
   border-radius: 12px;
-  box-shadow: 0 2px 12px rgba(0, 0, 0, 0.08);
+  box-shadow: 0 2px 12px var(--app-shadow);
+  border: 1px solid var(--app-border-color);
 }
 
 .page-title {
   margin: 0;
   font-size: 32px;
   font-weight: 800;
-  color: #1e88e5;
+  color: var(--app-button-bg);
   font-family: 'Segoe UI', 'Arial Black', sans-serif;
   letter-spacing: -0.5px;
 }
@@ -34,8 +107,9 @@
 
 .page-title .text-muted {
   font-size: 14px;
-  color: #666;
+  color: var(--app-text-color);
   font-weight: 500;
+  opacity: 0.7;
 }
 
 .header-actions {
@@ -68,23 +142,24 @@
 }
 
 .btn-primary {
-  background: linear-gradient(135deg, #1e88e5, #1976d2);
-  color: white;
-  box-shadow: 0 4px 12px rgba(30, 136, 229, 0.3);
+  background: var(--app-button-bg);
+  color: var(--app-button-text);
+  box-shadow: 0 4px 12px var(--app-shadow);
 }
 
 .btn-primary:hover {
-  background: linear-gradient(135deg, #1976d2, #1565c0);
+  background: var(--app-button-bg);
   transform: translateY(-2px);
-  box-shadow: 0 6px 16px rgba(30, 136, 229, 0.4);
+  box-shadow: 0 6px 16px var(--app-shadow);
+  opacity: 0.9;
 }
 
 .btn-secondary,
 .btn-outline-primary,
 .btn-outline-danger {
-  background: #f5f5f5;
-  color: #666;
-  border: 1px solid #e0e0e0;
+  background: var(--app-surface-color);
+  color: var(--app-text-color);
+  border: 1px solid var(--app-border-color);
   box-shadow: none;
 }
 
@@ -96,8 +171,8 @@
 .btn-secondary:hover,
 .btn-outline-primary:hover,
 .btn-outline-danger:hover {
-  background: #eeeeee;
-  color: #333;
+  background: var(--app-table-row-hover);
+  color: var(--app-text-color);
   transform: translateY(-1px);
 }
 
@@ -109,11 +184,11 @@
 
 /* ========== TABLA ESTILO BONO DETALLE ========== */
 .table-section {
-  background: white;
-  box-shadow: 0 2px 12px rgba(0, 0, 0, 0.08);
+  background: var(--app-surface-color);
+  box-shadow: 0 2px 12px var(--app-shadow);
   border-radius: 12px;
   overflow: hidden;
-  border: 1px solid #f0f0f0;
+  border: 1px solid var(--app-border-color);
   margin-bottom: 30px;
   animation: slideUp 0.6s ease-out;
 }
@@ -129,12 +204,13 @@
   border-collapse: separate;
   border-spacing: 0;
   min-width: 100%;
-  background: white;
+  background: var(--app-surface-color);
+  color: var(--app-text-color);
 }
 
 .table thead th {
-  background: linear-gradient(135deg, #1e88e5, #1976d2);
-  color: white;
+  background: var(--app-table-header-bg);
+  color: var(--app-text-color);
   font-weight: 700;
   font-size: 0.85rem;
   letter-spacing: 0.3px;
@@ -158,27 +234,28 @@
 
 .table tbody tr {
   transition: all 0.3s ease;
-  background: rgba(255, 255, 255, 0.95);
-  border-bottom: 1px solid rgba(226, 232, 240, 0.3);
+  background: var(--app-table-row-bg);
+  border-bottom: 1px solid var(--app-border-color);
+  color: var(--app-text-color);
 }
 
 .table tbody tr:hover {
   transform: translateY(-1px);
-  box-shadow: 0 4px 16px rgba(66, 165, 245, 0.15);
-  background: rgba(255, 255, 255, 1);
+  box-shadow: 0 4px 16px var(--app-shadow);
+  background: var(--app-table-row-hover);
 }
 
 .table tbody tr:nth-child(odd) {
-  background: rgba(240, 248, 255, 0.3);
+  background: var(--app-table-row-bg);
 }
 
 .table tbody tr:nth-child(even) {
-  background: rgba(248, 255, 248, 0.3);
+  background: var(--app-table-row-bg);
 }
 
 .table tbody tr:nth-child(odd):hover,
 .table tbody tr:nth-child(even):hover {
-  background: rgba(255, 255, 255, 1);
+  background: var(--app-table-row-hover);
 }
 
 .table td {
@@ -189,13 +266,14 @@
   white-space: nowrap;
   font-size: 0.875rem;
   text-align: center;
-  color: #37474f;
+  color: var(--app-text-color);
   font-family: 'Segoe UI', sans-serif;
+  background: var(--app-table-row-bg);
 }
 
 .table td.text-end {
   text-align: right;
-  color: #1976d2;
+  color: var(--app-button-bg);
   font-weight: 600;
 }
 
@@ -207,10 +285,11 @@
 .loading-section {
   text-align: center;
   padding: 40px 20px;
-  background: white;
+  background: var(--app-surface-color);
   border-radius: 12px;
-  box-shadow: 0 2px 12px rgba(0, 0, 0, 0.08);
+  box-shadow: 0 2px 12px var(--app-shadow);
   margin-bottom: 30px;
+  color: var(--app-text-color);
 }
 
 .loading-section i {
@@ -271,23 +350,24 @@
 .empty-state {
   text-align: center;
   padding: 60px 20px;
-  color: #78909c;
-  background: rgba(255, 255, 255, 0.95);
+  color: var(--app-text-color);
+  background: var(--app-surface-color);
   border-radius: 16px;
-  box-shadow: 0 6px 24px rgba(0, 0, 0, 0.08);
+  box-shadow: 0 6px 24px var(--app-shadow);
   backdrop-filter: blur(15px);
-  border: 1px solid rgba(255, 255, 255, 0.4);
+  border: 1px solid var(--app-border-color);
   margin-bottom: 30px;
 }
 
 .empty-state .empty-icon i {
-  color: #cfd8dc;
+  color: var(--app-button-bg);
   margin-bottom: 16px;
   font-size: 3rem;
+  opacity: 0.7;
 }
 
 .empty-state h4 {
-  color: #546e7a;
+  color: var(--app-text-color);
   font-weight: 600;
   margin-bottom: 16px;
   font-size: 18px;
@@ -295,10 +375,11 @@
 }
 
 .empty-state p {
-  color: #78909c;
+  color: var(--app-text-color);
   font-size: 14px;
   margin-bottom: 30px;
   line-height: 1.6;
+  opacity: 0.7;
 }
 
 /* ========== ANIMACIONES SUAVES ========== */
@@ -317,7 +398,7 @@
 .pagination-section {
   margin-top: 20px;
   padding: 20px;
-  background: rgba(255, 255, 255, 0.95);
+  background: var(--app-surface-color);
   border-radius: 12px;
   box-shadow: 0 3px 12px rgba(0, 0, 0, 0.06);
   border: 1px solid rgba(226, 232, 240, 0.3);

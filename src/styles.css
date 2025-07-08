@@ -1,13 +1,51 @@
 /* You can add global styles to this file, and also import other style files */
 
+/* Variables globales para temas */
+:root {
+  /* Tema claro */
+  --app-bg-gradient: linear-gradient(135deg, #e3f2fd 0%, #bbdefb 50%, #90caf9 100%);
+  --app-text-color: #333333;
+  --app-surface-color: #ffffff;
+  --app-shadow: rgba(0, 0, 0, 0.1);
+  --app-border-color: #e0e0e0;
+  --app-card-bg: #ffffff;
+  --app-input-bg: #f5f5f5;
+  --app-input-border: #e0e0e0;
+  --app-button-bg: #1976d2;
+  --app-button-text: #ffffff;
+  --app-table-header-bg: #f5f5f5;
+  --app-table-row-bg: #ffffff;
+  --app-table-row-hover: #f5f5f5;
+}
+
+/* Tema oscuro */
+.dark-theme {
+  --app-bg-gradient: linear-gradient(135deg, #121212 0%, #1e1e1e 50%, #2d2d2d 100%);
+  --app-text-color: #ffffff;
+  --app-surface-color: #2d2d2d;
+  --app-shadow: rgba(0, 0, 0, 0.3);
+  --app-border-color: #404040;
+  --app-card-bg: #2d2d2d;
+  --app-input-bg: #404040;
+  --app-input-border: #555555;
+  --app-button-bg: #bb86fc;
+  --app-button-text: #000000;
+  --app-table-header-bg: #1e1e1e;
+  --app-table-row-bg: #2d2d2d;
+  --app-table-row-hover: #404040;
+  --app-table-border: #404040;
+}
+
 html, body { 
   height: 100%; 
   margin: 0;
   padding: 0;
   width: 100%;
-  background: linear-gradient(135deg, #e3f2fd 0%, #bbdefb 50%, #90caf9 100%);
+  background: var(--app-bg-gradient) !important;
   background-attachment: fixed;
   font-family: Roboto, "Helvetica Neue", sans-serif;
+  color: var(--app-text-color);
+  transition: background 0.3s ease, color 0.3s ease;
 }
 
 /* Ensure all main containers inherit the background */
@@ -15,4 +53,228 @@ app-root {
   min-height: 100vh;
   width: 100%;
   display: block;
+  background: var(--app-bg-gradient);
+  color: var(--app-text-color);
+}
+
+/* Ensure router-outlet content uses the correct background */
+router-outlet + * {
+  background: var(--app-bg-gradient) !important;
+  min-height: 100vh;
+  color: var(--app-text-color);
+}
+
+/* Estilos globales para Angular Material en modo oscuro */
+.dark-theme .mat-mdc-form-field {
+  --mdc-filled-text-field-container-color: var(--app-input-bg);
+  --mdc-filled-text-field-input-text-color: var(--app-text-color);
+  --mdc-filled-text-field-label-text-color: var(--app-text-color);
+  --mdc-outlined-text-field-outline-color: var(--app-input-border);
+  --mdc-outlined-text-field-focus-outline-color: var(--app-button-bg);
+}
+
+.dark-theme .mat-mdc-button {
+  --mdc-text-button-label-text-color: var(--app-text-color);
+  --mdc-filled-button-container-color: var(--app-button-bg);
+  --mdc-filled-button-label-text-color: var(--app-button-text);
+}
+
+.dark-theme .mat-mdc-menu-panel {
+  --mdc-filled-text-field-container-color: var(--app-surface-color);
+  background: var(--app-surface-color) !important;
+  color: var(--app-text-color) !important;
+}
+
+.dark-theme .mat-mdc-menu-item {
+  --mdc-list-list-item-label-text-color: var(--app-text-color);
+  color: var(--app-text-color) !important;
+}
+
+.dark-theme .mat-mdc-card {
+  --mdc-elevated-card-container-color: var(--app-card-bg);
+  background: var(--app-card-bg) !important;
+  color: var(--app-text-color) !important;
+}
+
+.dark-theme .mat-mdc-table {
+  --mdc-data-table-row-fill-color: var(--app-table-row-bg);
+  --mdc-data-table-header-row-fill-color: var(--app-table-header-bg);
+  background: var(--app-table-row-bg) !important;
+  color: var(--app-text-color) !important;
+  border-color: var(--app-table-border) !important;
+}
+
+.dark-theme .mat-mdc-table th {
+  background: var(--app-table-header-bg) !important;
+  color: var(--app-text-color) !important;
+  border-color: var(--app-table-border) !important;
+}
+
+.dark-theme .mat-mdc-table td {
+  color: var(--app-text-color) !important;
+  background: var(--app-table-row-bg) !important;
+  border-color: var(--app-table-border) !important;
+}
+
+.dark-theme .mat-mdc-table tr {
+  background: var(--app-table-row-bg) !important;
+  border-color: var(--app-table-border) !important;
+}
+
+.dark-theme .mat-mdc-table tr:hover {
+  background: var(--app-table-row-hover) !important;
+}
+
+/* Estilos específicos para las filas de la tabla en modo oscuro */
+.dark-theme .mat-mdc-row {
+  background: var(--app-table-row-bg) !important;
+  color: var(--app-text-color) !important;
+  border-color: var(--app-table-border) !important;
+}
+
+.dark-theme .mat-mdc-row:hover {
+  background: var(--app-table-row-hover) !important;
+}
+
+.dark-theme .mat-mdc-header-row {
+  background: var(--app-table-header-bg) !important;
+  color: var(--app-text-color) !important;
+  border-color: var(--app-table-border) !important;
+}
+
+.dark-theme .mat-mdc-cell {
+  color: var(--app-text-color) !important;
+  border-color: var(--app-table-border) !important;
+}
+
+.dark-theme .mat-mdc-header-cell {
+  color: var(--app-text-color) !important;
+  background: var(--app-table-header-bg) !important;
+  border-color: var(--app-table-border) !important;
+}
+
+/* Estilos adicionales para asegurar visibilidad en tablas de modo oscuro */
+.dark-theme table,
+.dark-theme .table,
+.dark-theme .mat-table {
+  background: var(--app-table-row-bg) !important;
+  color: var(--app-text-color) !important;
+}
+
+.dark-theme table th,
+.dark-theme .table th,
+.dark-theme .mat-table th {
+  background: var(--app-table-header-bg) !important;
+  color: var(--app-text-color) !important;
+  border-color: var(--app-table-border) !important;
+}
+
+.dark-theme table td,
+.dark-theme .table td,
+.dark-theme .mat-table td {
+  background: var(--app-table-row-bg) !important;
+  color: var(--app-text-color) !important;
+  border-color: var(--app-table-border) !important;
+}
+
+.dark-theme table tr,
+.dark-theme .table tr,
+.dark-theme .mat-table tr {
+  background: var(--app-table-row-bg) !important;
+  color: var(--app-text-color) !important;
+}
+
+.dark-theme table tr:hover,
+.dark-theme .table tr:hover,
+.dark-theme .mat-table tr:hover {
+  background: var(--app-table-row-hover) !important;
+}
+
+/* Forzar estilos para botones en tablas */
+.dark-theme .mat-mdc-button.mat-mdc-button-base {
+  background: var(--app-button-bg) !important;
+  color: var(--app-button-text) !important;
+}
+
+.dark-theme .mat-mdc-icon-button {
+  color: var(--app-button-bg) !important;
+}
+
+.dark-theme .mat-icon {
+  color: inherit !important;
+}
+
+/* Estilos globales para todos los componentes */
+* {
+  transition: background-color 0.3s ease, color 0.3s ease, border-color 0.3s ease;
+}
+
+/* Asegurar que todos los componentes de Angular usen las variables de tema */
+.dark-theme * {
+  color: var(--app-text-color) !important;
+}
+
+/* Asegurar que todos los componentes principales usen el background correcto */
+app-home, app-inicio, app-bono, app-listarbono, app-creaditabono, 
+app-catalogo, app-listacatalogo, app-fyq, app-flujocaja, app-resultados {
+  display: block;
+  min-height: 100vh;
+  background: var(--app-bg-gradient);
+  color: var(--app-text-color);
+}
+
+/* Estilos específicos para componentes que pueden tener backgrounds transparentes */
+.container, .main-container, .page-container,
+.home-container, .login-container, .faq-container,
+.form-container, .table-container {
+  background: var(--app-bg-gradient) !important;
+  color: var(--app-text-color) !important;
+}
+
+/* Override para contenedores de formularios y cards que deben tener fondo de superficie */
+.mat-mdc-card, .card, .form-container, .table-container {
+  background: var(--app-surface-color) !important;
+  color: var(--app-text-color) !important;
+  border: 1px solid var(--app-border-color) !important;
+}
+
+/* Contenedores que típicamente no usan el background del tema */
+.mat-mdc-dialog-container,
+.mat-mdc-menu-panel,
+.mat-mdc-select-panel {
+  background: var(--app-surface-color) !important;
+  color: var(--app-text-color) !important;
+}
+
+/* Estilos para los containers principales */
+.dark-theme .container,
+.dark-theme .content,
+.dark-theme .main-content,
+.dark-theme .page-content {
+  background: var(--app-surface-color) !important;
+  color: var(--app-text-color) !important;
+}
+
+/* Estilos para formularios */
+.dark-theme input,
+.dark-theme textarea,
+.dark-theme select {
+  background: var(--app-input-bg) !important;
+  color: var(--app-text-color) !important;
+  border-color: var(--app-input-border) !important;
+}
+
+/* Estilos para botones */
+.dark-theme button:not(.mat-mdc-button) {
+  background: var(--app-button-bg) !important;
+  color: var(--app-button-text) !important;
+}
+
+/* Estilos para cards/containers */
+.dark-theme .card,
+.dark-theme .panel,
+.dark-theme .container-fluid {
+  background: var(--app-card-bg) !important;
+  color: var(--app-text-color) !important;
+  border-color: var(--app-border-color) !important;
 }

@@ -1,0 +1,113 @@
+<!-- Botón flotante JH -->
+<button 
+  class="chat-toggle" 
+  (click)="toggleChat()"
+  [class.active]="isOpen"
+  title="Asistente Virtual JH">
+  <span class="chat-icon">JH</span>
+  <div class="pulse-ring" *ngIf="!isOpen"></div>
+</button>
+
+<!-- Ventana del chat -->
+<div class="chatbot-container" [class.open]="isOpen">
+  <!-- Header del chat -->
+  <div class="chat-header">
+    <div class="bot-info">
+      <div class="bot-avatar">JH</div>
+      <div class="bot-details">
+        <h3>Asistente Virtual</h3>
+        <span class="status">En línea</span>
+      </div>
+    </div>
+    <div class="chat-actions">
+      <button mat-icon-button (click)="clearChat()" title="Limpiar chat">
+        <mat-icon>refresh</mat-icon>
+      </button>
+      <button mat-icon-button (click)="toggleChat()" title="Minimizar">
+        <mat-icon>remove</mat-icon>
+      </button>
+    </div>
+  </div>
+
+  <!-- Mensajes del chat -->
+  <div class="chat-messages" #chatMessages>
+    <div 
+      *ngFor="let message of messages; trackBy: trackByFn" 
+      class="message"
+      [class.user-message]="message.type === 'user'"
+      [class.bot-message]="message.type === 'bot'">
+      
+      <div class="message-avatar" *ngIf="message.type === 'bot'">
+        <span>JH</span>
+      </div>
+      
+      <div class="message-content">
+        <div class="message-bubble">
+          <p [innerHTML]="formatMessage(message.content)"></p>
+        </div>
+        <div class="message-time">
+          {{ message.timestamp | date:'short' }}
+        </div>
+      </div>
+      
+      <div class="message-avatar user-avatar" *ngIf="message.type === 'user'">
+        <mat-icon>person</mat-icon>
+      </div>
+    </div>
+
+    <!-- Indicador de escritura -->
+    <div class="message bot-message typing-indicator" *ngIf="isTyping">
+      <div class="message-avatar">
+        <span>JH</span>
+      </div>
+      <div class="message-content">
+        <div class="message-bubble typing">
+          <div class="typing-dots">
+            <span></span>
+            <span></span>
+            <span></span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Input del chat -->
+  <div class="chat-input-container">
+    <mat-form-field appearance="outline" class="chat-input-field">
+      <input 
+        matInput
+        [(ngModel)]="userInput"
+        (keypress)="onKeyPress($event)"
+        placeholder="Escribe tu pregunta sobre ContaFácil..."
+        class="chat-input"
+        [disabled]="isTyping">
+      <button 
+        mat-icon-button 
+        matSuffix 
+        (click)="sendMessage()"
+        [disabled]="!userInput.trim() || isTyping"
+        title="Enviar mensaje">
+        <mat-icon>send</mat-icon>
+      </button>
+    </mat-form-field>
+  </div>
+
+  <!-- Sugerencias rápidas -->
+  <div class="quick-suggestions" *ngIf="messages.length <= 1">
+    <div class="suggestion-label">Preguntas frecuentes:</div>
+    <button 
+      *ngFor="let suggestion of quickSuggestions" 
+      class="suggestion-btn"
+      (click)="selectSuggestion(suggestion)">
+      {{ suggestion }}
+    </button>
+  </div>
+</div>
+
+<!-- Overlay para cerrar el chat en móvil -->
+<div 
+  class="chat-overlay" 
+  *ngIf="isOpen" 
+  (click)="toggleChat()">
+</div>

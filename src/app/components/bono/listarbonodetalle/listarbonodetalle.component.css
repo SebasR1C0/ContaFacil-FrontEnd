@@ -1,3 +1,54 @@
+/* Reglas específicas para el tema oscuro */
+:host-context(.dark-theme) .container {
+  background: var(--app-bg-gradient) !important;
+  color: var(--app-text-color) !important;
+  min-height: 100vh;
+}
+
+:host-context(.dark-theme) .header {
+  background: var(--app-surface-color) !important;
+  color: var(--app-text-color) !important;
+  border-color: var(--app-border-color) !important;
+}
+
+:host-context(.dark-theme) .header h1 {
+  color: var(--app-button-bg) !important;
+}
+
+:host-context(.dark-theme) .back-button {
+  background: var(--app-button-bg) !important;
+  color: var(--app-button-text) !important;
+}
+
+:host-context(.dark-theme) .content-section {
+  background: var(--app-surface-color) !important;
+  color: var(--app-text-color) !important;
+  border-color: var(--app-border-color) !important;
+}
+
+:host-context(.dark-theme) .info-card {
+  background: var(--app-surface-color) !important;
+  color: var(--app-text-color) !important;
+  border-color: var(--app-border-color) !important;
+}
+
+:host-context(.dark-theme) .info-card h3 {
+  color: var(--app-button-bg) !important;
+}
+
+:host-context(.dark-theme) .info-card .info-item {
+  color: var(--app-text-color) !important;
+}
+
+:host-context(.dark-theme) .info-card .info-item .label {
+  color: var(--app-text-color) !important;
+  opacity: 0.7;
+}
+
+:host-context(.dark-theme) .info-card .info-item .value {
+  color: var(--app-text-color) !important;
+}
+
 /* ========== CONTENEDOR PRINCIPAL ========== */
 .container {
   padding: 30px;
@@ -5,6 +56,9 @@
   max-width: 1200px;
   font-family: 'Segoe UI', 'Arial Black', sans-serif;
   font-weight: 600;
+  background: var(--app-bg-gradient);
+  color: var(--app-text-color);
+  min-height: 100vh;
 }
 
 /* ========== HEADER ========== */
@@ -14,13 +68,14 @@
   align-items: center;
   margin-bottom: 30px;
   padding: 20px;
-  background: white;
+  background: var(--app-surface-color);
   border-radius: 12px;
-  box-shadow: 0 2px 12px rgba(0, 0, 0, 0.08);
+  box-shadow: 0 2px 12px var(--app-shadow);
+  border: 1px solid var(--app-border-color);
 }
 
 .header h1 {
-  color: #1e88e5;
+  color: var(--app-button-bg);
   margin: 0;
   font-size: 32px;
   font-weight: 800;
@@ -40,10 +95,10 @@
   cursor: pointer;
   transition: all 0.3s ease;
   text-decoration: none;
-  box-shadow: 0 4px 12px rgba(30, 136, 229, 0.3);
+  box-shadow: 0 4px 12px var(--app-shadow);
   font-size: 14px;
-  background: linear-gradient(135deg, #1e88e5, #1976d2);
-  color: white;
+  background: var(--app-button-bg);
+  color: var(--app-button-text);
   font-family: 'Segoe UI', sans-serif;
   letter-spacing: 0.3px;
   min-width: 140px;
@@ -51,29 +106,30 @@
 }
 
 .back-button:hover {
-  background: linear-gradient(135deg, #1976d2, #1565c0);
+  background: var(--app-button-bg);
   transform: translateY(-2px);
-  box-shadow: 0 6px 16px rgba(30, 136, 229, 0.4);
+  box-shadow: 0 6px 16px var(--app-shadow);
+  opacity: 0.9;
 }
 
 /* ========== TARJETA DE DETALLES ========== */
 .detail-card {
-  background: white;
-  box-shadow: 0 2px 12px rgba(0, 0, 0, 0.08);
+  background: var(--app-surface-color);
+  box-shadow: 0 2px 12px var(--app-shadow);
   border-radius: 12px;
   overflow: hidden;
-  border: 1px solid #f0f0f0;
+  border: 1px solid var(--app-border-color);
 }
 
 /* ========== HEADER DE TARJETA ========== */
 .card-header {
-  background: linear-gradient(135deg, #1e88e5, #1976d2);
-  color: white;
+  background: var(--app-button-bg);
+  color: var(--app-button-text);
   padding: 20px;
 }
 
 .card-header .mat-card-title {
-  color: white;
+  color: var(--app-button-text);
   font-size: 20px;
   margin-bottom: 8px;
   font-weight: 700;
@@ -81,16 +137,18 @@
 }
 
 .card-header .mat-card-subtitle {
-  color: rgba(255, 255, 255, 0.9);
+  color: var(--app-button-text);
   font-size: 14px;
   font-weight: 500;
   font-family: 'Segoe UI', sans-serif;
+  opacity: 0.9;
 }
 
 /* ========== CONTENIDO DE TARJETA ========== */
 .card-content {
   padding: 24px;
-  background: rgba(255, 255, 255, 0.95);
+  background: var(--app-surface-color);
+  color: var(--app-text-color);
 }
 
 /* ========== GRID DE DETALLES ========== */
@@ -102,38 +160,41 @@
 
 /* ========== ITEMS DE DETALLE MÁS CLAROS ========== */
 .detail-item {
-  background: rgba(255, 255, 255, 0.95);
+  background: var(--app-surface-color);
   border-radius: 12px;
   padding: 20px;
   transition: all 0.3s ease;
-  box-shadow: 0 3px 12px rgba(0, 0, 0, 0.06); /* Sombra muy suave */
-  border: 1px solid rgba(226, 232, 240, 0.3);
-  border-left: 4px solid #81c784; /* Borde izquierdo verde claro */
+  box-shadow: 0 3px 12px var(--app-shadow);
+  border: 1px solid var(--app-border-color);
+  border-left: 4px solid var(--app-button-bg);
   animation: slideUp 0.6s ease-out;
+  color: var(--app-text-color);
 }
 
 .detail-item:hover {
   transform: translateY(-2px);
-  box-shadow: 0 6px 20px rgba(66, 165, 245, 0.15); /* Hover más suave */
-  border-left-color: #4caf50;
+  box-shadow: 0 6px 20px var(--app-shadow);
+  border-left-color: var(--app-button-bg);
   border-left-width: 6px;
-  background: rgba(255, 255, 255, 1);
+  background: var(--app-surface-color);
+  opacity: 0.9;
 }
 
 /* ========== ETIQUETAS Y VALORES ========== */
 .detail-label {
   font-size: 0.875rem;
   font-weight: 600;
-  color: #607d8b; /* Color más suave */
+  color: var(--app-text-color);
   margin-bottom: 8px;
   text-transform: uppercase;
   letter-spacing: 0.5px;
+  opacity: 0.7;
 }
 
 .detail-value {
   font-size: 1.1rem;
   font-weight: 500;
-  color: #37474f; /* Color más suave que el negro */
+  color: var(--app-text-color);
   word-break: break-word;
   line-height: 1.4;
 }
@@ -142,22 +203,23 @@
 .no-data {
   text-align: center;
   padding: 60px 20px;
-  color: #78909c; /* Color más claro */
-  background: rgba(255, 255, 255, 0.95);
+  color: var(--app-text-color);
+  background: var(--app-surface-color);
   border-radius: 16px;
-  box-shadow: 0 6px 24px rgba(0, 0, 0, 0.08);
+  box-shadow: 0 6px 24px var(--app-shadow);
   backdrop-filter: blur(15px);
-  border: 1px solid rgba(255, 255, 255, 0.4);
+  border: 1px solid var(--app-border-color);
 }
 
 .no-data-icon {
   font-size: 64px;
-  color: #cfd8dc; /* Icono más claro */
+  color: var(--app-button-bg);
   margin-bottom: 20px;
+  opacity: 0.7;
 }
 
 .no-data h2 {
-  color: #546e7a; /* Título más claro */
+  color: var(--app-text-color);
   margin-bottom: 16px;
   font-weight: 600;
 }
@@ -166,7 +228,8 @@
   font-size: 1.1rem;
   margin-bottom: 30px;
   line-height: 1.6;
-  color: #78909c;
+  color: var(--app-text-color);
+  opacity: 0.7;
 }
 
 /* ========== ANIMACIONES SUAVES ========== */
@@ -273,28 +336,29 @@
 
 /* ========== ESTADOS DE ENFOQUE PARA ACCESIBILIDAD ========== */
 .back-button:focus {
-  outline: 2px solid #81c784;
+  outline: 2px solid var(--app-button-bg);
   outline-offset: 2px;
 }
 
 .detail-item:focus-within {
-  outline: 2px solid #81c784;
+  outline: 2px solid var(--app-button-bg);
   outline-offset: 2px;
 }
 
 /* ========== MEJORAS ADICIONALES ========== */
 .detail-item:nth-child(odd) {
-  border-left-color: #90caf9; /* Azul claro alternado */
+  border-left-color: var(--app-button-bg);
 }
 
 .detail-item:nth-child(even) {
-  border-left-color: #a5d6a7; /* Verde claro alternado */
+  border-left-color: var(--app-button-bg);
+  opacity: 0.8;
 }
 
 /* Valores monetarios destacados */
 .detail-value[class*="currency"],
 .detail-value[class*="percentage"] {
-  color: #1976d2;
+  color: var(--app-button-bg);
   font-weight: 600;
   font-size: 1.2rem;
 }
