@@ -5,10 +5,12 @@ import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatIconModule } from '@angular/material/icon';
 import { MatMenuModule } from '@angular/material/menu';
 import { MatButtonModule } from '@angular/material/button';
+import { MatDividerModule } from '@angular/material/divider';
 import { CommonModule } from '@angular/common';
 import { filter } from 'rxjs/operators';
 import { isPlatformBrowser } from '@angular/common';
 import { Inject, PLATFORM_ID } from '@angular/core';
+import { ChatbotComponent } from './components/chatbot/chatbot.component';
 
 @Component({
   selector: 'app-root',
@@ -19,8 +21,10 @@ import { Inject, PLATFORM_ID } from '@angular/core';
     MatIconModule,
     MatMenuModule,
     MatButtonModule,
+    MatDividerModule,
     RouterModule,
-    CommonModule
+    CommonModule,
+    ChatbotComponent
   ],
   templateUrl: './app.component.html',
   styleUrl: './app.component.css',
@@ -29,6 +33,7 @@ export class AppComponent {
   title = 'FrontConta';
   showHeader = true;
   currentUser: any = null;
+  isDarkMode = false;
 
   constructor(
     private router: Router,
@@ -49,6 +54,7 @@ export class AppComponent {
       
     // Cargar usuario al inicializar
     this.loadCurrentUser();
+    this.loadTheme();
   }
 
   loadCurrentUser() {
@@ -59,6 +65,35 @@ export class AppComponent {
         this.currentUser = JSON.parse(userData);
       } else {
         this.currentUser = null;
+      }
+    }
+  }
+
+  loadTheme() {
+    if (isPlatformBrowser(this.platformId)) {
+      const savedTheme = localStorage.getItem('darkMode');
+      this.isDarkMode = savedTheme === 'true';
+      this.applyTheme();
+    }
+  }
+
+  toggleTheme() {
+    this.isDarkMode = !this.isDarkMode;
+    if (isPlatformBrowser(this.platformId)) {
+      localStorage.setItem('darkMode', this.isDarkMode.toString());
+    }
+    this.applyTheme();
+  }
+
+  applyTheme() {
+    if (isPlatformBrowser(this.platformId)) {
+      const body = document.body;
+      if (this.isDarkMode) {
+        body.classList.add('dark-theme');
+        body.classList.remove('light-theme');
+      } else {
+        body.classList.add('light-theme');
+        body.classList.remove('dark-theme');
       }
     }
   }

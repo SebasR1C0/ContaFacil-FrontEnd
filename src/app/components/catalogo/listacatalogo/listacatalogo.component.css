@@ -1,57 +1,105 @@
-/* Container Styles */
-.container {
-  padding: 2rem;
-  max-width: 1200px;
-  margin: 0 auto;
-  background: linear-gradient(135deg, #f8fafc 0%, #e2e8f0 100%);
-  min-height: 100vh;
+/* Variables para el modo oscuro */
+:root {
+  --catalog-bg-color: transparent;
+  --catalog-title-color: #1e88e5;
+  --catalog-container-bg: rgba(255, 255, 255, 0.95);
+  --catalog-table-bg: white;
+  --catalog-header-bg: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
+  --catalog-header-text: #495057;
+  --catalog-row-bg: #fff;
+  --catalog-row-even-bg: #fafbfc;
+  --catalog-row-hover-bg: #f8f9fa;
+  --catalog-cell-text: #212529;
+  --catalog-border-color: #e2e8f0;
+  --catalog-rate-bg: rgba(76, 175, 80, 0.08);
+  --catalog-rate-border: rgba(76, 175, 80, 0.2);
 }
 
-/* Title Styles */
+/* Modo oscuro */
+.dark-theme {
+  --catalog-bg-color: transparent;
+  --catalog-title-color: #bb86fc;
+  --catalog-container-bg: rgba(45, 45, 45, 0.95);
+  --catalog-table-bg: #2d2d2d;
+  --catalog-header-bg: linear-gradient(135deg, #404040 0%, #2d2d2d 100%);
+  --catalog-header-text: #ffffff;
+  --catalog-row-bg: #2d2d2d;
+  --catalog-row-even-bg: #404040;
+  --catalog-row-hover-bg: #555555;
+  --catalog-cell-text: #ffffff;
+  --catalog-border-color: #555555;
+  --catalog-rate-bg: rgba(76, 175, 80, 0.2);
+  --catalog-rate-border: rgba(76, 175, 80, 0.4);
+}
+
+/* Container Styles con tipografía de creaditabono */
+.container {
+  background: var(--catalog-bg-color);
+  min-height: 100vh;
+  padding: 30px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+  overflow-y: auto;
+  box-sizing: border-box;
+  font-family: 'Segoe UI', 'Arial Black', sans-serif;
+  font-weight: 600;
+}
+
+/* Title Styles con estilo de creaditabono */
 h1 {
   text-align: center;
-  color: #1e293b;
-  font-size: 2.5rem;
-  font-weight: 600;
-  margin-bottom: 2rem;
-  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-  letter-spacing: -0.025em;
+  color: var(--catalog-title-color);
+  font-size: 2.2rem;
+  font-weight: 800;
+  margin: 20px 0 40px 0;
+  letter-spacing: 0.5px;
+  font-family: 'Segoe UI', 'Arial Black', sans-serif;
 }
 
-/* Table Container */
+/* Table Container con estilo minimalista */
 .table-container {
-  background: white;
-  border-radius: 16px;
+  background: var(--catalog-container-bg);
+  border-radius: 8px;
   overflow: hidden;
-  box-shadow: 
-    0 4px 6px -1px rgba(0, 0, 0, 0.1),
-    0 2px 4px -1px rgba(0, 0, 0, 0.06);
-  border: 1px solid #e2e8f0;
+  box-shadow: 0 2px 12px rgba(0, 0, 0, 0.08);
+  backdrop-filter: blur(10px);
+  border: 1px solid var(--catalog-border-color);
+  width: 100%;
+  max-width: 1200px;
+  margin: 0 auto;
+  animation: slideUp 0.6s ease-out;
 }
 
 /* Main Table Styles */
 .mat-mdc-table {
   width: 100%;
-  background: white;
+  background: var(--catalog-table-bg);
   border-collapse: separate;
   border-spacing: 0;
 }
 
-/* Header Styles */
+/* Header Styles con tipografía de creaditabono */
 .mat-mdc-header-row {
-  background: linear-gradient(135deg, #3b82f6 0%, #1d4ed8 100%);
-  height: 64px;
+  background: var(--catalog-header-bg);
+  height: 56px;
+  border-bottom: 2px solid var(--catalog-border-color);
 }
 
 .mat-mdc-header-cell {
   border: none;
-  padding: 1rem 1.5rem;
-  font-weight: 600;
-  font-size: 0.875rem;
+  padding: 16px 12px;
+  font-weight: 700;
+  font-size: 0.9rem;
   text-transform: uppercase;
-  letter-spacing: 0.05em;
-  color: white;
+  letter-spacing: 0.5px;
+  color: var(--catalog-header-text);
   position: relative;
+  text-align: center;
+  vertical-align: middle;
+  white-space: nowrap;
+  font-family: 'Segoe UI', 'Arial Black', sans-serif;
 }
 
 .mat-mdc-header-cell:not(:last-child)::after {
@@ -62,39 +110,38 @@ h1 {
   transform: translateY(-50%);
   height: 60%;
   width: 1px;
-  background: rgba(255, 255, 255, 0.2);
+  background: var(--catalog-border-color);
 }
 
 .header-content {
   display: flex;
   align-items: center;
-  gap: 0.75rem;
+  gap: 8px;
 }
 
 .header-content mat-icon {
-  font-size: 1.25rem;
-  width: 1.25rem;
-  height: 1.25rem;
-  color: #fbbf24;
+  font-size: 1.125rem;
+  width: 1.125rem;
+  height: 1.125rem;
+  color: var(--catalog-title-color);
 }
 
-/* Row Styles */
+/* Row Styles con estilo de listarbono */
 .mat-mdc-row {
-  height: 72px;
-  transition: all 0.2s ease-in-out;
+  height: 60px;
+  transition: all 0.2s ease;
   position: relative;
+  background: var(--catalog-row-bg);
 }
 
 .mat-mdc-row:nth-child(even) {
-  background-color: #f8fafc;
+  background-color: var(--catalog-row-even-bg);
 }
 
 .mat-mdc-row:hover {
-  background: linear-gradient(135deg, #dbeafe 0%, #bfdbfe 100%);
+  background: var(--catalog-row-hover-bg);
   transform: translateY(-1px);
-  box-shadow: 
-    0 4px 12px rgba(59, 130, 246, 0.15),
-    0 2px 6px rgba(59, 130, 246, 0.1);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
   z-index: 1;
 }
 
@@ -105,181 +152,200 @@ h1 {
   left: 1.5rem;
   right: 1.5rem;
   height: 1px;
-  background: linear-gradient(90deg, transparent 0%, #e2e8f0 20%, #e2e8f0 80%, transparent 100%);
+  background: linear-gradient(90deg, transparent 0%, var(--catalog-border-color) 20%, var(--catalog-border-color) 80%, transparent 100%);
 }
 
 .mat-mdc-row:last-child::after {
   display: none;
 }
 
-/* Cell Styles */
+/* Cell Styles con tipografía de creaditabono */
 .mat-mdc-cell {
   border: none;
-  padding: 1rem 1.5rem;
-  font-size: 0.95rem;
-  color: #374151;
+  padding: 16px 12px;
+  font-size: 0.875rem;
+  color: var(--catalog-cell-text);
   position: relative;
+  text-align: center;
+  vertical-align: middle;
+  line-height: 1.4;
+  font-family: 'Segoe UI', 'Arial Black', sans-serif;
+  font-weight: 600;
 }
 
 .mat-mdc-cell:not(:last-child)::after {
   content: '';
   position: absolute;
   right: 0;
-  top: 1rem;
-  bottom: 1rem;
+  top: 16px;
+  bottom: 16px;
   width: 1px;
-  background: #e5e7eb;
+  background: var(--catalog-border-color);
 }
 
 .cell-content {
   display: flex;
   align-items: center;
-  gap: 0.75rem;
+  gap: 8px;
+  justify-content: center;
 }
 
-/* Currency Column Styles */
+/* Currency Column Styles - más sutiles */
 .currency-icon {
-  color: #f59e0b;
-  font-size: 1.5rem;
-  width: 1.5rem;
-  height: 1.5rem;
+  color: var(--catalog-title-color);
+  font-size: 1rem;
+  width: 1rem;
+  height: 1rem;
 }
 
 .currency-name {
   font-weight: 600;
-  font-size: 1rem;
-  color: #1f2937;
+  font-size: 0.9rem;
+  color: var(--catalog-title-color);
+  font-family: 'Segoe UI', 'Arial Black', sans-serif;
 }
 
-/* Exchange Rate Column Styles */
+/* Exchange Rate Column Styles - más minimalista */
 .exchange-rate {
-  justify-content: flex-start;
+  justify-content: center;
 }
 
 .rate-icon {
-  color: #10b981;
-  font-size: 1.25rem;
-  width: 1.25rem;
-  height: 1.25rem;
+  color: #4CAF50;
+  font-size: 1rem;
+  width: 1rem;
+  height: 1rem;
 }
 
 .rate-value {
-  font-weight: 700;
-  font-size: 1.1rem;
-  color: #059669;
-  font-family: 'SF Mono', 'Monaco', 'Inconsolata', 'Roboto Mono', monospace;
-  background: linear-gradient(135deg, #ecfdf5 0%, #d1fae5 100%);
-  padding: 0.375rem 0.75rem;
-  border-radius: 8px;
-  border: 1px solid #a7f3d0;
+  font-weight: 600;
+  font-size: 0.9rem;
+  color: #2e7d32;
+  font-family: 'Segoe UI', 'Arial Black', sans-serif;
+  background: var(--catalog-rate-bg);
+  padding: 4px 8px;
+  border-radius: 4px;
+  border: 1px solid var(--catalog-rate-border);
 }
 
-/* Responsive Design */
+/* Modo oscuro - ajustar color del valor de la tasa */
+.dark-theme .rate-value {
+  color: #4CAF50;
+}
+
+/* Responsive Design con tipografía consistente */
+@media (max-width: 1024px) {
+  .table-container {
+    max-width: 95%;
+  }
+
+  .container {
+    padding: 20px;
+  }
+
+  h1 {
+    font-size: 1.8rem;
+  }
+
+  .mat-mdc-cell, .mat-mdc-header-cell {
+    padding: 12px 8px;
+    font-size: 0.8rem;
+  }
+
+  .currency-name, .rate-value {
+    font-size: 0.85rem;
+  }
+
+  .cell-content {
+    gap: 6px;
+  }
+
+  .header-content mat-icon {
+    font-size: 1rem;
+    width: 1rem;
+    height: 1rem;
+  }
+}
+
 @media (max-width: 768px) {
   .container {
-    padding: 1rem;
+    padding: 15px;
   }
-  
+
   h1 {
-    font-size: 2rem;
-    margin-bottom: 1.5rem;
+    font-size: 1.6rem;
+    margin: 15px 0 25px 0;
   }
-  
+
   .table-container {
-    border-radius: 12px;
+    max-width: 100%;
   }
-  
-  .mat-mdc-header-cell,
-  .mat-mdc-cell {
-    padding: 0.75rem 1rem;
+
+  .mat-mdc-cell, .mat-mdc-header-cell {
+    padding: 10px 6px;
+    font-size: 0.75rem;
   }
-  
-  .mat-mdc-row {
-    height: 64px;
+
+  .currency-name, .rate-value {
+    font-size: 0.8rem;
   }
-  
-  .header-content,
+
   .cell-content {
-    gap: 0.5rem;
+    gap: 4px;
   }
-  
-  .header-content mat-icon,
-  .currency-icon,
-  .rate-icon {
-    font-size: 1.125rem;
-    width: 1.125rem;
-    height: 1.125rem;
-  }
-  
-  .currency-name {
+
+  .header-content mat-icon {
     font-size: 0.9rem;
-  }
-  
-  .rate-value {
-    font-size: 1rem;
-    padding: 0.25rem 0.5rem;
+    width: 0.9rem;
+    height: 0.9rem;
   }
 }
 
 @media (max-width: 480px) {
   .container {
-    padding: 0.75rem;
+    padding: 10px;
   }
-  
+
   h1 {
-    font-size: 1.75rem;
+    font-size: 1.4rem;
+    margin: 10px 0 20px 0;
   }
-  
+
   .table-container {
-    border-radius: 8px;
+    border-radius: 6px;
   }
-  
-  .mat-mdc-header-cell,
-  .mat-mdc-cell {
-    padding: 0.5rem 0.75rem;
+
+  .mat-mdc-header-cell, .mat-mdc-cell {
+    padding: 8px 4px;
+    font-size: 0.7rem;
   }
-  
-  .mat-mdc-row {
-    height: 56px;
-  }
-  
-  .header-content span {
+
+  .currency-name, .rate-value {
     font-size: 0.75rem;
   }
-  
-  .currency-name {
-    font-size: 0.85rem;
-  }
-  
+
   .rate-value {
-    font-size: 0.9rem;
+    padding: 2px 4px;
+  }
+
+  .cell-content {
+    gap: 2px;
+  }
+
+  .header-content {
+    flex-direction: column;
+    gap: 2px;
+  }
+
+  .header-content mat-icon {
+    font-size: 0.8rem;
+    width: 0.8rem;
+    height: 0.8rem;
   }
 }
 
-/* Loading and Empty States */
-.mat-mdc-table .mat-mdc-no-data-row {
-  height: 200px;
-}
-
-.mat-mdc-table .mat-mdc-no-data-row .mat-mdc-cell {
-  text-align: center;
-  color: #6b7280;
-  font-style: italic;
-  border: none;
-}
-
-/* Focus States for Accessibility */
-.mat-mdc-row:focus {
-  outline: 2px solid #3b82f6;
-  outline-offset: -2px;
-}
-
-/* Animation for table appearance */
-.table-container {
-  animation: fadeInUp 0.6s ease-out;
-}
-
-@keyframes fadeInUp {
+/* Animaciones */
+@keyframes slideUp {
   from {
     opacity: 0;
     transform: translateY(20px);
@@ -290,10 +356,45 @@ h1 {
   }
 }
 
-/* Elevation enhancement */
-.mat-elevation-z4 {
-  box-shadow: 
-    0 2px 4px -1px rgba(0, 0, 0, 0.2),
-    0 4px 5px 0 rgba(0, 0, 0, 0.14),
-    0 1px 10px 0 rgba(0, 0, 0, 0.12);
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+/* Hover effects para botones si existen */
+.action-button {
+  transition: all 0.3s ease;
+  transform: translateY(0);
+}
+
+.action-button:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+}
+
+/* Accesibilidad */
+@media (prefers-reduced-motion: reduce) {
+  * {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}
+
+/* Print styles */
+@media print {
+  .table-container {
+    box-shadow: none;
+    border: 1px solid #000;
+  }
+  
+  .mat-mdc-row:hover {
+    background: transparent !important;
+    transform: none !important;
+    box-shadow: none !important;
+  }
 }

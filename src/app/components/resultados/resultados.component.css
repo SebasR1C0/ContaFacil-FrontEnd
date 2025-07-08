@@ -1,9 +1,69 @@
+/* Reglas específicas para el tema oscuro */
+:host-context(.dark-theme) .resultados-container {
+  background: var(--app-bg-gradient) !important;
+  color: var(--app-text-color) !important;
+}
+
+:host-context(.dark-theme) .resultados-header h1 {
+  color: var(--app-button-bg) !important;
+}
+
+:host-context(.dark-theme) .resultados-header p {
+  color: var(--app-text-color) !important;
+  opacity: 0.7;
+}
+
+:host-context(.dark-theme) .resultados-table {
+  background: var(--app-surface-color) !important;
+  border-color: var(--app-border-color) !important;
+}
+
+:host-context(.dark-theme) .result-row {
+  background: var(--app-surface-color) !important;
+  border-color: var(--app-border-color) !important;
+}
+
+:host-context(.dark-theme) .label {
+  background: var(--app-table-header-bg) !important;
+  color: var(--app-text-color) !important;
+}
+
+:host-context(.dark-theme) .value {
+  background: var(--app-table-row-bg) !important;
+  color: var(--app-text-color) !important;
+}
+
+:host-context(.dark-theme) .value.highlight {
+  color: var(--app-button-bg) !important;
+}
+
+:host-context(.dark-theme) .value.percentage {
+  color: var(--app-button-bg) !important;
+}
+
+:host-context(.dark-theme) .value.profit {
+  color: #4caf50 !important;
+}
+
+:host-context(.dark-theme) .no-data {
+  background: var(--app-surface-color) !important;
+  color: var(--app-text-color) !important;
+  border-color: var(--app-border-color) !important;
+}
+
+:host-context(.dark-theme) .btn-back {
+  background: var(--app-button-bg) !important;
+  color: var(--app-button-text) !important;
+  border-color: var(--app-border-color) !important;
+}
+
 /* Contenedor principal */
 .resultados-container {
-  background: linear-gradient(135deg, #e3f2fd 0%, #bbdefb 50%, #90caf9 100%);
+  background: var(--app-bg-gradient);
   min-height: 100vh;
   padding: 30px;
   font-family: 'Roboto', 'Segoe UI', sans-serif;
+  color: var(--app-text-color);
 }
 
 /* Header */
@@ -13,7 +73,7 @@
 }
 
 .resultados-header h1 {
-  color: #1565c0;
+  color: var(--app-button-bg);
   font-size: 2.2rem;
   margin-bottom: 10px;
   font-weight: 500;
@@ -21,20 +81,21 @@
 }
 
 .resultados-header p {
-  color: #666;
+  color: var(--app-text-color);
   font-size: 1rem;
   margin: 0;
+  opacity: 0.7;
 }
 
 /* Tabla de resultados transpuesta */
 .resultados-table {
-  background: white;
+  background: var(--app-surface-color);
   border-radius: 16px;
   overflow: hidden;
-  box-shadow: 0 8px 32px rgba(0,0,0,0.12);
+  box-shadow: 0 8px 32px var(--app-shadow);
   max-width: 900px;
   margin: 0 auto 40px auto;
-  border: 1px solid #e3f2fd;
+  border: 1px solid var(--app-border-color);
 }
 
 /* Cada fila de resultado */
@@ -44,25 +105,26 @@
   border-radius: 12px;
   overflow: hidden;
   transition: all 0.3s ease;
-  box-shadow: 0 4px 12px rgba(0,0,0,0.08);
-  border: 2px solid #f5f5f5;
+  box-shadow: 0 4px 12px var(--app-shadow);
+  border: 2px solid var(--app-border-color);
+  background: var(--app-surface-color);
 }
 
 /* Patrón alternado para filas */
 .result-row:nth-child(even) {
-  background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
-  border-color: #e3f2fd;
+  background: var(--app-table-row-bg);
+  border-color: var(--app-border-color);
 }
 
 .result-row:nth-child(odd) {
-  background: linear-gradient(135deg, #ffffff 0%, #f8f9fa 100%);
-  border-color: #e8eaf6;
+  background: var(--app-table-row-bg);
+  border-color: var(--app-border-color);
 }
 
 .result-row:hover {
   transform: translateY(-3px);
-  box-shadow: 0 8px 24px rgba(66, 165, 245, 0.2);
-  border-color: #42a5f5;
+  box-shadow: 0 8px 24px var(--app-shadow);
+  border-color: var(--app-button-bg);
 }
 
 .result-row:last-child {
@@ -73,22 +135,22 @@
 .result-row .label {
   flex: 1;
   padding: 20px 28px;
-  background: linear-gradient(135deg, #42a5f5 0%, #1e88e5 100%);
-  color: white;
+  background: var(--app-table-header-bg);
+  color: var(--app-text-color);
   font-weight: 600;
   font-size: 1rem;
   display: flex;
   align-items: center;
   min-width: 350px;
-  box-shadow: inset 0 1px 0 rgba(255,255,255,0.1);
-  border-right: 3px solid rgba(255,255,255,0.2);
+  box-shadow: inset 0 1px 0 var(--app-border-color);
+  border-right: 3px solid var(--app-border-color);
 }
 
 /* Valor (lo que antes era el contenido de la celda) */
 .result-row .value {
   flex: 1;
   padding: 20px 28px;
-  color: #424242;
+  color: var(--app-text-color);
   font-size: 1.1rem;
   font-weight: 500;
   display: flex;
@@ -96,30 +158,30 @@
   justify-content: flex-end;
   text-align: right;
   font-family: 'Roboto Mono', monospace;
-  background: inherit;
+  background: var(--app-table-row-bg);
 }
 
 /* Estilos especiales para diferentes tipos de valores */
 .result-row .value.highlight {
-  color: #2e7d32;
+  color: var(--app-button-bg);
   font-weight: 700;
   font-size: 1.3rem;
-  background: linear-gradient(135deg, #e8f5e8 0%, #f1f8e9 100%) !important;
+  background: var(--app-table-row-bg) !important;
   border-radius: 0 8px 8px 0;
 }
 
 .result-row .value.profit {
-  color: #e65100;
+  color: #4caf50;
   font-weight: 700;
   font-size: 1.2rem;
-  background: linear-gradient(135deg, #fff3e0 0%, #ffe0b2 100%) !important;
+  background: var(--app-table-row-bg) !important;
   border-radius: 0 8px 8px 0;
 }
 
 .result-row .value.percentage {
-  color: #1565c0;
+  color: var(--app-button-bg);
   font-weight: 600;
-  background: linear-gradient(135deg, #e3f2fd 0%, #bbdefb 100%) !important;
+  background: var(--app-table-row-bg) !important;
   border-radius: 0 8px 8px 0;
 }
 
@@ -132,19 +194,22 @@
 
 /* Sin datos */
 .no-data {
-  background: white;
+  background: var(--app-surface-color);
   border-radius: 16px;
   padding: 50px;
   text-align: center;
-  box-shadow: 0 8px 32px rgba(0,0,0,0.12);
+  box-shadow: 0 8px 32px var(--app-shadow);
   max-width: 900px;
   margin: 0 auto 40px auto;
+  color: var(--app-text-color);
+  border: 1px solid var(--app-border-color);
 }
 
 .no-data p {
-  color: #666;
+  color: var(--app-text-color);
   font-size: 1.2rem;
   margin: 0;
+  opacity: 0.7;
 }
 
 /* Botones de acción */
@@ -166,15 +231,16 @@
   display: flex;
   align-items: center;
   gap: 10px;
-  background: linear-gradient(135deg, #42a5f5 0%, #1e88e5 100%);
-  color: white;
-  box-shadow: 0 4px 15px rgba(30, 136, 229, 0.3);
+  background: var(--app-button-bg);
+  color: var(--app-button-text);
+  box-shadow: 0 4px 15px var(--app-shadow);
 }
 
 .btn-back:hover {
-  background: linear-gradient(135deg, #1e88e5 0%, #1976d2 100%);
+  background: var(--app-button-bg);
   transform: translateY(-3px);
-  box-shadow: 0 6px 20px rgba(30, 136, 229, 0.4);
+  box-shadow: 0 6px 20px var(--app-shadow);
+  opacity: 0.9;
 }
 
 .btn-table {
@@ -188,14 +254,16 @@
   display: flex;
   align-items: center;
   gap: 8px;
-  background: linear-gradient(135deg, #42a5f5 0%, #1e88e5 100%);
-  color: white;
+  background: var(--app-button-bg);
+  color: var(--app-button-text);
+  box-shadow: 0 4px 15px var(--app-shadow);
 }
 
 .btn-table:hover {
-  background: linear-gradient(135deg, #1e88e5 0%, #1565c0 100%);
+  background: var(--app-button-bg);
   transform: translateY(-2px);
-  box-shadow: 0 4px 15px rgba(66, 165, 245, 0.4);
+  box-shadow: 0 6px 20px var(--app-shadow);
+  opacity: 0.9;
 }
 
 /* Responsive */
@@ -266,27 +334,6 @@
     padding: 12px 30px;
     font-size: 1rem;
   }
-}
-
-.btn-table {
-  padding: 12px 30px;
-  border: none;
-  border-radius: 25px;
-  font-size: 1rem;
-  font-weight: 600;
-  cursor: pointer;
-  transition: all 0.3s ease;
-  display: flex;
-  align-items: center;
-  gap: 8px;
-  background: linear-gradient(135deg, #42a5f5 0%, #1e88e5 100%);
-  color: white;
-}
-
-.btn-table:hover {
-  background: linear-gradient(135deg, #1e88e5 0%, #1565c0 100%);
-  transform: translateY(-2px);
-  box-shadow: 0 4px 15px rgba(66, 165, 245, 0.4);
 }
 
 /* Animaciones mejoradas */

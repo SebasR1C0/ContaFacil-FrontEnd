@@ -20,18 +20,38 @@ export class ResultadosComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
+    console.log('🚀 Componente Resultados inicializado');
+    
     this.route.paramMap.subscribe(params => {
       const bonoId = params.get('idBono');
+      console.log('📋 ID del bono obtenido de la ruta:', bonoId);
+      
       if (bonoId) {
         this.cargarResultado(+bonoId);
+      } else {
+        console.error('❌ No se encontró ID del bono en la ruta');
       }
     });
   }
 
   cargarResultado(id: number) {
-    this.resultadosService.listarxbono(id).subscribe((data) => {
-      if (data && data.length > 0) {
-        this.resultado = data[0]; // Tomar el primer resultado
+    console.log('📊 Iniciando carga de resultados para bono ID:', id);
+    
+    this.resultadosService.listarxbono(id).subscribe({
+      next: (data) => {
+        console.log('✅ Datos recibidos del servicio:', data);
+        if (data && data.length > 0) {
+          this.resultado = data[0]; // Tomar el primer resultado
+          console.log('✅ Resultado asignado:', this.resultado);
+        } else {
+          console.log('⚠️ No hay datos en la respuesta del servicio');
+        }
+      },
+      error: (error) => {
+        console.error('❌ Error al cargar resultados:', error);
+      },
+      complete: () => {
+        console.log('🏁 Carga de resultados completada');
       }
     });
   }

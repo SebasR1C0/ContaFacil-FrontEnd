@@ -7,6 +7,6 @@ export class User {
   apellido: string='';
   direccion: string='';
   genero: string='';
-  FechaRegistro: Date= new Date();
+  fechaRegistro: Date | string= new Date();
   enabled: boolean=false;
   }

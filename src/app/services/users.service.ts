@@ -25,4 +25,15 @@ export class UsersService {
   update(User : User){
         return this.http.put(this.url, User);
       }
+  delete(id: number) {
+    return this.http.delete(`${this.url}/${id}`);
+  }
+  
+  getListaCambio() {
+    return this.listacambio.asObservable();
+  }
+  
+  setList(listaNueva: User[]) {
+    this.listacambio.next(listaNueva);
+  }
 }
