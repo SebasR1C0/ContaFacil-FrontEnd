@@ -11,9 +11,14 @@
   --border-color: rgba(255, 255, 255, 0.2);
   --shadow-color: rgba(30, 136, 229, 0.2);
   
+  /* Colores específicos para header */
+  --header-bg: #ffffff;
+  --header-border: #e0e0e0;
+  --header-shadow: rgba(0, 0, 0, 0.1);
+  
   /* Colores específicos para elementos */
-  --header-text-color: #ffffff;
-  --header-border-color: rgba(255, 255, 255, 0.2);
+  --header-text-color: #333333;
+  --header-border-color: rgba(0, 0, 0, 0.1);
   --menu-background: #ffffff;
   --menu-text-color: #333333;
   --menu-hover-bg: rgba(156, 39, 176, 0.05);
@@ -42,6 +47,11 @@
   --border-color: rgba(255, 255, 255, 0.1);
   --shadow-color: rgba(0, 0, 0, 0.5);
   
+  /* Colores específicos para header en modo oscuro */
+  --header-bg: #000000;
+  --header-border: #333333;
+  --header-shadow: rgba(0, 0, 0, 0.8);
+  
   /* Colores específicos para elementos en modo oscuro */
   --header-text-color: #ffffff;
   --header-border-color: rgba(255, 255, 255, 0.1);
@@ -69,27 +79,137 @@
   transition: all 0.3s ease;
 }
 
-/* Encabezado principal con temática azul */
+/* Encabezado principal */
 .main-header {
-  background: var(--background-gradient);
-  box-shadow: 0 2px 12px var(--shadow-color);
+  background: var(--header-bg) !important;
+  border-bottom: 3px solid var(--header-border) !important;
+  box-shadow: 0 2px 12px var(--header-shadow) !important;
   padding: 16px 24px;
   position: sticky;
   top: 0;
   z-index: 1000;
-  border-bottom: 3px solid var(--primary-dark);
   transition: all 0.3s ease;
   position: relative;
 }
 
-/* Forzar el gradiente azul oscuro para el modo claro */
-body:not(.dark-theme) .main-header {
-  background: linear-gradient(135deg, #1565c0 0%, #1976d2 50%, #1e88e5 100%) !important;
+/* Clases específicas para tema del header */
+.light-theme-header {
+  background: #ffffff !important;
+  border-bottom: 3px solid #e0e0e0 !important;
+  box-shadow: 0 2px 12px rgba(0, 0, 0, 0.1) !important;
 }
 
-/* Forzar el gradiente negro para el modo oscuro */
-body.dark-theme .main-header {
-  background: linear-gradient(135deg, #000000 0%, #1a1a1a 50%, #2d2d2d 100%) !important;
+.dark-theme-header {
+  background: #000000 !important;
+  border-bottom: 3px solid #333333 !important;
+  box-shadow: 0 2px 12px rgba(0, 0, 0, 0.8) !important;
+}
+
+/* Estilos por defecto para modo claro */
+:host:not(.dark-theme) .main-header,
+:host .main-header {
+  background: #ffffff !important;
+  border-bottom: 3px solid #e0e0e0 !important;
+  box-shadow: 0 2px 12px rgba(0, 0, 0, 0.1) !important;
+}
+
+/* Estilos específicos para modo oscuro */
+:host(.dark-theme) .main-header {
+  background: #000000 !important;
+  border-bottom: 3px solid #333333 !important;
+  box-shadow: 0 2px 12px rgba(0, 0, 0, 0.8) !important;
+}
+
+/* Reglas adicionales para asegurar que el tema se aplique correctamente */
+:host-context(.dark-theme) .main-header {
+  background: #000000 !important;
+  border-bottom: 3px solid #333333 !important;
+  box-shadow: 0 2px 12px rgba(0, 0, 0, 0.8) !important;
+}
+
+:host-context(:not(.dark-theme)) .main-header {
+  background: #ffffff !important;
+  border-bottom: 3px solid #e0e0e0 !important;
+  box-shadow: 0 2px 12px rgba(0, 0, 0, 0.1) !important;
+}
+
+/* Fallback con mayor especificidad */
+.main-header[data-theme="light"] {
+  background: #ffffff !important;
+  border-bottom: 3px solid #e0e0e0 !important;
+  box-shadow: 0 2px 12px rgba(0, 0, 0, 0.1) !important;
+}
+
+.main-header[data-theme="dark"] {
+  background: #000000 !important;
+  border-bottom: 3px solid #333333 !important;
+  box-shadow: 0 2px 12px rgba(0, 0, 0, 0.8) !important;
+}
+
+/* Reglas adicionales para body context */
+body.dark-theme .main-header,
+.dark-theme .main-header {
+  background: #000000 !important;
+  border-bottom: 3px solid #333333 !important;
+  box-shadow: 0 2px 12px rgba(0, 0, 0, 0.8) !important;
+}
+
+body.light-theme .main-header,
+body:not(.dark-theme) .main-header,
+.light-theme .main-header,
+:not(.dark-theme) .main-header {
+  background: #ffffff !important;
+  border-bottom: 3px solid #e0e0e0 !important;
+  box-shadow: 0 2px 12px rgba(0, 0, 0, 0.1) !important;
+}
+
+/* Estilos ultra específicos para asegurar que el header funcione correctamente */
+app-root .main-header.light-theme-header,
+.main-header.light-theme-header,
+header.light-theme-header {
+  background-color: #ffffff !important;
+  border-bottom: 3px solid #e0e0e0 !important;
+  box-shadow: 0 2px 12px rgba(0, 0, 0, 0.1) !important;
+}
+
+app-root .main-header.dark-theme-header,
+.main-header.dark-theme-header,
+header.dark-theme-header {
+  background-color: #000000 !important;
+  border-bottom: 3px solid #333333 !important;
+  box-shadow: 0 2px 12px rgba(0, 0, 0, 0.8) !important;
+}
+
+/* Estilos para el contexto del body */
+body.dark-theme app-root .main-header,
+body.dark-theme .main-header,
+.dark-theme app-root .main-header,
+.dark-theme .main-header {
+  background-color: #000000 !important;
+  border-bottom: 3px solid #333333 !important;
+  box-shadow: 0 2px 12px rgba(0, 0, 0, 0.8) !important;
+}
+
+body.light-theme app-root .main-header,
+body.light-theme .main-header,
+body:not(.dark-theme) app-root .main-header,
+body:not(.dark-theme) .main-header {
+  background-color: #ffffff !important;
+  border-bottom: 3px solid #e0e0e0 !important;
+  box-shadow: 0 2px 12px rgba(0, 0, 0, 0.1) !important;
+}
+
+/* Estilos por atributo data-theme */
+.main-header[data-theme="dark"] {
+  background-color: #000000 !important;
+  border-bottom: 3px solid #333333 !important;
+  box-shadow: 0 2px 12px rgba(0, 0, 0, 0.8) !important;
+}
+
+.main-header[data-theme="light"] {
+  background-color: #ffffff !important;
+  border-bottom: 3px solid #e0e0e0 !important;
+  box-shadow: 0 2px 12px rgba(0, 0, 0, 0.1) !important;
 }
 
 /* Contenedor de navegación */
@@ -618,8 +738,8 @@ body.dark-theme .main-header {
   }
 }
 
-/* Efecto de glass morphism para el encabezado */
-.main-header::before {
+/* Efecto de glass morphism para el encabezado - solo en modo oscuro */
+.dark-theme .main-header::before {
   content: '';
   position: absolute;
   top: 0;
@@ -628,4 +748,25 @@ body.dark-theme .main-header {
   bottom: 0;
   background: linear-gradient(135deg, var(--glass-overlay) 0%, rgba(255,255,255,0.02) 100%);
   pointer-events: none;
+}
+
+/* Estilos de respaldo para asegurar que el tema se aplique inmediatamente */
+.main-header {
+  background-color: #ffffff !important;
+  border-bottom: 3px solid #e0e0e0 !important;
+  box-shadow: 0 2px 12px rgba(0, 0, 0, 0.1) !important;
+}
+
+/* Cuando el body tiene la clase dark-theme, aplicar inmediatamente */
+body.dark-theme .main-header {
+  background-color: #000000 !important;
+  border-bottom: 3px solid #333333 !important;
+  box-shadow: 0 2px 12px rgba(0, 0, 0, 0.8) !important;
+}
+
+/* Cuando el app-root tiene la clase dark-theme, aplicar inmediatamente */
+app-root.dark-theme .main-header {
+  background-color: #000000 !important;
+  border-bottom: 3px solid #333333 !important;
+  box-shadow: 0 2px 12px rgba(0, 0, 0, 0.8) !important;
 }
