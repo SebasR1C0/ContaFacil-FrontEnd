@@ -70,6 +70,13 @@
   opacity: 0.9;
 }
 
+:host-context(.dark-theme) .mat-mdc-raised-button:disabled {
+  background-color: #404040 !important;
+  color: #666666 !important;
+  box-shadow: none !important;
+  opacity: 0.6 !important;
+}
+
 :host-context(.dark-theme) .form-hints {
   color: var(--app-text-color) !important;
   opacity: 0.7;
@@ -274,9 +281,11 @@ form {
 }
 
 .mat-mdc-raised-button:disabled {
-  background-color: #f1f3f4 !important;
+  background-color: #e8e8e8 !important;
   color: #9aa0a6 !important;
   box-shadow: none !important;
+  opacity: 0.6 !important;
+  cursor: not-allowed !important;
 }
 
 /* Cancel button más sutil */
