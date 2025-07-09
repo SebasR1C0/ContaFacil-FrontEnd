@@ -14,6 +14,7 @@ import { FlujocajaComponent } from './components/flujocaja/flujocaja.component';
 import { ListacatalogoComponent } from './components/catalogo/listacatalogo/listacatalogo.component';
 import { CreaditacatalogoComponent } from './components/catalogo/creaditacatalogo/creaditacatalogo.component';
 import { FyqComponent } from './components/fyq/fyq.component';
+import { RenderMode, ServerRoute } from '@angular/ssr';
 
 export const routes: Routes = [
   { path: '', redirectTo: '/login', pathMatch: 'full' },
