@@ -22,11 +22,13 @@ import { CatalogomonedaService } from '../../../services/catalogomoneda.service'
 import { UsersService } from '../../../services/users.service';
 import { MatSnackBar, MatSnackBarModule } from '@angular/material/snack-bar';
 import { isPlatformBrowser } from '@angular/common';
+import { CommonModule } from '@angular/common';
 
 @Component({
   selector: 'app-creaditabono',
   providers: [provideNativeDateAdapter()],
   imports: [
+    CommonModule,
     MatInputModule,
     MatFormFieldModule,
     MatSelectModule,
