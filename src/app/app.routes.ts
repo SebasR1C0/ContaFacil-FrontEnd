@@ -31,6 +31,12 @@ export const routes: Routes = [
       { path: 'ediciones/:id', component: CreaditabonoComponent }
     ],
   },
+  { path: 'bonos/ediciones/:id', renderMode: RenderMode.Default },
+  { path: 'resultados/:idBono', renderMode: RenderMode.Default },
+  { path: 'resultados-tabla/:idBono', renderMode: RenderMode.Default },
+  { path: 'flujocaja/:idBono', renderMode: RenderMode.Default },
+  { path: 'creaditacatalogo/:id', renderMode: RenderMode.Default },
+  
   { path: 'resultados', component: ResultadosComponent },
   { path: 'resultados/:idBono', component: ResultadosComponent },
   { path: 'resultados-tabla', component: ListarComponent },
@@ -43,4 +49,5 @@ export const routes: Routes = [
   { path: 'creaditacatalogo', component: CreaditacatalogoComponent },
   { path: 'creaditacatalogo/:id', component: CreaditacatalogoComponent },
   { path: 'faq', component: FyqComponent }
+  { path: '**', renderMode: RenderMode.Prerender }
 ];
