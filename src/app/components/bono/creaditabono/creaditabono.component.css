@@ -86,6 +86,11 @@
   color: var(--app-text-color) !important;
 }
 
+:host-context(.dark-theme) .section-title {
+  color: var(--app-button-bg) !important;
+  border-bottom-color: var(--app-border-color) !important;
+}
+
 /* Contenedor principal con temática azul claro */
 .container {
   background: var(--app-bg-gradient);
@@ -110,10 +115,10 @@ h1 {
 .form-container {
   background: var(--app-surface-color);
   border-radius: 12px;
-  padding: 25px;
+  padding: 30px;
   box-shadow: 0 1px 8px var(--app-shadow);
   border: 1px solid var(--app-border-color);
-  max-width: 700px;
+  max-width: 1100px;
   margin: 0 auto;
   position: relative;
   overflow: hidden;
@@ -130,11 +135,11 @@ h1 {
   border-radius: 12px 12px 0 0;
 }
 
-/* Formulario en grid más compacto */
+/* Formulario en grid horizontal */
 form {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-  gap: 16px;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 20px 16px;
   align-items: start;
 }
 
@@ -308,7 +313,37 @@ form {
   grid-column: 1 / -1;
 }
 
-/* Responsive adjustments más compactos */
+/* Campos que ocupan dos columnas */
+.half-width {
+  grid-column: span 2;
+}
+
+/* Sección de campos en filas específicas */
+.section-title {
+  grid-column: 1 / -1;
+  font-size: 1.1rem;
+  font-weight: 700;
+  color: var(--app-button-bg);
+  margin: 16px 0 8px 0;
+  padding-bottom: 8px;
+  border-bottom: 2px solid var(--app-border-color);
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+/* Responsive adjustments para diseño horizontal */
+@media (max-width: 1200px) {
+  form {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 18px 14px;
+  }
+  
+  .form-container {
+    max-width: 900px;
+    padding: 25px;
+  }
+}
+
 @media (max-width: 768px) {
   .container {
     padding: 16px;
@@ -317,6 +352,7 @@ form {
   .form-container {
     padding: 20px;
     margin: 0 8px;
+    max-width: 100%;
   }
   
   h1 {
@@ -327,6 +363,10 @@ form {
   form {
     grid-template-columns: 1fr;
     gap: 14px;
+  }
+  
+  .half-width {
+    grid-column: span 1;
   }
   
   .button-container {

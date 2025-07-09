@@ -11,7 +11,9 @@
         </mat-error>
       </mat-form-field>
 
-      <!-- Información básica -->
+      <!-- Sección: Información Básica -->
+      <div class="section-title">📋 Información Básica</div>
+      
       <mat-form-field>
         <mat-label>📝 Nombre del bono</mat-label>
         <input matInput 
@@ -58,6 +60,9 @@
         </mat-error>
       </mat-form-field>
 
+      <!-- Sección: Configuración Financiera -->
+      <div class="section-title">💰 Configuración Financiera</div>
+      
       <mat-form-field>
         <mat-label>💰 Tipo de moneda</mat-label>
         <mat-select formControlName="hmoneda">
@@ -70,7 +75,6 @@
         </mat-error>
       </mat-form-field>
 
-      <!-- Configuración de cupones -->
       <mat-form-field>
         <mat-label>🎫 Frecuencia del cupón</mat-label>
         <mat-select formControlName="hcupon">
@@ -96,6 +100,8 @@
       </mat-form-field>
 
       <!-- Configuración de tasas -->
+      <div class="section-title">📊 Configuración de Tasas</div>
+      
       <mat-form-field>
         <mat-label>📊 Tipo de Tasa de Interés</mat-label>
         <mat-select formControlName="htipoTasa">
@@ -160,7 +166,6 @@
         </mat-error>
       </mat-form-field>
 
-      <!-- Configuración fiscal -->
       <mat-form-field>
         <mat-label>🏛️ Impuesto a la renta</mat-label>
         <input matInput 
@@ -202,6 +207,8 @@
       </mat-form-field>
 
       <!-- Configuración de gracia -->
+      <div class="section-title">⏸️ Configuración de Gracia</div>
+      
       <mat-form-field>
         <mat-label>⏸️ Tipos de Gracia</mat-label>
         <mat-select formControlName="htipoGracia">
@@ -232,6 +239,8 @@
       </mat-form-field>
 
       <!-- Costos -->
+      <div class="section-title">💰 Costos y Comisiones</div>
+      
       <mat-form-field>
         <mat-label>🏦 Costos Iniciales del Bonista</mat-label>
         <input matInput 
@@ -272,7 +281,7 @@
         </mat-error>
       </mat-form-field>
 
-      <mat-form-field class="full-width">
+      <mat-form-field>
         <mat-label>💼 Otros costos iniciales</mat-label>
         <input matInput 
                type="number" 
