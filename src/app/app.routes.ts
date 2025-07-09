@@ -14,7 +14,6 @@ import { FlujocajaComponent } from './components/flujocaja/flujocaja.component';
 import { ListacatalogoComponent } from './components/catalogo/listacatalogo/listacatalogo.component';
 import { CreaditacatalogoComponent } from './components/catalogo/creaditacatalogo/creaditacatalogo.component';
 import { FyqComponent } from './components/fyq/fyq.component';
-import { RenderMode, ServerRoute } from '@angular/ssr';
 
 export const routes: Routes = [
   { path: '', redirectTo: '/login', pathMatch: 'full' },
@@ -31,12 +30,6 @@ export const routes: Routes = [
       { path: 'ediciones/:id', component: CreaditabonoComponent }
     ],
   },
-  { path: 'bonos/ediciones/:id', renderMode: RenderMode.Default },
-  { path: 'resultados/:idBono', renderMode: RenderMode.Default },
-  { path: 'resultados-tabla/:idBono', renderMode: RenderMode.Default },
-  { path: 'flujocaja/:idBono', renderMode: RenderMode.Default },
-  { path: 'creaditacatalogo/:id', renderMode: RenderMode.Default },
-  
   { path: 'resultados', component: ResultadosComponent },
   { path: 'resultados/:idBono', component: ResultadosComponent },
   { path: 'resultados-tabla', component: ListarComponent },
@@ -49,5 +42,4 @@ export const routes: Routes = [
   { path: 'creaditacatalogo', component: CreaditacatalogoComponent },
   { path: 'creaditacatalogo/:id', component: CreaditacatalogoComponent },
   { path: 'faq', component: FyqComponent }
-  { path: '**', renderMode: RenderMode.Prerender }
 ];
