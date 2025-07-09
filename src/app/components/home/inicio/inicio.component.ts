@@ -1,5 +1,5 @@
-import { Component } from '@angular/core';
-import { CommonModule } from '@angular/common';
+import { Component, OnInit, Inject, PLATFORM_ID } from '@angular/core';
+import { CommonModule, isPlatformBrowser } from '@angular/common';
 import { Router } from '@angular/router';
 
 @Component({
@@ -8,9 +8,32 @@ import { Router } from '@angular/router';
   templateUrl: './inicio.component.html',
   styleUrl: './inicio.component.css'
 })
-export class InicioComponent {
+export class InicioComponent implements OnInit {
+  userName: string = 'Usuario';
   
-  constructor(private router: Router) {}
+  constructor(
+    private router: Router,
+    @Inject(PLATFORM_ID) private platformId: Object
+  ) {}
+
+  ngOnInit() {
+    this.loadUserName();
+  }
+
+  private loadUserName() {
+    if (isPlatformBrowser(this.platformId)) {
+      try {
+        const userStr = localStorage.getItem('currentUser');
+        if (userStr) {
+          const user = JSON.parse(userStr);
+          this.userName = user.nombre || user.username || 'Usuario';
+        }
+      } catch (error) {
+        console.error('Error al obtener datos del usuario:', error);
+        this.userName = 'Usuario';
+      }
+    }
+  }
 
   goToRegisterBond() {
     this.router.navigate(['/bonos/nuevo']);

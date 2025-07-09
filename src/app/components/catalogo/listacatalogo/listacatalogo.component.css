@@ -376,36 +376,104 @@ h1 {
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
 }
 
-/* Accesibilidad */
-@media (prefers-reduced-motion: reduce) {
-  * {
-    animation-duration: 0.01ms !important;
-    animation-iteration-count: 1 !important;
-    transition-duration: 0.01ms !important;
-  }
+/* Estilos para la columna de acciones */
+.actions-cell {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 8px;
+  height: 100%;
 }
 
-/* Print styles */
-@media print {
-  .table-container {
-    box-shadow: none;
-    border: 1px solid #000;
+.edit-button,
+.delete-button {
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  width: 36px !important;
+  height: 36px !important;
+  min-width: 36px !important;
+  border-radius: 50% !important;
+  border: none !important;
+  cursor: pointer !important;
+  transition: all 0.3s ease !important;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1) !important;
+}
+
+.edit-button {
+  background: linear-gradient(135deg, #ff9800, #f57c00) !important;
+  color: white !important;
+}
+
+.edit-button:hover {
+  background: linear-gradient(135deg, #f57c00, #ef6c00) !important;
+  box-shadow: 0 4px 8px rgba(255, 152, 0, 0.4) !important;
+  transform: translateY(-1px) !important;
+}
+
+.delete-button {
+  background: linear-gradient(135deg, #f44336, #d32f2f) !important;
+  color: white !important;
+}
+
+.delete-button:hover {
+  background: linear-gradient(135deg, #d32f2f, #c62828) !important;
+  box-shadow: 0 4px 8px rgba(244, 67, 54, 0.4) !important;
+  transform: translateY(-1px) !important;
+}
+
+.edit-button mat-icon,
+.delete-button mat-icon {
+  font-size: 18px !important;
+  width: 18px !important;
+  height: 18px !important;
+}
+
+/* Estilos para tema oscuro - botones de acciones */
+.dark-theme .edit-button {
+  background: linear-gradient(135deg, #ffb74d, #ff9800) !important;
+}
+
+.dark-theme .edit-button:hover {
+  background: linear-gradient(135deg, #ff9800, #f57c00) !important;
+}
+
+.dark-theme .delete-button {
+  background: linear-gradient(135deg, #ef5350, #f44336) !important;
+}
+
+.dark-theme .delete-button:hover {
+  background: linear-gradient(135deg, #f44336, #d32f2f) !important;
+}
+
+/* Responsive para botones de acciones */
+@media (max-width: 768px) {
+  .actions-cell {
+    gap: 6px;
   }
   
-  .mat-mdc-row:hover {
-    background: transparent !important;
-    transform: none !important;
-    box-shadow: none !important;
+  .edit-button,
+  .delete-button {
+    width: 32px !important;
+    height: 32px !important;
+    min-width: 32px !important;
+  }
+  
+  .edit-button mat-icon,
+  .delete-button mat-icon {
+    font-size: 16px !important;
+    width: 16px !important;
+    height: 16px !important;
   }
 }
 
 /* Estilos para el botón Añadir Moneda */
 .add-button-container {
   display: flex;
-  justify-content: flex-end;
+  justify-content: flex-start;
   width: 100%;
   max-width: 900px;
-  margin-bottom: 20px;
+  margin-bottom: 30px;
   padding: 0 20px;
 }
 
@@ -424,6 +492,7 @@ h1 {
   display: flex !important;
   align-items: center !important;
   gap: 8px !important;
+  text-shadow: none !important;
 }
 
 .add-currency-btn:hover {
@@ -446,7 +515,9 @@ h1 {
 /* Estilos para tema oscuro */
 .dark-theme .add-currency-btn {
   background: linear-gradient(135deg, #bb86fc, #9c64e0) !important;
+  color: #2c2c2c !important;
   box-shadow: 0 4px 12px rgba(187, 134, 252, 0.3) !important;
+  text-shadow: none !important;
 }
 
 .dark-theme .add-currency-btn:hover {
@@ -457,12 +528,19 @@ h1 {
 /* Responsive */
 @media (max-width: 768px) {
   .add-button-container {
-    justify-content: center;
+    justify-content: flex-start;
     padding: 0 10px;
   }
   
   .add-currency-btn {
     font-size: 0.9rem !important;
     padding: 10px 20px !important;
+  }
+}
+
+@media (max-width: 480px) {
+  .add-button-container {
+    justify-content: center;
+    padding: 0 10px;
   }
 }

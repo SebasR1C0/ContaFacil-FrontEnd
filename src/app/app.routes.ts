@@ -12,6 +12,7 @@ import { InicioComponent } from './components/home/inicio/inicio.component';
 import { LoginComponent } from './components/login/login.component';
 import { FlujocajaComponent } from './components/flujocaja/flujocaja.component';
 import { ListacatalogoComponent } from './components/catalogo/listacatalogo/listacatalogo.component';
+import { CreaditacatalogoComponent } from './components/catalogo/creaditacatalogo/creaditacatalogo.component';
 import { FyqComponent } from './components/fyq/fyq.component';
 
 export const routes: Routes = [
@@ -38,5 +39,7 @@ export const routes: Routes = [
   { path: 'flujocaja/:idBono', component: FlujocajaComponent },
   { path: 'manual', component: ManualuserComponent },
   { path: 'catalogo-monedas', component: ListacatalogoComponent },
+  { path: 'creaditacatalogo', component: CreaditacatalogoComponent },
+  { path: 'creaditacatalogo/:id', component: CreaditacatalogoComponent },
   { path: 'faq', component: FyqComponent }
 ];

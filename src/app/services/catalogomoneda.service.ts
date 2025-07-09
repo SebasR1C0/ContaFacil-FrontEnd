@@ -31,4 +31,8 @@ export class CatalogomonedaService {
   update(CatalogoMoneda: CatalogoMoneda) {
     return this.http.put(this.url, CatalogoMoneda);
   }
+  
+  listId(id: number) {
+    return this.http.get<CatalogoMoneda>(`${this.url}/${id}`);
+  }
 }
