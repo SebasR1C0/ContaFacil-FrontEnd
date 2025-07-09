@@ -304,10 +304,11 @@ export class CreaditabonoComponent implements OnInit {
         prima: +formValues.hprima,
         costesInicialesBonista: +formValues.hcostosBonista,
         costesInicialesOtros: +formValues.hcostosOtros,
+        emitido: false, // <-- Establecer automáticamente como falso al registrar
         idCatalogoMoneda: { idCatalogoMoneda: +formValues.hmoneda },
         idUsers: { idUser: userData.idUser } // <-- Asigna el usuario automáticamente
       };
-
+ 
       if (this.edicion) {
         this.bS.update(bono).subscribe(() => {
           this.bS.list().subscribe(data => {

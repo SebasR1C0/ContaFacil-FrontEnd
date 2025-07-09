@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { MatIconModule } from '@angular/material/icon';
+import { MatButtonModule } from '@angular/material/button';
 import { MatTableDataSource, MatTableModule } from '@angular/material/table';
 import { RouterModule } from '@angular/router';
 import { CatalogoMoneda } from '../../../models/catalogomoneda';
@@ -8,7 +9,7 @@ import { CatalogomonedaService } from '../../../services/catalogomoneda.service'
 
 @Component({
   selector: 'app-listacatalogo',
-  imports: [CommonModule, MatTableModule, MatIconModule, RouterModule],
+  imports: [CommonModule, MatTableModule, MatIconModule, MatButtonModule, RouterModule],
   templateUrl: './listacatalogo.component.html',
   styleUrl: './listacatalogo.component.css'
 })

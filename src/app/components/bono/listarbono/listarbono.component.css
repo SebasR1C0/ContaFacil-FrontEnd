@@ -374,3 +374,98 @@ button:hover mat-icon {
   color: #fff;
   font-size: 1.1rem;
 }
+
+/* Estilos para la columna de emisión */
+.emission-cell {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+}
+
+.emit-button {
+  background: linear-gradient(135deg, #4CAF50, #45a049) !important;
+  color: white !important;
+  border: none !important;
+  border-radius: 8px !important;
+  padding: 8px 16px !important;
+  font-weight: 600 !important;
+  font-size: 0.9rem !important;
+  text-transform: uppercase !important;
+  letter-spacing: 0.5px !important;
+  transition: all 0.3s ease !important;
+  box-shadow: 0 2px 4px rgba(76, 175, 80, 0.3) !important;
+}
+
+.emit-button:hover {
+  background: linear-gradient(135deg, #45a049, #3d8b40) !important;
+  box-shadow: 0 4px 8px rgba(76, 175, 80, 0.4) !important;
+  transform: translateY(-1px) !important;
+}
+
+.emit-button:active {
+  transform: translateY(0) !important;
+  box-shadow: 0 2px 4px rgba(76, 175, 80, 0.3) !important;
+}
+
+.emitted-status {
+  display: flex;
+  align-items: center;
+  color: #4CAF50;
+  font-weight: 600;
+  font-size: 0.9rem;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+/* Estilos para tema oscuro - columna de emisión */
+:host-context(.dark-theme) .emit-button {
+  background: linear-gradient(135deg, #66BB6A, #4CAF50) !important;
+  color: #ffffff !important;
+}
+
+:host-context(.dark-theme) .emit-button:hover {
+  background: linear-gradient(135deg, #4CAF50, #45a049) !important;
+}
+
+:host-context(.dark-theme) .emitted-status {
+  color: #66BB6A !important;
+}
+
+/* Estilos para botones deshabilitados */
+.disabled-button {
+  opacity: 0.4 !important;
+  cursor: not-allowed !important;
+  pointer-events: none !important;
+  background: #cccccc !important;
+  color: #666666 !important;
+}
+
+.disabled-button:hover {
+  background: #cccccc !important;
+  color: #666666 !important;
+  transform: none !important;
+  box-shadow: none !important;
+}
+
+/* Estilos específicos para botones deshabilitados en tema oscuro */
+:host-context(.dark-theme) .disabled-button {
+  background: #444444 !important;
+  color: #888888 !important;
+}
+
+:host-context(.dark-theme) .disabled-button:hover {
+  background: #444444 !important;
+  color: #888888 !important;
+}
+
+/* Estilos para botones de flujo de caja y resultados deshabilitados */
+.cash-flow-button.disabled-button,
+.results-button.disabled-button {
+  background: linear-gradient(135deg, #cccccc, #bbbbbb) !important;
+}
+
+:host-context(.dark-theme) .cash-flow-button.disabled-button,
+:host-context(.dark-theme) .results-button.disabled-button {
+  background: linear-gradient(135deg, #444444, #333333) !important;
+}

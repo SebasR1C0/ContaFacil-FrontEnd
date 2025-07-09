@@ -19,6 +19,7 @@ export class Bono {
   prima: number = 0;
   costesInicialesBonista: number = 0;
   costesInicialesOtros: number = 0;
+  emitido: boolean = false; // Nuevo atributo para controlar el estado de emisión
   idCatalogoMoneda: any = {};
   idUsers: any = {};
 }

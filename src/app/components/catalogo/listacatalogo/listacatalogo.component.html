@@ -1,5 +1,14 @@
 <div class="container">
   <h1>💰 Catálogo de Monedas</h1>
+  
+  <!-- Botón Añadir Moneda -->
+  <div class="add-button-container">
+    <button mat-raised-button color="primary" class="add-currency-btn" [routerLink]="['/creaditacatalogo']">
+      <mat-icon>add</mat-icon>
+      Añadir Moneda
+    </button>
+  </div>
+  
   <div class="table-container">
     <table mat-table [dataSource]="dataSource" class="mat-elevation-z4">
 
